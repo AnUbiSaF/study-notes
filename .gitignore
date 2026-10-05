@@ -12,3 +12,6 @@ replit.nix
 .quartz/
 quartz/cli/tui/dist/
 .turbo/
+content/Машинное обучение/
+pnpm-lock.yaml
+pnpm-workspace.yaml

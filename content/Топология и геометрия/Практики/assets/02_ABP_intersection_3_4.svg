@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="700" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+<defs><style>
+.t{font:600 23px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fill:#e8e8e8}
+.s{font:500 18px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fill:#bdbdbd}
+.e{stroke:#d8d8d8;stroke-width:3;fill:none}
+.m{stroke:#d76a4a;stroke-width:4;fill:none}
+.h{stroke:#7894df;stroke-width:5;fill:none}
+.dot{fill:#ededed}.cent{fill:#e47a5b}.x{fill:#78b37c}
+.box{fill:#161616;stroke:#444;stroke-width:1.5}
+</style></defs>
+<text class="t" x="45" y="48">Плоская задача в треугольнике ABP</text>
+<path class="e" d="M150 590 L820 590 L500 110 Z"/>
+<circle class="dot" cx="150" cy="590" r="6"/><text class="t" x="120" y="625">A</text>
+<circle class="dot" cx="820" cy="590" r="6"/><text class="t" x="830" y="625">B</text>
+<circle class="dot" cx="500" cy="110" r="6"/><text class="t" x="492" y="88">P</text>
+<circle class="cent" cx="606.67" cy="270" r="7"/><text class="t" x="620" y="266">A₁</text>
+<circle class="cent" cx="383.33" cy="270" r="7"/><text class="t" x="337" y="265">B₁</text>
+<line class="m" x1="150" y1="590" x2="606.67" y2="270"/>
+<line class="m" x1="820" y1="590" x2="383.33" y2="270"/>
+<!-- intersection visually -->
+<circle class="x" cx="493" cy="350" r="8"/><text class="t" x="507" y="346">M</text>
+<line class="h" x1="150" y1="590" x2="493" y2="350"/>
+<text class="s" x="190" y="460">AM = 3/4 · AA₁</text>
+<text class="s" x="635" y="455">BM = 3/4 · BB₁</text>
+<rect class="box" x="80" y="25" width="340" height="125" rx="12"/>
+<text class="s" x="105" y="60">AA₁ = 2/3·p + 1/3·b</text>
+<text class="s" x="105" y="92">BB₁ = 2/3·p − b</text>
+<text class="s" x="105" y="124">p = AP,   b = AB</text>
+<rect class="box" x="650" y="25" width="270" height="95" rx="12"/>
+<text class="s" x="680" y="60">λ = μ = 3/4</text>
+<text class="s" x="680" y="92">⇒ общая точка M</text>
+</svg>
