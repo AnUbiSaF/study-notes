@@ -31,7 +31,7 @@ array_size = 3
 
 ---
 
-# Конструктор
+## Конструктор
 
 ```cpp
 Positive_int::Positive_int(int n, bool type)
@@ -73,7 +73,7 @@ array = find_prime_divisors(num);
 
 ---
 
-# Поиск простых множителей
+## Поиск простых множителей
 
 Для `60`:
 
@@ -147,7 +147,7 @@ int* result = new int[array_size];
 
 ---
 
-# Copy constructor
+## Copy constructor
 
 ```cpp
 Positive_int::Positive_int(const Positive_int& other)
@@ -194,7 +194,7 @@ object2.array -> [2, 2, 3]
 
 ---
 
-# Деструктор
+## Деструктор
 
 ```cpp
 Positive_int::~Positive_int() {
@@ -217,7 +217,7 @@ new[]     -> delete[]
 
 ---
 
-# `operator=`
+## `operator=`
 
 Copy constructor:
 
@@ -287,7 +287,7 @@ a = a
 
 ---
 
-# НОД через простые множители
+## НОД через простые множители
 
 Пример:
 
@@ -360,7 +360,7 @@ delete[] used;
 
 ---
 
-# НОК
+## НОК
 
 Используется формула:
 
@@ -376,7 +376,7 @@ delete[] used;
 
 ---
 
-# Реинициализация
+## Реинициализация
 
 Объект уже существует, но должен начать представлять другое число.
 
@@ -417,7 +417,7 @@ array = find_prime_divisors(num);
 
 ---
 
-# Замена множителя
+## Замена множителя
 
 Пример:
 
@@ -459,7 +459,7 @@ array = find_prime_divisors(num);
 
 ---
 
-# Sorted / unsorted
+## Sorted / unsorted
 
 ```cpp
 bool array_type;
@@ -484,7 +484,7 @@ array реально отсортирован
 
 ---
 
-# `const`
+## `const`
 
 ## Передача объекта без копирования
 
@@ -513,7 +513,7 @@ void print_divisors() const;
 
 ---
 
-# Разделение на файлы
+## Разделение на файлы
 
 ## `positive_int.h`
 
@@ -633,7 +633,7 @@ int gcd(const Positive_int& num1, const Positive_int& num2) {
 
 ---
 
-# Как всё собирается
+## Как всё собирается
 
 ```text
 main.cpp         -> main.o
@@ -648,7 +648,7 @@ Header нужен обоим `.cpp`, чтобы компилятор знал о
 
 ---
 
-# Makefile — смысл
+## Makefile — смысл
 
 Makefile описывает:
 
@@ -689,7 +689,7 @@ Release:
 
 ---
 
-# Что тренирует эта задача
+## Что тренирует эта задача
 
 - класс и инкапсуляцию;
 - динамический C-style массив;
