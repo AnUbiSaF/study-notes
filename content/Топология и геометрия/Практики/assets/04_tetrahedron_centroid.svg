@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="510" viewBox="0 0 860 510" role="img" aria-labelledby="title desc">
+  <title id="title">Центр тяжести тетраэдра</title>
+  <desc id="desc">Тетраэдр ABCD, центры тяжести противоположных граней A1 и B1, пересечение медиан M.</desc>
+  <style>
+    .edge{fill:none;stroke:#44546a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.hidden{stroke-dasharray:10 9}.median{fill:none;stroke:#1e88e5;stroke-width:4;stroke-linecap:round}.point{fill:#17212f;stroke:#fff;stroke-width:3}.minor{fill:#1e88e5;stroke:#fff;stroke-width:3}.label{font:700 26px sans-serif;fill:#17212f}.note{font:20px sans-serif;fill:#536579}.title{font:700 28px sans-serif;fill:#17212f}
+  </style>
+  <rect width="860" height="510" rx="22" fill="#f7fbff"/>
+  <text class="title" x="42" y="50">Центр тяжести тетраэдра</text>
+  <path class="edge" d="M145 385 L435 105 L705 370 L145 385 M435 105 L425 430 M705 370 L425 430"/>
+  <path class="edge hidden" d="M145 385 L425 430"/>
+  <path class="median" d="M145 385 L530 302 M705 370 L323 267"/>
+  <path class="median" d="M435 105 L410 353"/>
+  <circle class="point" cx="145" cy="385" r="9"/><text class="label" x="110" y="423">A</text>
+  <circle class="point" cx="435" cy="105" r="9"/><text class="label" x="448" y="101">D</text>
+  <circle class="point" cx="705" cy="370" r="9"/><text class="label" x="720" y="376">C</text>
+  <circle class="point" cx="425" cy="430" r="9"/><text class="label" x="438" y="456">B</text>
+  <circle class="minor" cx="530" cy="302" r="9"/><text class="label" x="543" y="296">A₁</text>
+  <circle class="minor" cx="323" cy="267" r="9"/><text class="label" x="275" y="258">B₁</text>
+  <circle class="minor" cx="410" cy="353" r="10"/><text class="label" x="423" y="348">M</text>
+  <text class="note" x="42" y="482">M делит каждую медиану в отношении 3:1 от вершины.</text>
+</svg>

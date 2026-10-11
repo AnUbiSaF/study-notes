@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="410" viewBox="0 0 860 410" role="img" aria-labelledby="title desc">
+  <title id="title">Смещение центров тяжести двух тетраэдров</title>
+  <desc id="desc">Два тетраэдра с центрами тяжести M и M штрих; стрелка показывает вектор MM штрих.</desc>
+  <style>
+    .edge{fill:none;stroke:#44546a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.hidden{stroke-dasharray:9 8}.shift{fill:none;stroke:#1e88e5;stroke-width:5;stroke-linecap:round}.point{fill:#17212f;stroke:#fff;stroke-width:3}.center{fill:#e75d42;stroke:#fff;stroke-width:3}.label{font:700 24px sans-serif;fill:#17212f}.note{font:20px sans-serif;fill:#536579}.title{font:700 28px sans-serif;fill:#17212f}
+  </style>
+  <defs><marker id="arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L11 6 L1 11 Z" fill="#1e88e5"/></marker></defs>
+  <rect width="860" height="410" rx="22" fill="#f7fbff"/>
+  <text class="title" x="42" y="50">Два тетраэдра и их центры тяжести</text>
+  <g>
+    <path class="edge" d="M100 305 L245 120 L370 285 L100 305 M245 120 L225 335 M370 285 L225 335"/>
+    <path class="edge hidden" d="M100 305 L225 335"/>
+    <circle class="point" cx="100" cy="305" r="8"/><text class="label" x="78" y="338">A</text>
+    <circle class="point" cx="245" cy="120" r="8"/><text class="label" x="257" y="116">D</text>
+    <circle class="point" cx="370" cy="285" r="8"/><text class="label" x="382" y="291">C</text>
+    <circle class="point" cx="225" cy="335" r="8"/><text class="label" x="236" y="362">B</text>
+    <circle class="center" cx="233" cy="256" r="10"/><text class="label" x="246" y="252">M</text>
+  </g>
+  <g transform="translate(355,-5)">
+    <path class="edge" d="M100 305 L245 120 L370 285 L100 305 M245 120 L225 335 M370 285 L225 335"/>
+    <path class="edge hidden" d="M100 305 L225 335"/>
+    <circle class="point" cx="100" cy="305" r="8"/><text class="label" x="70" y="338">A′</text>
+    <circle class="point" cx="245" cy="120" r="8"/><text class="label" x="257" y="116">D′</text>
+    <circle class="point" cx="370" cy="285" r="8"/><text class="label" x="382" y="291">C′</text>
+    <circle class="point" cx="225" cy="335" r="8"/><text class="label" x="236" y="362">B′</text>
+    <circle class="center" cx="233" cy="256" r="10"/><text class="label" x="246" y="252">M′</text>
+  </g>
+  <path class="shift" d="M255 226 C355 180 495 180 585 223" marker-end="url(#arrow)"/>
+  <text class="label" x="397" y="174">→ MM′</text>
+  <text class="note" x="42" y="390">Смещение центра тяжести равно среднему смещению соответствующих вершин.</text>
+</svg>
