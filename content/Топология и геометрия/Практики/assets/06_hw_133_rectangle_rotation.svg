@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="760" viewBox="0 0 1300 760">
+<style>
+.bg{fill:#151515}
+.axis{stroke:#7a7a7a;stroke-width:2}
+.rect{stroke:#ececec;stroke-width:3;fill:none}
+.side1{stroke:#77a5ff;stroke-width:4}
+.side2{stroke:#8fd18f;stroke-width:4}
+.aux{stroke:#8a8a8a;stroke-width:1.7;stroke-dasharray:7 7}
+.arc{stroke:#ff9b73;stroke-width:3;fill:none}
+.pt{fill:#f3f3f3}
+.lab{fill:#ededed;font:600 24px Arial}
+.sm{fill:#d0d0d0;font:500 18px Arial}
+.note{fill:#cfcfcf;font:500 17px Arial}
+.coord{fill:#d8d8d8;font:500 17px 'Courier New', monospace}
+</style>
+<rect class="bg" width="1300" height="760"/>
+<text x="40" y="45" class="lab">Чертёж задачи: исходный и перемещённый прямоугольник</text>
+<text x="160" y="90" class="lab">Исходное положение</text>
+<text x="760" y="90" class="lab">После переноса и поворота</text>
+<line x1="60" y1="610" x2="500" y2="610" class="axis"/><line x1="120" y1="690" x2="120" y2="140" class="axis"/><text x="490" y="638" class="sm">x</text><text x="102" y="160" class="sm">y</text><path d="M 120.0 610.0 L 420.0 610.0 L 420.0 490.0 L 120.0 490.0 L 120.0 610.0" class="rect"/><line x1="120" y1="610" x2="420" y2="610" class="side1"/><line x1="120" y1="610" x2="120" y2="490" class="side2"/><circle cx="120" cy="610" r="6" class="pt"/><circle cx="420" cy="610" r="6" class="pt"/><circle cx="120" cy="490" r="6" class="pt"/><circle cx="420" cy="490" r="6" class="pt"/><text x="100" y="636" class="lab">A</text><text x="430" y="636" class="lab">B</text><text x="100" y="480" class="lab">C</text><text x="430" y="480" class="lab">D</text><text x="270" y="635" class="sm">AB = 5</text><text x="55" y="475" class="sm">AC = 2</text><text x="165" y="680" class="coord">A = (0, 0)</text><text x="165" y="705" class="note">AB совпадает с осью x</text><line x1="660" y1="610" x2="1260" y2="610" class="axis"/><line x1="760" y1="700" x2="760" y2="130" class="axis"/><text x="1245" y="638" class="sm">x</text><text x="742" y="150" class="sm">y</text><path d="M 1000.0 670.0 L 1259.8 520.0 L 1199.8 416.1 L 940.0 566.1 L 1000.0 670.0" class="rect"/><line x1="1000" y1="670" x2="1259.8076211353316" y2="520.0" class="side1"/><line x1="1000" y1="670" x2="940" y2="566.0769515458674" class="side2"/><circle cx="1000" cy="670" r="6" class="pt"/><circle cx="1259.8076211353316" cy="520.0" r="6" class="pt"/><circle cx="940" cy="566.0769515458674" r="6" class="pt"/><circle cx="1199.8076211353316" cy="416.07695154586736" r="6" class="pt"/><text x="975" y="698" class="lab">A₁</text><text x="1271.8076211353316" y="528.0" class="lab">B₁</text><text x="906" y="558.0769515458674" class="lab">C₁</text><text x="1211.8076211353316" y="408.07695154586736" class="lab">D₁</text><text x="990" y="725" class="coord">A₁ = (4, -1)</text><line x1="1000" y1="670" x2="1180" y2="670" class="aux"/><path d="M 1055.0 670.0 A 55 55 0 0 0 1047.6 642.5" class="arc"/><text x="1062" y="652" class="sm">30°</text><text x="1139.903810567666" y="589.0" class="sm">A₁B₁ = 5</text><text x="885.0" y="612.0384757729337" class="sm">A₁C₁ = 2</text><text x="700" y="680" class="note">Меняется: положение и направление сторон относительно осей.</text><text x="700" y="705" class="note">Не меняется: длины сторон и прямые углы.</text></svg>
