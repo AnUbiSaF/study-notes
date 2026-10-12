@@ -16,6 +16,7 @@ configuration:
     - Шаблоны
     - Машинное обучение
     - .DS_Store
+    - index [2-9].md
   theme:
     fontOrigin: googleFonts
     cdnCaching: true

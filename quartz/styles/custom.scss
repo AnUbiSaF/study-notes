@@ -1,3 +1,51 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+// Keep every page readable on narrow screens: content may scroll inside its
+// own block, but must never push the article outside the viewport.
+@media all and (max-width: 800px) {
+  html,
+  body,
+  .page,
+  #quartz-body,
+  .center,
+  article,
+  .callout,
+  .callout-content,
+  .transclude {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  article {
+    overflow-wrap: anywhere;
+  }
+
+  .callout-title,
+  .callout-title-inner {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  article pre,
+  article table,
+  article .katex-display,
+  article .math,
+  article .transclude,
+  article .callout-content {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  article img,
+  article object,
+  article svg,
+  article video,
+  article iframe {
+    max-width: 100%;
+    height: auto;
+  }
+}
