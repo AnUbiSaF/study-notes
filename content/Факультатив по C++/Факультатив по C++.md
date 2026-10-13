@@ -1,6 +1,6 @@
 # Факультатив по C++
 
-[[index|← Все предметы]]
+[← Все предметы](https://anubisaf.github.io/study-notes/)
 
 ## Материалы
 
