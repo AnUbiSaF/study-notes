@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Схлопывание масс при нахождении центра масс">
+  <style>
+    .bg{fill:#151515}.panel{fill:#202020;stroke:#505050;stroke-width:2}.line{stroke:#dcdcdc;stroke-width:3;fill:none}.arrow{stroke:#75c4ff;stroke-width:4;fill:none}.pt{fill:#f2f2f2}.mass{fill:#ff917a}.result{fill:#a6e3a1}.label{fill:#f2f2f2;font:600 22px Arial}.small{fill:#c9c9c9;font:500 17px Arial}.formula{fill:#a9d6ff;font:500 18px Arial}
+  </style>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#75c4ff"/></marker></defs>
+  <rect class="bg" width="1200" height="520" rx="18"/>
+  <text class="label" x="45" y="52">Схлопывание масс: две старые массы заменяются одной эквивалентной</text>
+  <rect class="panel" x="35" y="80" width="510" height="395" rx="16"/>
+  <text class="label" x="65" y="120">1. Сначала x и y</text>
+  <line class="line" x1="105" y1="270" x2="455" y2="270"/>
+  <circle class="mass" cx="140" cy="270" r="13"/><text class="label" x="125" y="310">x</text><text class="small" x="104" y="338">масса m₁</text>
+  <circle class="mass" cx="405" cy="270" r="19"/><text class="label" x="393" y="310">y</text><text class="small" x="368" y="338">масса m₂</text>
+  <circle class="result" cx="295" cy="270" r="12"/><text class="label" x="285" y="244">q</text>
+  <text class="formula" x="75" y="405">q = (m₁x + m₂y) / (m₁ + m₂)</text>
+  <text class="small" x="75" y="440">(x,m₁), (y,m₂)  →  (q,m₁+m₂)</text>
+  <path class="arrow" d="M570 275 L650 275" marker-end="url(#arrow)"/>
+  <rect class="panel" x="675" y="80" width="490" height="395" rx="16"/>
+  <text class="label" x="705" y="120">2. Затем q и z</text>
+  <line class="line" x1="730" y1="270" x2="1110" y2="270"/>
+  <circle class="result" cx="775" cy="270" r="16"/><text class="label" x="765" y="310">q</text><text class="small" x="727" y="338">масса m₁+m₂</text>
+  <circle class="mass" cx="1070" cy="270" r="14"/><text class="label" x="1060" y="310">z</text><text class="small" x="1041" y="338">масса m₃</text>
+  <circle class="result" cx="930" cy="270" r="13"/><text class="label" x="920" y="244">p</text>
+  <text class="formula" x="705" y="405">p = ((m₁+m₂)q + m₃z) / (m₁+m₂+m₃)</text>
+  <text class="small" x="705" y="440">p — общий центр масс</text>
+</svg>

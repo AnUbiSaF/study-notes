@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-label="Размерность как число независимых направлений">
+  <style>
+    .bg{fill:#151515}.panel{fill:#202020;stroke:#505050;stroke-width:2}.edge{stroke:#dcdcdc;stroke-width:3;fill:none}.vector{stroke:#83d1ff;stroke-width:4;fill:none}.pt{fill:#f3f3f3}.accent{fill:#ff9c7f}.label{fill:#f3f3f3;font:600 23px Arial}.small{fill:#c9c9c9;font:500 17px Arial}
+  </style>
+  <defs><marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#83d1ff"/></marker></defs>
+  <rect class="bg" width="1200" height="430" rx="18"/>
+  <text class="label" x="45" y="52">Размерность — число независимых направлений, а не число точек</text>
+  <rect class="panel" x="30" y="80" width="350" height="310" rx="16"/>
+  <text class="label" x="65" y="120">Точка: dim = 0</text>
+  <circle class="accent" cx="205" cy="235" r="10"/><text class="small" x="94" y="340">нет направления движения</text>
+  <rect class="panel" x="425" y="80" width="350" height="310" rx="16"/>
+  <text class="label" x="457" y="120">Прямая: dim = 1</text>
+  <line class="edge" x1="480" y1="255" x2="720" y2="255"/>
+  <circle class="accent" cx="600" cy="255" r="8"/><path class="vector" d="M600 255 L688 255" marker-end="url(#arr)"/>
+  <text class="small" x="488" y="340">одно независимое направление</text>
+  <rect class="panel" x="820" y="80" width="350" height="310" rx="16"/>
+  <text class="label" x="850" y="120">Плоскость: dim = 2</text>
+  <path class="edge" d="M900 305 L1095 305 L1050 185 L855 185 Z"/>
+  <circle class="accent" cx="968" cy="260" r="8"/>
+  <path class="vector" d="M968 260 L1050 260" marker-end="url(#arr)"/>
+  <path class="vector" d="M968 260 L930 205" marker-end="url(#arr)"/>
+  <text class="small" x="855" y="340">два независимых направления</text>
+</svg>

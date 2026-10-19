@@ -1,21 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="510" viewBox="0 0 860 510" role="img" aria-labelledby="title desc">
-  <title id="title">Центр тяжести тетраэдра</title>
-  <desc id="desc">Тетраэдр ABCD, центры тяжести противоположных граней A1 и B1, пересечение медиан M.</desc>
-  <style>
-    .edge{fill:none;stroke:#44546a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.hidden{stroke-dasharray:10 9}.median{fill:none;stroke:#1e88e5;stroke-width:4;stroke-linecap:round}.point{fill:#17212f;stroke:#fff;stroke-width:3}.minor{fill:#1e88e5;stroke:#fff;stroke-width:3}.label{font:700 26px sans-serif;fill:#17212f}.note{font:20px sans-serif;fill:#536579}.title{font:700 28px sans-serif;fill:#17212f}
-  </style>
-  <rect width="860" height="510" rx="22" fill="#f7fbff"/>
-  <text class="title" x="42" y="50">Центр тяжести тетраэдра</text>
-  <path class="edge" d="M145 385 L435 105 L705 370 L145 385 M435 105 L425 430 M705 370 L425 430"/>
-  <path class="edge hidden" d="M145 385 L425 430"/>
-  <path class="median" d="M145 385 L530 302 M705 370 L323 267"/>
-  <path class="median" d="M435 105 L410 353"/>
-  <circle class="point" cx="145" cy="385" r="9"/><text class="label" x="110" y="423">A</text>
-  <circle class="point" cx="435" cy="105" r="9"/><text class="label" x="448" y="101">D</text>
-  <circle class="point" cx="705" cy="370" r="9"/><text class="label" x="720" y="376">C</text>
-  <circle class="point" cx="425" cy="430" r="9"/><text class="label" x="438" y="456">B</text>
-  <circle class="minor" cx="530" cy="302" r="9"/><text class="label" x="543" y="296">A₁</text>
-  <circle class="minor" cx="323" cy="267" r="9"/><text class="label" x="275" y="258">B₁</text>
-  <circle class="minor" cx="410" cy="353" r="10"/><text class="label" x="423" y="348">M</text>
-  <text class="note" x="42" y="482">M делит каждую медиану в отношении 3:1 от вершины.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<rect width="100%" height="100%" fill="#111827"/>
+<style>
+.t{font-family:Arial,sans-serif;fill:#f3f4f6}.h{font-size:30px;font-weight:700}.l{font-size:22px}.s{font-size:19px}.edge{stroke:#9ca3af;stroke-width:3;fill:none}.med1{stroke:#60a5fa;stroke-width:4}.med2{stroke:#f472b6;stroke-width:4}.aux{stroke:#34d399;stroke-width:3}.dash{stroke-dasharray:8 8}.pt{fill:#fbbf24}.m{fill:#f87171}
+</style>
+<text x="45" y="50" class="t h">Центр тяжести тетраэдра</text>
+<path class="edge" d="M140 570 L430 590 L285 365 Z"/>
+<line class="edge" x1="140" y1="570" x2="320" y2="135"/>
+<line class="edge" x1="430" y1="590" x2="320" y2="135"/>
+<line class="edge" x1="285" y1="365" x2="320" y2="135"/>
+<line class="edge dash" x1="140" y1="570" x2="285" y2="365"/>
+<line class="edge dash" x1="430" y1="590" x2="285" y2="365"/>
+<circle class="pt" cx="320" cy="135" r="6"/><text x="334" y="143" class="t l">A</text>
+<circle class="pt" cx="140" cy="570" r="6"/><text x="110" y="605" class="t l">B</text>
+<circle class="pt" cx="430" cy="590" r="6"/><text x="442" y="610" class="t l">C</text>
+<circle class="pt" cx="285" cy="365" r="6"/><text x="255" y="355" class="t l">D</text>
+<circle cx="357" cy="478" r="6" fill="#34d399"/><text x="370" y="480" class="t l">P — середина CD</text>
+<line class="aux" x1="140" y1="570" x2="357" y2="478"/>
+<line class="aux" x1="320" y1="135" x2="357" y2="478"/>
+<circle cx="285" cy="509" r="6" fill="#60a5fa"/><text x="207" y="535" class="t s">A₁ — центр грани BCD</text>
+<circle cx="344" cy="249" r="6" fill="#f472b6"/><text x="360" y="250" class="t s">B₁ — центр грани ACD</text>
+<line class="med1" x1="320" y1="135" x2="285" y2="509"/>
+<line class="med2" x1="140" y1="570" x2="344" y2="249"/>
+<circle class="m" cx="297" cy="415" r="8"/><text x="312" y="410" class="t l">M</text>
+<rect x="585" y="125" width="555" height="475" rx="18" fill="#1f2937" stroke="#374151"/>
+<text x="620" y="180" class="t l" font-weight="700">Что известно:</text>
+<text x="620" y="222" class="t l">BA₁ = 2/3 · BP</text>
+<text x="620" y="257" class="t l">AB₁ = 2/3 · AP</text>
+<text x="620" y="320" class="t l" font-weight="700">Что доказываем:</text>
+<text x="620" y="362" class="t l">AM = 3/4 · AA₁</text>
+<text x="620" y="397" class="t l">BM = 3/4 · BB₁</text>
+<text x="620" y="460" class="t l" font-weight="700">Формула центра тяжести:</text>
+<text x="620" y="502" class="t l">OM = (OA + OB + OC + OD) / 4</text>
+<text x="620" y="555" class="t s">Медиана тетраэдра: вершина → центр тяжести</text>
+<text x="620" y="582" class="t s">противоположной грани.</text>
 </svg>
