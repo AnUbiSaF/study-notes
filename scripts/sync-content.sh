@@ -11,6 +11,7 @@ rsync -a --delete --delete-excluded \
   --exclude '/.obsidian/' \
   --exclude '/.pnpm-store/' \
   --exclude '/_backups/' \
+  --exclude '/.agent-rules/' \
   --exclude '/Шаблоны/' \
   --exclude '/Машинное обучение/' \
   --exclude '.DS_Store' \

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 370" role="img" aria-label="Двоичное дерево для исходов A B C с кодами 0, 10, 110">
+<style>text{font-family:Arial,sans-serif;fill:#dbe5ee;font-size:20px}.small{fill:#acbac8;font-size:17px}.edge{stroke:#8095aa;stroke-width:3;fill:none}.node{fill:#24374d;stroke:#9bb2c7;stroke-width:2}.leaf{fill:#147d70;stroke:#62d3b7;stroke-width:2}.unused{fill:#323c49;stroke:#8c9aa8;stroke-width:2;stroke-dasharray:7 5}</style>
+<text x="18" y="33" font-weight="bold" font-size="22">Разные длины путей: s(A)=1, s(B)=2, s(C)=3</text>
+<path class="edge" d="M175 90L88 162 M175 90L333 162 M333 162L263 230 M333 162L479 230 M479 230L421 310 M479 230L604 310"/>
+<circle class="node" cx="175" cy="90" r="23"/><text x="168" y="97">?</text>
+<circle class="node" cx="333" cy="162" r="23"/><text x="326" y="169">?</text>
+<circle class="node" cx="479" cy="230" r="23"/><text x="472" y="237">?</text>
+<rect class="leaf" x="63" y="137" width="50" height="48" rx="10"/><text x="79" y="168">A</text>
+<rect class="leaf" x="238" y="207" width="50" height="48" rx="10"/><text x="254" y="237">B</text>
+<rect class="leaf" x="396" y="287" width="50" height="48" rx="10"/><text x="412" y="318">C</text>
+<rect class="unused" x="579" y="287" width="50" height="48" rx="10"/><text x="596" y="317">—</text>
+<text class="small" x="110" y="119">0</text><text class="small" x="260" y="118">1</text>
+<text class="small" x="282" y="190">0</text><text class="small" x="433" y="188">1</text>
+<text class="small" x="426" y="272">0</text><text class="small" x="562" y="272">1</text>
+<text class="small" x="645" y="160">Коды: A = 0</text><text class="small" x="645" y="188">B = 10</text><text class="small" x="645" y="216">C = 110</text>
+<text class="small" x="645" y="272">111 — свободно</text></svg>
