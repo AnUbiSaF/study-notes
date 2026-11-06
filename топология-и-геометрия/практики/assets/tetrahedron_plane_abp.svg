@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1100" height="760" viewBox="0 0 1100 760" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .title { font: 700 28px -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; fill: #111; }
+      .txt { font: 500 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; fill: #111; }
+      .small { font: 500 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; fill: #444; }
+      .edge { stroke: #222; stroke-width: 3; fill: none; }
+      .hidden { stroke: #999; stroke-width: 2.5; stroke-dasharray: 10 8; fill: none; opacity: 0.9; }
+      .plane { fill: #8fb8ff; fill-opacity: 0.22; stroke: #4b78d0; stroke-width: 3; }
+      .med { stroke: #cc4b37; stroke-width: 4; fill: none; }
+      .aux { stroke: #4b78d0; stroke-width: 3.5; fill: none; }
+      .pt { fill: #111; }
+      .pMid { fill: #2a7d2e; }
+      .cent { fill: #cc4b37; }
+      .box { fill: #fafafa; stroke: #d0d0d0; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1100" height="760"/>
+
+  <text class="title" x="55" y="52">Тетраэдр ABCD и плоскость ABP</text>
+
+  <!-- left: drawing -->
+  <!-- projected points -->
+  <!-- A(180,560), B(470,600), C(770,525), D(560,200), P midpoint of CD -->
+  <polygon class="plane" points="180,560 470,600 665,362.5"/>
+
+  <!-- tetrahedron edges -->
+  <line class="edge" x1="180" y1="560" x2="470" y2="600"/>
+  <line class="edge" x1="180" y1="560" x2="770" y2="525"/>
+  <line class="edge" x1="470" y1="600" x2="770" y2="525"/>
+  <line class="edge" x1="180" y1="560" x2="560" y2="200"/>
+  <line class="edge" x1="470" y1="600" x2="560" y2="200"/>
+  <line class="edge" x1="770" y1="525" x2="560" y2="200"/>
+
+  <!-- highlight CD and midpoint P -->
+  <line class="aux" x1="770" y1="525" x2="560" y2="200"/>
+
+  <!-- lines AP and BP inside plane -->
+  <line class="aux" x1="180" y1="560" x2="665" y2="362.5"/>
+  <line class="aux" x1="470" y1="600" x2="665" y2="362.5"/>
+
+  <!-- A1 on BP, B1 on AP -->
+  <!-- A1 = B + 2/3(P-B) = (600,441.67); B1 = A + 2/3(P-A) = (503.33,428.33) -->
+  <line class="med" x1="180" y1="560" x2="600" y2="441.67"/>
+  <line class="med" x1="470" y1="600" x2="503.33" y2="428.33"/>
+
+  <!-- points -->
+  <circle class="pt" cx="180" cy="560" r="6"/>
+  <circle class="pt" cx="470" cy="600" r="6"/>
+  <circle class="pt" cx="770" cy="525" r="6"/>
+  <circle class="pt" cx="560" cy="200" r="6"/>
+  <circle class="pMid" cx="665" cy="362.5" r="7"/>
+  <circle class="cent" cx="600" cy="441.67" r="6"/>
+  <circle class="cent" cx="503.33" cy="428.33" r="6"/>
+
+  <!-- labels -->
+  <text class="txt" x="150" y="590">A</text>
+  <text class="txt" x="476" y="628">B</text>
+  <text class="txt" x="778" y="530">C</text>
+  <text class="txt" x="568" y="192">D</text>
+  <text class="txt" x="678" y="356">P</text>
+  <text class="txt" x="612" y="438">A₁</text>
+  <text class="txt" x="512" y="423">B₁</text>
+
+  <text class="small" x="694" y="386">P — середина CD</text>
+  <text class="small" x="605" y="470">A₁ ∈ BP</text>
+  <text class="small" x="430" y="421">B₁ ∈ AP</text>
+
+  <!-- right: explanation box -->
+  <rect class="box" x="820" y="95" rx="16" ry="16" width="235" height="500"/>
+
+  <text class="txt" x="845" y="135">Почему A₁ и B₁ лежат</text>
+  <text class="txt" x="845" y="162">в плоскости ABP</text>
+
+  <text class="small" x="845" y="210">1) Точка P — середина ребра CD.</text>
+  <text class="small" x="845" y="255">2) В грани BCD отрезок BP —</text>
+  <text class="small" x="865" y="281">медиана.</text>
+  <text class="small" x="845" y="326">3) Центр тяжести грани BCD</text>
+  <text class="small" x="865" y="352">лежит на этой медиане,</text>
+  <text class="small" x="865" y="378">значит A₁ ∈ BP.</text>
+
+  <text class="small" x="845" y="430">4) Аналогично в грани ACD</text>
+  <text class="small" x="865" y="456">отрезок AP — медиана,</text>
+  <text class="small" x="865" y="482">а центр тяжести лежит</text>
+  <text class="small" x="865" y="508">на ней, значит B₁ ∈ AP.</text>
+
+  <text class="small" x="845" y="560">5) Прямые AP и BP лежат в</text>
+  <text class="small" x="865" y="586">плоскости ABP, поэтому</text>
+  <text class="small" x="865" y="612">A₁ и B₁ тоже лежат в ней.</text>
+
+  <text class="small" x="55" y="700">Итог: пространственная задача сводится к плоской задаче в треугольнике ABP.</text>
+</svg>

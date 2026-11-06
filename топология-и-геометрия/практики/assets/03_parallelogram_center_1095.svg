@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="560" viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg">
+<defs><style>
+.t{font:600 22px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fill:#e8e8e8}
+.s{font:500 18px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fill:#bdbdbd}
+.e{stroke:#d8d8d8;stroke-width:3;fill:none}
+.d{stroke:#7894df;stroke-width:3;fill:none}
+.v{stroke:#d76a4a;stroke-width:4;fill:none}
+.dot{fill:#eeeeee}.o{fill:#78b37c}
+</style></defs>
+<text class="t" x="45" y="45">1095. Точка пересечения диагоналей</text>
+<polygon class="e" points="180,150 650,150 560,430 90,430"/>
+<line class="d" x1="180" y1="150" x2="560" y2="430"/>
+<line class="d" x1="650" y1="150" x2="90" y2="430"/>
+<circle class="dot" cx="180" cy="150" r="6"/><text class="t" x="155" y="135">A</text>
+<circle class="dot" cx="650" cy="150" r="6"/><text class="t" x="660" y="135">B</text>
+<circle class="dot" cx="560" cy="430" r="6"/><text class="t" x="570" y="460">C</text>
+<circle class="dot" cx="90" cy="430" r="6"/><text class="t" x="60" y="460">D</text>
+<circle class="o" cx="370" cy="290" r="8"/><text class="t" x="385" y="286">O</text>
+<line class="v" x1="370" y1="290" x2="180" y2="150"/>
+<line class="v" x1="370" y1="290" x2="560" y2="430"/>
+<line class="v" x1="370" y1="290" x2="650" y2="150"/>
+<line class="v" x1="370" y1="290" x2="90" y2="430"/>
+<text class="s" x="610" y="250">OA = −OC</text>
+<text class="s" x="610" y="280">OB = −OD</text>
+<text class="s" x="610" y="325">⇒ OA+OB+OC+OD = 0</text>
+</svg>

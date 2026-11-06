@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="700" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+<defs><style>
+.t{font:600 22px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fill:#e8e8e8}
+.s{font:500 18px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fill:#bdbdbd}
+.e{stroke:#d8d8d8;stroke-width:3;fill:none}
+.seg1{stroke:#7894df;stroke-width:4}.seg2{stroke:#d76a4a;stroke-width:4}.seg3{stroke:#8f7ac8;stroke-width:4}
+.dot{fill:#ededed}.mid{fill:#f0c96a}.x{fill:#78b37c}
+</style></defs>
+<text class="t" x="45" y="48">1096. Середины противоположных рёбер тетраэдра</text>
+<!-- vertices -->
+<line class="e" x1="170" y1="560" x2="700" y2="570"/>
+<line class="e" x1="170" y1="560" x2="790" y2="390"/>
+<line class="e" x1="170" y1="560" x2="500" y2="120"/>
+<line class="e" x1="700" y1="570" x2="790" y2="390"/>
+<line class="e" x1="700" y1="570" x2="500" y2="120"/>
+<line class="e" x1="790" y1="390" x2="500" y2="120"/>
+<circle class="dot" cx="170" cy="560" r="6"/><text class="t" x="140" y="590">A</text>
+<circle class="dot" cx="700" cy="570" r="6"/><text class="t" x="710" y="600">B</text>
+<circle class="dot" cx="790" cy="390" r="6"/><text class="t" x="805" y="395">C</text>
+<circle class="dot" cx="500" cy="120" r="6"/><text class="t" x="510" y="112">D</text>
+<!-- midpoints -->
+<circle class="mid" cx="435" cy="565" r="6"/><text class="s" x="425" y="596">M</text> <!-- AB -->
+<circle class="mid" cx="645" cy="255" r="6"/><text class="s" x="655" y="250">N</text> <!-- CD -->
+<circle class="mid" cx="480" cy="475" r="6"/><text class="s" x="490" y="470">P</text> <!-- AC -->
+<circle class="mid" cx="600" cy="345" r="6"/><text class="s" x="610" y="340">Q</text> <!-- BD -->
+<circle class="mid" cx="335" cy="340" r="6"/><text class="s" x="310" y="335">R</text> <!-- AD -->
+<circle class="mid" cx="745" cy="480" r="6"/><text class="s" x="755" y="475">S</text> <!-- BC -->
+<!-- opposite midpoint segments -->
+<line class="seg1" x1="435" y1="565" x2="645" y2="255"/>
+<line class="seg2" x1="480" y1="475" x2="600" y2="345"/>
+<line class="seg3" x1="335" y1="340" x2="745" y2="480"/>
+<circle class="x" cx="540" cy="410" r="9"/><text class="t" x="555" y="405">X</text>
+<text class="s" x="55" y="650">У всех трёх отрезков одна и та же середина: OX = 1/4(a+b+c+d).</text>
+</svg>

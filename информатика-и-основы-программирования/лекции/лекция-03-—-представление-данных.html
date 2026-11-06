@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr"><head><title>Лекция 03 — Представление данных</title><meta charset="utf-8"/><link rel="preload" href="../../index-4ebe8085.css" as="style"/><link rel="preload" href="../../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Учёба"/><meta property="og:title" content="Лекция 03 — Представление данных"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Лекция 03 — Представление данных"/><meta name="twitter:description" content="Лекция 03 — Представление данных ← К лекциям Паспорт лекции Курс: «Информатика и основы программирования» Тема: данные, кодирование, Unicode, шрифты и представление строк Сложность: средняя; наиболее трудные части — Unicode и уровни представления строки Время чтения: 35–45 минут Экзаменационная опор..."/><meta property="og:description" content="Лекция 03 — Представление данных ← К лекциям Паспорт лекции Курс: «Информатика и основы программирования» Тема: данные, кодирование, Unicode, шрифты и представление строк Сложность: средняя; наиболее трудные части — Unicode и уровни представления строки Время чтения: 35–45 минут Экзаменационная опор..."/><meta property="og:image:alt" content="Лекция 03 — Представление данных ← К лекциям Паспорт лекции Курс: «Информатика и основы программирования» Тема: данные, кодирование, Unicode, шрифты и представление строк Сложность: средняя; наиболее трудные части — Unicode и уровни представления строки Время чтения: 35–45 минут Экзаменационная опор..."/><meta property="og:image" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta property="og:image:url" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta name="twitter:image" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="AnUbiSaF.github.io/study-notes"/><meta property="og:url" content="https://anubisaf.github.io/study-notes/информатика-и-основы-программирования/лекции/лекция-03-—-представление-данных"/><meta property="twitter:url" content="https://anubisaf.github.io/study-notes/информатика-и-основы-программирования/лекции/лекция-03-—-представление-данных"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="Лекция 03 — Представление данных ← К лекциям Паспорт лекции Курс: «Информатика и основы программирования» Тема: данные, кодирование, Unicode, шрифты и представление строк Сложность: средняя; наиболее трудные части — Unicode и уровни представления строки Время чтения: 35–45 минут Экзаменационная опор..."/><meta name="generator" content="Quartz"/><link href="../../index-4ebe8085.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-e427079e.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-58d5ff56.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-7262b5a7.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/></head><body data-slug="информатика-и-основы-программирования/лекции/лекция-03-—-представление-данных" data-basepath="/study-notes"><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Учёба</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Поиск" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Поиск</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Найти что-нибудь" placeholder="Найти что-нибудь"/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Тёмный режим"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Тёмный режим"><title>Тёмный режим</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Светлый режим"><title>Светлый режим</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Режим чтения"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Режим чтения"><title>Режим чтения</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a2, b2) => {\n    if (!a2.isFolder &amp;&amp; !b2.isFolder || a2.isFolder &amp;&amp; b2.isFolder) {\n      return (a2.displayName || \&quot;\&quot;).localeCompare(b2.displayName || \&quot;\&quot;, void 0, {\n        numeric: true,\n        sensitivity: \&quot;base\&quot;\n      });\n    }\n    if (!a2.isFolder &amp;&amp; b2.isFolder) {\n      return 1;\n    }\n    return -1;\n  }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-56" aria-label="Проводник"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Проводник</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-56" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../информатика-и-основы-программирования/">Информатика и основы программирования</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../информатика-и-основы-программирования/лекции/">Лекции</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Лекция 03 — Представление данных</a></div></nav><h1 class="article-title">Лекция 03 — Представление данных</h1><p show-comma="true" class="content-meta"><time datetime="2026-11-05T21:35:16.000Z">06 нояб. 2026 г.</time><span>время чтения ~17 мин.</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="лекция-03--представление-данных">Лекция 03 — Представление данных<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#лекция-03--представление-данных" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p><a href="../../информатика-и-основы-программирования/лекции/лекции-по-информатике-и-основам-программирования" class="internal internal-link alias" data-slug="информатика-и-основы-программирования/лекции/лекции-по-информатике-и-основам-программирования">← К лекциям</a></p>
+<blockquote class="callout abstract" data-callout="abstract">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Паспорт лекции </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>Курс:</strong> «Информатика и основы программирования»<br/>
+<strong>Тема:</strong> данные, кодирование, Unicode, шрифты и представление строк<br/>
+<strong>Сложность:</strong> средняя; наиболее трудные части — Unicode и уровни представления строки<br/>
+<strong>Время чтения:</strong> 35–45 минут<br/>
+<strong>Экзаменационная опора:</strong> вопросы 3–4 — информация и данные; синтаксис и семантика; Unicode, UCS, UTF и композитные символы.</p>
+</div>
+</blockquote>
+<h2 id="1-программы-задачи-и-данные">1. Программы, задачи и данные<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-программы-задачи-и-данные" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: средняя. Рамка всей лекции.</strong></p>
+<p>Продукт создаётся для решения проблемы или удовлетворения потребности. Внутри продукта формулируются <strong>задачи</strong> — результаты, которые:</p>
+<ul>
+<li>достижимы при наличии достаточных ресурсов;</li>
+<li>по возможности измеримы;</li>
+<li>решаются в условиях ограничений по времени, памяти, вычислениям и труду разработчиков.</li>
+</ul>
+<p>Программисты пишут программы, решающие такие задачи. При этом программа работает только с формализованными представлениями — числами и последовательностями битов. Поэтому объект реального мира сначала требуется превратить в данные.</p>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Практический смысл </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Даже улучшение времени или расхода ресурсов на 5–10% может иметь большое значение в массовой системе. Представление данных влияет не только на корректность, но и на эффективность программы.</p>
+</div>
+</blockquote>
+<h2 id="2-что-такое-данные">2. Что такое данные<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-что-такое-данные" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: очень высокая. Определение желательно знать близко к тексту стандарта.</strong></p>
+<blockquote>
+<p><strong>Данные</strong> — поддающееся многократной интерпретации представление информации в формализованном виде, пригодном для передачи, интерпретации или обработки.<br/>
+ISO/IEC 2382:2015</p>
+</blockquote>
+<p>Другое стандартное определение:</p>
+<blockquote>
+<p><strong>Данные</strong> — формы представления информации, с которыми имеют дело информационные системы и их пользователи.<br/>
+ISO/IEC 10746-2</p>
+</blockquote>
+<h3 id="что-важно-в-определении">Что важно в определении<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#что-важно-в-определении" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Представление информации:</strong> данные не тождественны самой информации.</li>
+<li><strong>Формализованный вид:</strong> существуют правила, по которым данные записываются и читаются.</li>
+<li><strong>Интерпретация:</strong> одинаковая последовательность байтов может иметь разный смысл при разных правилах чтения.</li>
+<li><strong>Многократность:</strong> данные можно сохранить, передать и интерпретировать снова.</li>
+</ul>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Пример </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Последовательность байтов сама по себе ещё не говорит, является ли она числом, текстом, изображением или частью команды процессора. Смысл появляется только после выбора формата и правил интерпретации.</p>
+</div>
+</blockquote>
+<h2 id="3-синтаксис-и-семантика">3. Синтаксис и семантика<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-синтаксис-и-семантика" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: очень высокая.</strong></p>
+<h3 id="определения">Определения<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#определения" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Синтаксис</strong> — вид, начертание или форма представления.</li>
+<li><strong>Семантика</strong> — смысл и правила трактовки конкретного представления.</li>
+</ul>
+<p>Одно и то же начертание может восприниматься по-разному. Например, латинская <code>A</code> и кириллическая <code>А</code> выглядят почти одинаково, но являются разными символами:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>латинская A     → U+0041</span></span>
+<span data-line><span>кириллическая А → U+0410</span></span></code></pre></figure>
+<p>Аналогично визуально похожий знак может быть буквой, математическим символом или частью другой системы обозначений.</p>
+<p>Правильный смысл задают <strong>стандарты и спецификации</strong>. Реализация должна им соответствовать.</p>
+<blockquote>
+<p><strong>Верификация</strong> — проверка соответствия реализации спецификации.</p>
+</blockquote>
+<h3 id="почему-это-важно-при-отладке">Почему это важно при отладке<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#почему-это-важно-при-отладке" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Код выполняется не так, как его интуитивно прочитал программист, а так, как предписывает спецификация языка и платформы. Например, арифметическая операция может сопровождаться переполнением; это часть семантики, даже если по внешнему виду выражения ожидается обычная школьная арифметика.</p>
+<p>Пример формального синтаксиса на Haskell:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="haskell" data-theme="github-light github-dark"><code data-language="haskell" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">merge </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="punctuation">[]</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> xs </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> xs</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">merge (x</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">xs) ys </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> merge xs ys</span></span></code></pre></figure>
+<p>Даже без знания языка по имени <code>merge</code> и общей форме можно предположить назначение функции, но точная семантика определяется спецификацией Haskell.</p>
+<h2 id="4-от-физического-мира-к-цифровым-данным">4. От физического мира к цифровым данным<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-от-физического-мира-к-цифровым-данным" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: высокая.</strong></p>
+<p>Изображение, голос, температура и свет в физическом мире существуют как <strong>аналоговые сигналы</strong> — непрерывно изменяющиеся физические величины. Программа обрабатывает только цифровые, то есть дискретные, значения.</p>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart LR\n    A[\&quot;Физический сигнал\&quot;] --> B[\&quot;АЦП\&quot;]\n    B --> C[\&quot;Цифровые данные\&quot;]\n    C --> D[\&quot;Программа\&quot;]\n    D --> E[\&quot;Цифровые данные\&quot;]\n    E --> F[\&quot;ЦАП\&quot;]\n    F --> G[\&quot;Звук, свет или движение\&quot;]&quot;">flowchart LR
+    A[&quot;Физический сигнал&quot;] --> B[&quot;АЦП&quot;]
+    B --> C[&quot;Цифровые данные&quot;]
+    C --> D[&quot;Программа&quot;]
+    D --> E[&quot;Цифровые данные&quot;]
+    E --> F[&quot;ЦАП&quot;]
+    F --> G[&quot;Звук, свет или движение&quot;]
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<h3 id="ацп-и-цап">АЦП и ЦАП<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#ацп-и-цап" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>АЦП</strong> — аналого-цифровой преобразователь; переводит физический сигнал в цифровые данные.</li>
+<li><strong>ЦАП</strong> — цифро-аналоговый преобразователь; превращает цифровые данные в физический сигнал.</li>
+</ul>
+<p>Примеры АЦП: микрофон, камера, датчик температуры, радиоприёмник.<br/>
+Примеры ЦАП: динамик и дисплей.</p>
+<p>Программа сама не создаёт звук: она обрабатывает числа, а колебания воздуха создаёт физическое устройство.</p>
+<h3 id="дискретизация-и-квантование">Дискретизация и квантование<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#дискретизация-и-квантование" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Оцифровка включает две независимые операции:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Операция</th><th>Вопрос</th><th>Единица/параметр</th></tr></thead><tbody><tr><td><strong>Дискретизация</strong></td><td>Как часто измеряется сигнал?</td><td>число отсчётов в секунду, Гц</td></tr><tr><td><strong>Квантование</strong></td><td>С какой точностью хранится один отсчёт?</td><td>число битов на отсчёт</td></tr></tbody></table></div>
+<p>При квантовании реальное значение заменяется ближайшим представимым. Разница между ними образует <strong>шум квантования</strong>.</p>
+<p>Пример аудио CD:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>44 100 Гц — частота дискретизации</span></span>
+<span data-line><span>16 бит    — глубина квантования одного отсчёта</span></span></code></pre></figure>
+<p>По теореме Котельникова—Найквиста—Шеннона для восстановления сигнала частота дискретизации должна быть более чем вдвое выше максимальной частоты сигнала. Человек слышит примерно до 20 кГц, поэтому 44,1 кГц дают удвоенную частоту с запасом для фильтра.</p>
+<h2 id="5-теория-кодирования">5. Теория кодирования<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-теория-кодирования" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: высокая.</strong></p>
+<p><strong>Теория кодирования</strong> изучает способы представления, хранения и передачи данных.</p>
+<p><strong>Кодирование</strong> — преобразование данных из формы, удобной для непосредственного использования, в форму, удобную для передачи, хранения, автоматической обработки или защиты от несанкционированного доступа.</p>
+<h3 id="основные-направления">Основные направления<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#основные-направления" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Направление</th><th>Что меняется</th><th>Цель</th></tr></thead><tbody><tr><td>Физическое кодирование</td><td>биты превращаются в физический сигнал</td><td>надёжная передача и синхронизация</td></tr><tr><td>Сжатие</td><td>убирается избыточность или часть содержимого</td><td>уменьшение объёма</td></tr><tr><td>Коррекция ошибок</td><td>добавляется контролируемая избыточность</td><td>обнаружение и исправление повреждений</td></tr><tr><td>Криптография</td><td>представление изменяется с использованием ключа</td><td>скрытие смысла от посторонних</td></tr></tbody></table></div>
+<h3 id="сжатие">Сжатие<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#сжатие" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Бит измеряет объём представления, а не содержательность информации. Уменьшение числа байтов не обязательно означает потерю информации.</p>
+<ul>
+<li><strong>Без потерь:</strong> ZIP, PNG, FLAC. Исходные данные восстанавливаются байт в байт.</li>
+<li><strong>С потерями:</strong> JPEG, MP3, H.264. Несущественная для восприятия часть удаляется без возможности точного восстановления.</li>
+</ul>
+<p>Многократное сохранение в формате с потерями постепенно ухудшает результат.</p>
+<h3 id="коррекция-ошибок">Коррекция ошибок<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#коррекция-ошибок" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Избыточность специально добавляется, чтобы обнаруживать или исправлять повреждения:</p>
+<ul>
+<li>коды Рида—Соломона — компакт-диски и QR-коды;</li>
+<li>ECC — серверная память;</li>
+<li>LDPC — Wi‑Fi и 5G;</li>
+<li>коды Хэмминга — учебный пример обнаружения и исправления битовой ошибки.</li>
+</ul>
+<h3 id="криптография">Криптография<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#криптография" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Зашифрованные данные должны быть неинтерпретируемы без ключа и статистически напоминать случайную последовательность. В неудачных режимах, например ECB, одинаковые блоки исходных данных превращаются в одинаковые блоки шифротекста, поэтому структура изображения может остаться узнаваемой.</p>
+<h3 id="физическое-кодирование">Физическое кодирование<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#физическое-кодирование" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Описывает превращение битов в сигнал на проводе или в эфире: например, NRZ, манчестерское кодирование, 8b/10b. Здесь решаются задачи синхронизации приёмника и свойств физической линии.</p>
+<h2 id="6-письменность-как-система-кодирования">6. Письменность как система кодирования<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-письменность-как-система-кодирования" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: низкая для экзамена, но объясняет происхождение текстовых кодировок.</strong></p>
+<p>Письменность разделяет непрерывный поток речи на дискретные знаки. Уже здесь возникают основные задачи кодирования:</p>
+<ol>
+<li>выбрать набор знаков;</li>
+<li>договориться об их начертании;</li>
+<li>обеспечить одинаковую интерпретацию пишущим и читающим.</li>
+</ol>
+<p>Ключевые этапы:</p>
+<ul>
+<li>около 5,5 тысячи лет назад — шумерская клинопись, первоначально для учёта;</li>
+<li>примерно XI век до н. э. — финикийский алфавит с небольшим набором базовых знаков;</li>
+<li>863 год — создание Кириллом глаголицы; кириллица возникла позднее в кругу его учеников;</li>
+<li>XV век — книгопечатание Гутенберга и физические литеры;</li>
+<li>1707–1708 годы — гражданский шрифт Петра I и изменение набора русских знаков;</li>
+<li>1963 год — появление ASCII: письменные знаки получают числовые коды.</li>
+</ul>
+<h2 id="7-ascii">7. ASCII<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-ascii" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: очень высокая.</strong></p>
+<p><strong>ASCII</strong> (<em>American Standard Code for Information Interchange</em>) — 7-битная таблица кодирования. Она содержит <code>2^7 = 128</code> позиций: латинские буквы, цифры, знаки препинания и управляющие символы.</p>
+<h3 id="основные-диапазоны">Основные диапазоны<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#основные-диапазоны" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Диапазон</th><th>Содержимое</th></tr></thead><tbody><tr><td><code>0x00–0x1F</code></td><td>управляющие символы</td></tr><tr><td><code>0x20–0x2F</code></td><td>пробел и пунктуация</td></tr><tr><td><code>0x30–0x39</code></td><td>цифры <code>0–9</code></td></tr><tr><td><code>0x41–0x5A</code></td><td>заглавные <code>A–Z</code></td></tr><tr><td><code>0x61–0x7A</code></td><td>строчные <code>a–z</code></td></tr></tbody></table></div>
+<p>Примеры:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>'0' = 48 = 0x30</span></span>
+<span data-line><span>'A' = 65 = 0x41 = 0100 0001₂</span></span>
+<span data-line><span>'a' = 97 = 0x61 = 0110 0001₂</span></span></code></pre></figure>
+<h3 id="инженерные-свойства-ascii">Инженерные свойства ASCII<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#инженерные-свойства-ascii" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>Алфавитный порядок.</strong> Буквы идут подряд, поэтому числовое сравнение кодов соответствует порядку букв внутри одного регистра.</li>
+<li><strong>Смена регистра.</strong> Между кодами заглавной и строчной буквы разница <code>0x20</code>, то есть один бит.</li>
+<li><strong>Перевод цифры в число.</strong> Цифры идут подряд; обычно используется выражение <code>c - '0'</code>.</li>
+<li><strong>Шестнадцатеричные цифры <code>A–F</code> не идут сразу после <code>0–9</code>.</strong> Между ними расположены знаки пунктуации, поэтому парсинг hex требует отдельной обработки.</li>
+</ol>
+<p>Управляющие символы происходят от телетайпов: <code>LF</code> — перевод строки, <code>CR</code> — возврат каретки, <code>TAB</code> — табуляция, <code>BEL</code> — звонок. Они не печатаются, а задают действие.</p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Ограничение </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>ASCII не содержит кириллицу, греческие буквы, иероглифы и большинство письменностей мира.</p>
+</div>
+</blockquote>
+<h2 id="8-кодовые-страницы">8. Кодовые страницы<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-кодовые-страницы" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: высокая.</strong></p>
+<p>В 8-битных кодировках дополнительные 128 значений использовались по-разному. Появились <strong>кодовые страницы</strong>: CP437, CP866, KOI8-R, CP1251 и другие.</p>
+<blockquote>
+<p><strong>Кодовая страница</strong> — таблица соответствия числовых значений байтов и символов.</p>
+</blockquote>
+<p>Главная проблема:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>одинаковые байты + разные кодовые страницы = разные символы</span></span></code></pre></figure>
+<p>Если программа выбирает неправильную таблицу, появляются «кракозябры», хотя байты файла могут быть полностью исправны.</p>
+<h3 id="пример-с-zip">Пример с ZIP<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#пример-с-zip" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Исторически ZIP мог не хранить кодировку имён файлов. Архиватор записывал имя в системной кодовой странице, а распаковщик читал в другой. Поэтому Windows-архив с русскими именами мог неверно распаковаться в GNU/Linux. Позднее в формат добавили флаг UTF-8, но старые архивы и программы всё ещё создают проблемы.</p>
+<h3 id="koi8-r">KOI8-R<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#koi8-r" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Кириллица расположена не в алфавитном порядке, а так, чтобы при потере восьмого бита текст превращался в узнаваемую транслитерацию:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>РУССКИЙ ТЕКСТ → rUSSKIJ tEKST</span></span></code></pre></figure>
+<p>Это повышало устойчивость к старым 7-битным каналам, но ломало алфавитную сортировку сравнением кодов.</p>
+<h3 id="cp1251-и-буква-ё">CP1251 и буква <code>Ё</code><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#cp1251-и-буква-ё" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>В CP1251 <code>ё</code> находится отдельно от основного алфавитного диапазона. Поэтому наивные алгоритмы дают ошибки:</p>
+<ul>
+<li>сортировка по байтам не совпадает с алфавитной;</li>
+<li>проверка <code>'а' &lt;= c &amp;&amp; c &lt;= 'я'</code> не распознаёт <code>ё</code>;</li>
+<li>смена регистра не сводится к одной одинаковой битовой операции для всех букв.</li>
+</ul>
+<h2 id="9-unicode-ucs-и-utf">9. Unicode, UCS и UTF<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#9-unicode-ucs-и-utf" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: критическая. Основа экзаменационного вопроса 4.</strong></p>
+<p>Unicode решает проблему множества несовместимых кодовых страниц, отделяя <strong>сам символ и его номер</strong> от <strong>способа хранения этого номера в байтах</strong>.</p>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart TD\n    A[\&quot;Символ: кириллическая А\&quot;] --> B[\&quot;Кодовая точка Unicode: U+0410\&quot;]\n    B --> C[\&quot;UTF-8: 2 байта\&quot;]\n    B --> D[\&quot;UTF-16: 2 байта\&quot;]\n    B --> E[\&quot;UTF-32: 4 байта\&quot;]&quot;">flowchart TD
+    A[&quot;Символ: кириллическая А&quot;] --> B[&quot;Кодовая точка Unicode: U+0410&quot;]
+    B --> C[&quot;UTF-8: 2 байта&quot;]
+    B --> D[&quot;UTF-16: 2 байта&quot;]
+    B --> E[&quot;UTF-32: 4 байта&quot;]
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<h3 id="набор-символов-и-кодовая-точка">Набор символов и кодовая точка<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#набор-символов-и-кодовая-точка" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Unicode задаёт:</p>
+<ul>
+<li>какие символы существуют;</li>
+<li>уникальный номер каждого символа — <strong>кодовую точку</strong>;</li>
+<li>имя, категорию, письменность, направление письма и другие свойства.</li>
+</ul>
+<p>Кодовая точка записывается как <code>U+XXXX</code>.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>латинская A      → U+0041</span></span>
+<span data-line><span>кириллическая А  → U+0410</span></span>
+<span data-line><span>Ѭ                → U+046C</span></span></code></pre></figure>
+<p>Имя символа систематично, например <code>CYRILLIC CAPITAL LETTER IOTIFIED BIG YUS</code>. Имена Unicode после принятия не меняются даже при обнаружении ошибки — ради совместимости.</p>
+<h3 id="ucs">UCS<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#ucs" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>UCS</strong> (<em>Universal Character Set</em>) — универсальный набор символов стандарта ISO/IEC 10646. Для текущего курса достаточно считать, что UCS/Unicode описывают набор символов и их кодовые точки.</p>
+<h3 id="utf">UTF<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#utf" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>UTF</strong> (<em>Unicode Transformation Format</em>) — способ записать кодовые точки Unicode последовательностями байтов.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Формат</th><th style="text-align:right;">Размер</th><th>Главное свойство</th></tr></thead><tbody><tr><td><strong>UTF-8</strong></td><td style="text-align:right;">1–4 байта</td><td>ASCII хранится без изменений; вне ASCII используются многобайтовые последовательности</td></tr><tr><td><strong>UTF-16</strong></td><td style="text-align:right;">2 или 4 байта</td><td>большинство кодовых точек занимает 2 байта, остальные — суррогатную пару</td></tr><tr><td><strong>UTF-32</strong></td><td style="text-align:right;">4 байта</td><td>каждая кодовая точка занимает ровно 4 байта</td></tr></tbody></table></div>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Точная формулировка </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Не «Unicode занимает несколько байтов», а: <strong>кодовая точка — числовой идентификатор; конкретный UTF определяет её байтовое представление</strong>.</p>
+</div>
+</blockquote>
+<p>UTF-8 полностью совместим с ASCII: корректный ASCII-текст является корректным UTF-8 и имеет те же байты.</p>
+<p>UTF-32 упрощает доступ к N-й кодовой точке, но расходует много памяти: ASCII-текст занимает в четыре раза больше байтов.</p>
+<p>UTF-16 использует <strong>суррогатные пары</strong> для кодовых точек вне основной многоязычной плоскости. Поэтому в Java и JavaScript свойство <code>.length</code> может вернуть <code>2</code> для одного знака <code>𝄞</code>: оно считает 16-битные кодовые единицы, а не видимые символы.</p>
+<h3 id="представление-строк-в-языках">Представление строк в языках<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#представление-строк-в-языках" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>Go и Rust в типичных строковых представлениях используют UTF-8.</li>
+<li>Java, C#, JavaScript и Windows API исторически основаны на UTF-16.</li>
+<li>Python 3 внутренне выбирает компактное представление по содержимому строки.</li>
+</ul>
+<p>Всегда требуется читать спецификацию конкретного языка и типа строки.</p>
+<h2 id="10-блоки-unicode">10. Блоки Unicode<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-блоки-unicode" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: низкая/средняя. Диапазоны заучивать не требуется.</strong></p>
+<p>Кодовые точки объединяются в смысловые блоки. Блок не обязан соответствовать одному языку, а символы одного языка могут находиться в нескольких блоках.</p>
+<p>Кириллица размещена, в частности, в диапазонах:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>U+0400–U+052F</span></span>
+<span data-line><span>U+2DE0–U+2DFF</span></span>
+<span data-line><span>U+A640–U+A69F</span></span></code></pre></figure>
+<p>Там находятся современные, дополнительные и исторические кириллические символы. Добавление нового символа сводится к его формальному описанию и назначению кодовой точки; алгоритмические UTF после этого могут представить его без создания новой кодовой страницы.</p>
+<h2 id="11-композитные-символы-и-нормализация">11. Композитные символы и нормализация<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-композитные-символы-и-нормализация" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: критическая для понимания Unicode.</strong></p>
+<p>Один видимый знак не всегда равен одной кодовой точке.</p>
+<p>Буква <code>é</code> может быть записана двумя способами:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>U+00E9                 — одна готовая кодовая точка</span></span>
+<span data-line><span>U+0065 + U+0301        — e + комбинируемый акут</span></span></code></pre></figure>
+<p>На экране варианты могут выглядеть одинаково, но последовательности кодовых точек и байтов различаются. Простое побайтовое сравнение способно вернуть неравенство.</p>
+<h3 id="формы-нормализации">Формы нормализации<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#формы-нормализации" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Форма</th><th>Действие</th></tr></thead><tbody><tr><td><strong>NFC</strong></td><td>по возможности собирает базовый символ и модификатор в составной символ</td></tr><tr><td><strong>NFD</strong></td><td>раскладывает составной символ на базовый и комбинируемый</td></tr><tr><td><strong>NFKC</strong></td><td>совместимая нормализация с последующей сборкой</td></tr><tr><td><strong>NFKD</strong></td><td>совместимая нормализация с разложением</td></tr></tbody></table></div>
+<p>Буква <code>K</code> в NFKC/NFKD означает <em>compatibility</em>. Эти формы агрессивнее:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>ﬁ → fi</span></span>
+<span data-line><span>① → 1</span></span></code></pre></figure>
+<p>Поэтому NFKC/NFKD нельзя бездумно использовать для отображаемого текста: оформление и различия могут потеряться. Они полезны при сравнении идентификаторов и поиске, когда совместимые варианты требуется считать одинаковыми.</p>
+<h3 id="байт-кодовая-точка-и-графемный-кластер">Байт, кодовая точка и графемный кластер<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#байт-кодовая-точка-и-графемный-кластер" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Уровень</th><th>Что считается единицей</th><th>Когда нужен</th></tr></thead><tbody><tr><td>Байт</td><td>элемент физического представления</td><td>размер буфера, ввод-вывод, хранение</td></tr><tr><td>Кодовая точка</td><td>элемент Unicode</td><td>обработка символов стандарта</td></tr><tr><td>Графемный кластер</td><td>один знак с точки зрения человека</td><td>курсор, Backspace, обрезка и разворот текста</td></tr></tbody></table></div>
+<p>Например, семейный эмодзи <code>👩‍👩‍👧‍👦</code> визуально является одним знаком, но состоит из нескольких эмодзи-кодовых точек и невидимых соединителей ZWJ.</p>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>На вопрос «какова длина строки?» нельзя ответить без уточнения цели </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Для буфера нужны байты; для обхода Unicode — кодовые точки; для действий пользователя — графемные кластеры.</p>
+</div>
+</blockquote>
+<h2 id="12-unicode-как-развивающийся-стандарт">12. Unicode как развивающийся стандарт<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-unicode-как-развивающийся-стандарт" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: почти нулевая для экзамена.</strong></p>
+<p>Unicode постоянно расширяется: добавляются современные и исторические письменности, математические знаки и эмодзи. На момент лекции Unicode 18.0 включал 172 808 символов, причём большая часть новых символов относилась к историческим письменностям, а не к эмодзи.</p>
+<p>Точные числа заучивать не требуется. Важен вывод: Unicode — развивающийся стандарт, а не закрытая таблица.</p>
+<h2 id="13-визуальное-представление-гарнитуры-и-шрифты">13. Визуальное представление: гарнитуры и шрифты<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-визуальное-представление-гарнитуры-и-шрифты" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: средняя как практический материал.</strong></p>
+<p>Unicode определяет символ и его свойства, но не конкретный рисунок. Отображение задаёт шрифт.</p>
+<ul>
+<li><strong>Гарнитура</strong> — семейство начертаний с общим характером рисунка, например JetBrains Mono.</li>
+<li><strong>Шрифт</strong> в строгом смысле — конкретная гарнитура, размер и начертание, например JetBrains Mono Bold 14 pt.</li>
+</ul>
+<h3 id="моноширинные-и-пропорциональные-гарнитуры">Моноширинные и пропорциональные гарнитуры<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#моноширинные-и-пропорциональные-гарнитуры" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>В <strong>моноширинной</strong> гарнитуре все знаки занимают одинаковую ширину. Она подходит для кода, терминала, таблиц и ASCII-графики.</li>
+<li>В <strong>пропорциональной</strong> ширина зависит от знака. Она удобна для обычного текста, но хуже показывает структуру кода.</li>
+</ul>
+<p>Тест программистской гарнитуры:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>0 O 1 l I</span></span></code></pre></figure>
+<p>Эти знаки должны отчётливо различаться. Также важна различимость <code>;</code> и <code>:</code>, <code>,</code> и <code>.</code>, скобок и прямых/типографских кавычек.</p>
+<h3 id="лигатуры">Лигатуры<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#лигатуры" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Лигатура заменяет несколько отображаемых знаков одним глифом:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>!=  может выглядеть как  ≠</span></span>
+<span data-line><span>->  может выглядеть как  →</span></span></code></pre></figure>
+<p>При этом в файле остаются исходные символы. Лигатура меняет только изображение, не данные и не семантику программы.</p>
+<p>Недостатки лигатур:</p>
+<ul>
+<li>скрывается реальное число символов;</li>
+<li>похожие последовательности могут хуже различаться;</li>
+<li>курсор перемещается по исходным символам, хотя глаз видит один глиф;</li>
+<li>в diff и code review иногда полезнее видеть точный текст.</li>
+</ul>
+<h3 id="засечки">Засечки<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#засечки" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Засечки — небольшие штрихи на концах основных линий букв. Для экранного кода обычно выбираются гарнитуры без засечек: на пиксельной сетке они отображаются чище, особенно при невысоком разрешении.</p>
+<h2 id="14-как-устроены-современные-шрифты">14. Как устроены современные шрифты<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#14-как-устроены-современные-шрифты" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: низкая.</strong></p>
+<p>Современный шрифт хранит глифы не просто как растровые картинки, а как математические контуры из кривых Безье. Поэтому один глиф можно масштабировать для экрана и печати.</p>
+<ul>
+<li>TrueType обычно использует квадратичные кривые Безье второго порядка.</li>
+<li>PostScript/CFF — кубические кривые третьего порядка.</li>
+<li>OpenType является контейнером и может поддерживать разные способы описания.</li>
+</ul>
+<h3 id="растеризация-и-хинтинг">Растеризация и хинтинг<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#растеризация-и-хинтинг" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Растеризация</strong> превращает геометрический контур в пиксели или печатные точки.</p>
+<p><strong>Хинтинг</strong> — набор подсказок рендереру, помогающих согласовать контур с пиксельной сеткой: сохранить одинаковую толщину штрихов и избежать размытия. В TrueType подсказки могут быть байт-кодом для небольшой виртуальной машины — поэтому шрифт содержит не только данные, но и инструкции.</p>
+<p>Принтер формирует полутона размещением точек; используются регулярные растры и алгоритмы диффузии ошибки, например Флойда—Стейнберга. Дисплей формирует цвет пикселя с помощью красного, зелёного и синего субпикселей. Старые системы применяли субпиксельное сглаживание; на HiDPI-экранах оно стало менее необходимо.</p>
+<p>Цветные эмодзи потребовали хранить цветовые данные в шрифтах. Существуют разные форматы: COLR/CPAL, SVG-in-OpenType, sbix, CBDT/CBLC. Поэтому один символ может выглядеть по-разному на разных платформах.</p>
+<p>Вариативный шрифт хранит оси параметров — насыщенность, ширину, наклон, оптический размер — и позволяет получать промежуточные значения из одного файла.</p>
+<h2 id="15-представление-строк-в-памяти">15. Представление строк в памяти<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#15-представление-строк-в-памяти" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: очень высокая.</strong></p>
+<p>Строка — это структура данных. Её устройство зависит от языка и определяет стоимость получения длины, создания подстроки, изменения и склеивания.</p>
+<h3 id="151-c-строка-с-нулевым-терминатором">15.1. C-строка с нулевым терминатором<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#151-c-строка-с-нулевым-терминатором" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<blockquote>
+<p><strong>C-строка</strong> — массив <code>char</code>, оканчивающийся специальным нулевым байтом <code>\0</code>.</p>
+</blockquote>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">char</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> s</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">[]</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> =</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;cat&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span></code></pre></figure>
+<p>В памяти:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>'c' | 'a' | 't' | '\0'</span></span></code></pre></figure>
+<p>Не всякий массив <code>char</code> является строкой:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">char</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="normal"> a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> {</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">'c'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">'a'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">'t'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">};</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // нет '\0', поэтому это не корректная C-строка</span></span></code></pre></figure>
+<p>Свойства:</p>
+<ul>
+<li>длина отдельно не хранится;</li>
+<li><code>strlen</code> идёт до <code>\0</code>, поэтому работает за <code>O(n)</code>;</li>
+<li>нулевой байт нельзя хранить внутри как обычные данные;</li>
+<li>функции без информации о размере буфера создают риск переполнения.</li>
+</ul>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Частая ошибка </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Цикл <code>for (i = 0; i &lt; strlen(s); ++i)</code> может работать за <code>O(n²)</code>, потому что <code>strlen</code> заново проходит строку на каждой итерации.</p>
+</div>
+</blockquote>
+<h3 id="152-строка-с-явной-длиной">15.2. Строка с явной длиной<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#152-строка-с-явной-длиной" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>[длина][данные]</span></span></code></pre></figure>
+<p>Плюсы:</p>
+<ul>
+<li>получение длины за <code>O(1)</code>;</li>
+<li>нулевые байты внутри разрешены;</li>
+<li>границы известны структуре.</li>
+</ul>
+<p>Минус: максимальная длина ограничена размером поля длины. В классическом Pascal поле в один байт позволяло длину не более 255.</p>
+<h3 id="153-срез-общего-буфера">15.3. Срез общего буфера<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#153-срез-общего-буфера" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Строка или подстрока представляется парой:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>(указатель на начало, длина)</span></span></code></pre></figure>
+<p>Примеры: строковые срезы в Go и <code>&amp;str</code> в Rust.</p>
+<p>Подстрока создаётся без копирования за <code>O(1)</code>, но общий буфер должен оставаться жив, пока существует хотя бы одна ссылка на его участок. Маленькая подстрока способна удерживать в памяти большой исходный буфер.</p>
+<h3 id="154-неизменяемые-строки-и-интернирование">15.4. Неизменяемые строки и интернирование<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#154-неизменяемые-строки-и-интернирование" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Неизменяемая строка</strong> — строковый объект, содержимое которого нельзя поменять после создания.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">s </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;cat&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">s[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;o&quot;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">       # ошибка</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">s </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> s </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;s&quot;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">      # создаётся новый объект &quot;cats&quot;</span></span></code></pre></figure>
+<p>Преимущества:</p>
+<ul>
+<li>объект безопасно разделяется между несколькими владельцами;</li>
+<li>хеш можно вычислить один раз и кэшировать;</li>
+<li>строку удобно использовать как ключ хеш-таблицы;</li>
+<li>одинаковые строки можно интернировать, то есть хранить одним общим объектом.</li>
+</ul>
+<p>Цена: каждое изменение создаёт новую строку. Многократная конкатенация в цикле может дать <code>O(n²)</code>; для неё применяют <code>StringBuilder</code> и аналоги.</p>
+<h3 id="155-sso-в-c">15.5. SSO в C++<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#155-sso-в-c" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>SSO</strong> (<em>Short String Optimization</em>) — хранение короткой строки прямо внутри объекта <code>std::string</code>, без отдельного выделения памяти в куче.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>короткая строка: [объект std::string содержит символы]</span></span>
+<span data-line><span>длинная строка:  [объект содержит указатель] → [буфер в куче]</span></span></code></pre></figure>
+<p>Порог зависит от реализации, часто это примерно 15–22 символа. Программист обычно не управляет SSO вручную.</p>
+<h3 id="156-rope">15.6. Rope<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#156-rope" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Rope</strong> («верёвка») хранит большой текст как дерево небольших фрагментов.</p>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart TD\n    R[\&quot;Весь текст\&quot;] --> L[\&quot;Фрагмент: ABC\&quot;]\n    R --> Q[\&quot;Оставшаяся часть\&quot;]\n    Q --> M[\&quot;Вставка: X\&quot;]\n    Q --> N[\&quot;Фрагмент: DEF...\&quot;]&quot;">flowchart TD
+    R[&quot;Весь текст&quot;] --> L[&quot;Фрагмент: ABC&quot;]
+    R --> Q[&quot;Оставшаяся часть&quot;]
+    Q --> M[&quot;Вставка: X&quot;]
+    Q --> N[&quot;Фрагмент: DEF...&quot;]
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<p>В обычном массиве вставка в середину требует сдвинуть большой хвост. В rope достаточно разбить или заменить небольшой узел и перестроить часть дерева. Поэтому структура подходит редакторам больших текстов с частыми вставками и удалениями.</p>
+<p>Минусы: сложнее реализация, больше накладных расходов, доступ по индексу дороже, чем у сплошного массива. Для коротких строк rope невыгоден.</p>
+<h2 id="16-почему-сложно-развернуть-unicode-строку">16. Почему сложно развернуть Unicode-строку<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#16-почему-сложно-развернуть-unicode-строку" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Важность: высокая как практическое следствие.</strong></p>
+<p>Для ASCII один знак занимает один байт:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>abc → cba</span></span></code></pre></figure>
+<p>В UTF-8 одна кодовая точка может занимать несколько байтов. Если развернуть байты, порядок внутри многобайтовой последовательности нарушится, и строка станет некорректной.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>кириллическая А в UTF-8: D0 90</span></span>
+<span data-line><span>побайтовый разворот:     90 D0  ← некорректно</span></span></code></pre></figure>
+<p>Разворот по кодовым точкам тоже не всегда корректен: комбинируемый акцент может отделиться от базовой буквы, а составной эмодзи — распасться.</p>
+<p>Правильная единица для пользовательского текста — <strong>графемный кластер</strong>, то есть знак вместе со всеми модификаторами и соединителями.</p>
+<p>Следовательно, перед задачами «развернуть строку» или «проверить палиндром» необходимо уточнить:</p>
+<ol>
+<li>какая используется кодировка;</li>
+<li>что считать одним символом;</li>
+<li>нужна ли нормализация;</li>
+<li>учитывать ли регистр;</li>
+<li>можно ли менять исходные данные.</li>
+</ol>
+<h2 id="17-полная-цепочка-представления-текста">17. Полная цепочка представления текста<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#17-полная-цепочка-представления-текста" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart TD\n    A[\&quot;Смысл\&quot;] --> B[\&quot;Символ\&quot;]\n    B --> C[\&quot;Кодовая точка Unicode\&quot;]\n    C --> D[\&quot;UTF-8, UTF-16 или UTF-32\&quot;]\n    D --> E[\&quot;Байты\&quot;]\n    E --> F[\&quot;Строковая структура языка\&quot;]\n    F --> G[\&quot;Шрифт и растеризация\&quot;]\n    G --> H[\&quot;Знак на экране\&quot;]&quot;">flowchart TD
+    A[&quot;Смысл&quot;] --> B[&quot;Символ&quot;]
+    B --> C[&quot;Кодовая точка Unicode&quot;]
+    C --> D[&quot;UTF-8, UTF-16 или UTF-32&quot;]
+    D --> E[&quot;Байты&quot;]
+    E --> F[&quot;Строковая структура языка&quot;]
+    F --> G[&quot;Шрифт и растеризация&quot;]
+    G --> H[&quot;Знак на экране&quot;]
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<p>Каждый уровень отвечает на отдельный вопрос:</p>
+<ul>
+<li>Unicode — <strong>какой это символ</strong>;</li>
+<li>UTF — <strong>какими байтами записать его кодовую точку</strong>;</li>
+<li>строковый тип — <strong>как организовать эти данные в памяти</strong>;</li>
+<li>шрифт — <strong>как нарисовать символ</strong>.</li>
+</ul>
+<hr/>
+<h1 id="краткая-шпаргалка">Краткая шпаргалка<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#краткая-шпаргалка" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<h2 id="определения-1">Определения<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#определения-1" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>Данные</strong> — формализованное представление информации, пригодное для передачи, интерпретации и обработки.</li>
+<li><strong>Синтаксис</strong> — форма записи; <strong>семантика</strong> — её смысл.</li>
+<li><strong>Кодирование</strong> — преобразование представления данных для хранения, передачи, обработки или защиты.</li>
+<li><strong>Кодовая точка</strong> — числовой идентификатор символа в Unicode.</li>
+<li><strong>UTF</strong> — способ записать кодовые точки Unicode байтами.</li>
+<li><strong>Графемный кластер</strong> — один видимый знак с точки зрения пользователя.</li>
+<li><strong>C-строка</strong> — массив <code>char</code>, завершённый <code>\0</code>.</li>
+<li><strong>Rope</strong> — дерево фрагментов большого текста.</li>
+</ul>
+<h2 id="что-нельзя-путать">Что нельзя путать<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#что-нельзя-путать" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>информация ≠ данные</span></span>
+<span data-line><span>синтаксис ≠ семантика</span></span>
+<span data-line><span>дискретизация ≠ квантование</span></span>
+<span data-line><span>Unicode ≠ UTF</span></span>
+<span data-line><span>кодовая точка ≠ байт</span></span>
+<span data-line><span>кодовая точка ≠ видимый символ</span></span>
+<span data-line><span>кодировка ≠ шрифт</span></span>
+<span data-line><span>массив char ≠ обязательно C-строка</span></span></code></pre></figure>
+<h2 id="utf-за-20-секунд">UTF за 20 секунд<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#utf-за-20-секунд" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Unicode: символ → номер U+....</span></span>
+<span data-line><span>UTF-8:   номер → 1–4 байта</span></span>
+<span data-line><span>UTF-16:  номер → 2 или 4 байта</span></span>
+<span data-line><span>UTF-32:  номер → 4 байта</span></span></code></pre></figure>
+<h2 id="ответ-на-экзаменационный-вопрос-про-unicode">Ответ на экзаменационный вопрос про Unicode<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#ответ-на-экзаменационный-вопрос-про-unicode" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Unicode — стандарт универсального набора символов. Он назначает символам уникальные кодовые точки и описывает их свойства. UCS — универсальный набор символов стандарта ISO/IEC 10646. UTF-8, UTF-16 и UTF-32 — способы представить кодовые точки последовательностями байтов. Один видимый знак может состоять из нескольких кодовых точек, например из буквы и комбинируемого акцента. Поэтому одинаково выглядящие строки могут иметь разное внутреннее представление; для приведения к общей форме используются NFC, NFD, NFKC и NFKD.</p>
+<h2 id="частые-ошибки">Частые ошибки<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#частые-ошибки" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ol>
+<li>Считать, что одна буква всегда занимает один байт.</li>
+<li>Называть UTF-8 «таблицей символов» — это формат байтового представления.</li>
+<li>Сравнивать визуально одинаковые Unicode-строки без нормализации.</li>
+<li>Разворачивать UTF-8 побайтно.</li>
+<li>Применять <code>strlen</code> к массиву <code>char</code> без гарантированного <code>\0</code>.</li>
+<li>Вызывать <code>strlen</code> на каждой итерации цикла.</li>
+<li>Считать, что лигатура меняет символы в исходном файле.</li>
+<li>Путать строковую структуру языка со способом кодирования текста.</li>
+</ol></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Вид графа</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-44" aria-expanded="true"><h3>Оглавление</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#лекция-03--представление-данных" data-for="лекция-03--представление-данных">Лекция 03 — Представление данных</a></li><li class="depth-1"><a href="#1-программы-задачи-и-данные" data-for="1-программы-задачи-и-данные">1. Программы, задачи и данные</a></li><li class="depth-1"><a href="#2-что-такое-данные" data-for="2-что-такое-данные">2. Что такое данные</a></li><li class="depth-2"><a href="#что-важно-в-определении" data-for="что-важно-в-определении">Что важно в определении</a></li><li class="depth-1"><a href="#3-синтаксис-и-семантика" data-for="3-синтаксис-и-семантика">3. Синтаксис и семантика</a></li><li class="depth-2"><a href="#определения" data-for="определения">Определения</a></li><li class="depth-2"><a href="#почему-это-важно-при-отладке" data-for="почему-это-важно-при-отладке">Почему это важно при отладке</a></li><li class="depth-1"><a href="#4-от-физического-мира-к-цифровым-данным" data-for="4-от-физического-мира-к-цифровым-данным">4. От физического мира к цифровым данным</a></li><li class="depth-2"><a href="#ацп-и-цап" data-for="ацп-и-цап">АЦП и ЦАП</a></li><li class="depth-2"><a href="#дискретизация-и-квантование" data-for="дискретизация-и-квантование">Дискретизация и квантование</a></li><li class="depth-1"><a href="#5-теория-кодирования" data-for="5-теория-кодирования">5. Теория кодирования</a></li><li class="depth-2"><a href="#основные-направления" data-for="основные-направления">Основные направления</a></li><li class="depth-2"><a href="#сжатие" data-for="сжатие">Сжатие</a></li><li class="depth-2"><a href="#коррекция-ошибок" data-for="коррекция-ошибок">Коррекция ошибок</a></li><li class="depth-2"><a href="#криптография" data-for="криптография">Криптография</a></li><li class="depth-2"><a href="#физическое-кодирование" data-for="физическое-кодирование">Физическое кодирование</a></li><li class="depth-1"><a href="#6-письменность-как-система-кодирования" data-for="6-письменность-как-система-кодирования">6. Письменность как система кодирования</a></li><li class="depth-1"><a href="#7-ascii" data-for="7-ascii">7. ASCII</a></li><li class="depth-2"><a href="#основные-диапазоны" data-for="основные-диапазоны">Основные диапазоны</a></li><li class="depth-2"><a href="#инженерные-свойства-ascii" data-for="инженерные-свойства-ascii">Инженерные свойства ASCII</a></li><li class="depth-1"><a href="#8-кодовые-страницы" data-for="8-кодовые-страницы">8. Кодовые страницы</a></li><li class="depth-2"><a href="#пример-с-zip" data-for="пример-с-zip">Пример с ZIP</a></li><li class="depth-2"><a href="#koi8-r" data-for="koi8-r">KOI8-R</a></li><li class="depth-2"><a href="#cp1251-и-буква-ё" data-for="cp1251-и-буква-ё">CP1251 и буква Ё</a></li><li class="depth-1"><a href="#9-unicode-ucs-и-utf" data-for="9-unicode-ucs-и-utf">9. Unicode, UCS и UTF</a></li><li class="depth-2"><a href="#набор-символов-и-кодовая-точка" data-for="набор-символов-и-кодовая-точка">Набор символов и кодовая точка</a></li><li class="depth-2"><a href="#ucs" data-for="ucs">UCS</a></li><li class="depth-2"><a href="#utf" data-for="utf">UTF</a></li><li class="depth-2"><a href="#представление-строк-в-языках" data-for="представление-строк-в-языках">Представление строк в языках</a></li><li class="depth-1"><a href="#10-блоки-unicode" data-for="10-блоки-unicode">10. Блоки Unicode</a></li><li class="depth-1"><a href="#11-композитные-символы-и-нормализация" data-for="11-композитные-символы-и-нормализация">11. Композитные символы и нормализация</a></li><li class="depth-2"><a href="#формы-нормализации" data-for="формы-нормализации">Формы нормализации</a></li><li class="depth-2"><a href="#байт-кодовая-точка-и-графемный-кластер" data-for="байт-кодовая-точка-и-графемный-кластер">Байт, кодовая точка и графемный кластер</a></li><li class="depth-1"><a href="#12-unicode-как-развивающийся-стандарт" data-for="12-unicode-как-развивающийся-стандарт">12. Unicode как развивающийся стандарт</a></li><li class="depth-1"><a href="#13-визуальное-представление-гарнитуры-и-шрифты" data-for="13-визуальное-представление-гарнитуры-и-шрифты">13. Визуальное представление: гарнитуры и шрифты</a></li><li class="depth-2"><a href="#моноширинные-и-пропорциональные-гарнитуры" data-for="моноширинные-и-пропорциональные-гарнитуры">Моноширинные и пропорциональные гарнитуры</a></li><li class="depth-2"><a href="#лигатуры" data-for="лигатуры">Лигатуры</a></li><li class="depth-2"><a href="#засечки" data-for="засечки">Засечки</a></li><li class="depth-1"><a href="#14-как-устроены-современные-шрифты" data-for="14-как-устроены-современные-шрифты">14. Как устроены современные шрифты</a></li><li class="depth-2"><a href="#растеризация-и-хинтинг" data-for="растеризация-и-хинтинг">Растеризация и хинтинг</a></li><li class="depth-1"><a href="#15-представление-строк-в-памяти" data-for="15-представление-строк-в-памяти">15. Представление строк в памяти</a></li><li class="depth-2"><a href="#151-c-строка-с-нулевым-терминатором" data-for="151-c-строка-с-нулевым-терминатором">15.1. C-строка с нулевым терминатором</a></li><li class="depth-2"><a href="#152-строка-с-явной-длиной" data-for="152-строка-с-явной-длиной">15.2. Строка с явной длиной</a></li><li class="depth-2"><a href="#153-срез-общего-буфера" data-for="153-срез-общего-буфера">15.3. Срез общего буфера</a></li><li class="depth-2"><a href="#154-неизменяемые-строки-и-интернирование" data-for="154-неизменяемые-строки-и-интернирование">15.4. Неизменяемые строки и интернирование</a></li><li class="depth-2"><a href="#155-sso-в-c" data-for="155-sso-в-c">15.5. SSO в C++</a></li><li class="depth-2"><a href="#156-rope" data-for="156-rope">15.6. Rope</a></li><li class="depth-1"><a href="#16-почему-сложно-развернуть-unicode-строку" data-for="16-почему-сложно-развернуть-unicode-строку">16. Почему сложно развернуть Unicode-строку</a></li><li class="depth-1"><a href="#17-полная-цепочка-представления-текста" data-for="17-полная-цепочка-представления-текста">17. Полная цепочка представления текста</a></li><li class="depth-0"><a href="#краткая-шпаргалка" data-for="краткая-шпаргалка">Краткая шпаргалка</a></li><li class="depth-1"><a href="#определения-1" data-for="определения-1">Определения</a></li><li class="depth-1"><a href="#что-нельзя-путать" data-for="что-нельзя-путать">Что нельзя путать</a></li><li class="depth-1"><a href="#utf-за-20-секунд" data-for="utf-за-20-секунд">UTF за 20 секунд</a></li><li class="depth-1"><a href="#ответ-на-экзаменационный-вопрос-про-unicode" data-for="ответ-на-экзаменационный-вопрос-про-unicode">Ответ на экзаменационный вопрос про Unicode</a></li><li class="depth-1"><a href="#частые-ошибки" data-for="частые-ошибки">Частые ошибки</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Обратные ссылки</h3><ul id="list-0" class="overflow"><li><a href="../../информатика-и-основы-программирования/билеты-(ориентир)/00-—-список-тем-прошлого-года" class="internal">00 — Список тем прошлого года</a></li><li><a href="../../информатика-и-основы-программирования/билеты-(ориентир)/билет-03-—-информация,-синтаксис-и-семантика" class="internal">Билет 03 — Информация, синтаксис и семантика</a></li><li><a href="../../информатика-и-основы-программирования/билеты-(ориентир)/билет-04-—-unicode,-utf-и-ucs" class="internal">Билет 04 — Unicode, UTF и UCS</a></li><li><a href="../../информатика-и-основы-программирования/лекции/лекции-по-информатике-и-основам-программирования" class="internal">Лекции по информатике и основам программирования</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Создано с помощью <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://github.com/AnUbiSaF/study-notes">GitHub</a></li></ul></footer></div></div></body><script src="../../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript-551b937a.js" type="module" data-persist="true"></script></html>

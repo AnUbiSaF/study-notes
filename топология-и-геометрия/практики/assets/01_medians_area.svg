@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<style>
+.bg{fill:#151515}.edge{stroke:#d8d8d8;stroke-width:3;fill:none}.median{stroke:#6f86c8;stroke-width:3;fill:none}
+.part{stroke:#d36a55;stroke-width:5;fill:none}.new{stroke:#70b07b;stroke-width:4;fill:rgba(112,176,123,.08)}
+.pt{fill:#f0f0f0}.mid{fill:#6f86c8}.cent{fill:#70b07b}
+.label{fill:#ececec;font:600 24px Arial}.small{fill:#c8c8c8;font:500 19px Arial}.formula{fill:#e2e2e2;font:500 21px serif}
+</style>
+<rect class="bg" width="1200" height="760"/>
+<text class="label" x="45" y="48">Задача 1. Треугольник из частей медиан</text>
+<path class="edge" d="M100 610 L500 610 L330 120 Z"/>
+<circle class="pt" cx="100" cy="610" r="6"/><text class="label" x="68" y="646">A</text>
+<circle class="pt" cx="500" cy="610" r="6"/><text class="label" x="510" y="646">B</text>
+<circle class="pt" cx="330" cy="120" r="6"/><text class="label" x="322" y="92">C</text>
+<circle class="mid" cx="415" cy="365" r="6"/><text class="small" x="428" y="362">A′</text>
+<circle class="mid" cx="215" cy="365" r="6"/><text class="small" x="171" y="362">B′</text>
+<circle class="mid" cx="300" cy="610" r="6"/><text class="small" x="289" y="642">C′</text>
+<line class="median" x1="100" y1="610" x2="415" y2="365"/>
+<line class="median" x1="500" y1="610" x2="215" y2="365"/>
+<line class="median" x1="330" y1="120" x2="300" y2="610"/>
+<circle class="cent" cx="310" cy="446.7" r="8"/><text class="label" x="322" y="442">M</text>
+<line class="part" x1="310" y1="446.7" x2="100" y2="610"/>
+<line class="part" x1="310" y1="446.7" x2="500" y2="610"/>
+<line class="part" x1="310" y1="446.7" x2="330" y2="120"/>
+<text class="small" x="55" y="700">MA, MB, MC — части медиан; MA + MB + MC = 0.</text>
+<text class="label" x="660" y="105">После параллельного переноса</text>
+<path class="new" d="M680 540 L860 400 L1035 540 Z"/>
+<text class="small" x="725" y="465">MA</text><text class="small" x="925" y="463">MB</text><text class="small" x="842" y="575">MC</text>
+<text class="formula" x="655" y="190">b = AB,   c = AC</text>
+<text class="formula" x="655" y="235">MA = −⅓ b − ⅓ c</text>
+<text class="formula" x="655" y="275">MB = ⅔ b − ⅓ c</text>
+<text class="formula" x="655" y="325">|det| = 1/3</text>
+<text class="label" x="655" y="650">S(new) = ⅓ S(ABC)</text>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="Аффинные базисы прямой, плоскости и пространства">
+  <style>
+    .bg{fill:#151515}.panel{fill:#202020;stroke:#555;stroke-width:2}.edge{stroke:#d8d8d8;stroke-width:3;fill:none}.dash{stroke:#9b9b9b;stroke-width:2;stroke-dasharray:7 7;fill:none}.pt{fill:#f0f0f0}.accent{fill:#d36a55}.label{fill:#ececec;font:600 22px Arial}.small{fill:#c8c8c8;font:500 17px Arial}
+  </style>
+  <rect class="bg" width="1200" height="420"/>
+  <rect class="panel" x="25" y="25" width="350" height="370" rx="14"/>
+  <text class="label" x="55" y="65">Прямая: 2 точки</text>
+  <line class="edge" x1="70" y1="210" x2="330" y2="210"/>
+  <circle class="accent" cx="125" cy="210" r="8"/><text class="label" x="110" y="245">A₀</text>
+  <circle class="pt" cx="275" cy="210" r="8"/><text class="label" x="260" y="245">A₁</text>
+  <text class="small" x="55" y="335">A₀, A₁ — аффинный базис E¹</text>
+  <rect class="panel" x="425" y="25" width="350" height="370" rx="14"/>
+  <text class="label" x="455" y="65">Плоскость: 3 точки</text>
+  <path class="edge" d="M485 315 L700 315 L585 125 Z"/>
+  <circle class="accent" cx="485" cy="315" r="8"/><text class="label" x="462" y="350">A₀</text>
+  <circle class="pt" cx="700" cy="315" r="8"/><text class="label" x="706" y="350">A₁</text>
+  <circle class="pt" cx="585" cy="125" r="8"/><text class="label" x="592" y="117">A₂</text>
+  <text class="small" x="455" y="375">Нужны неколлинеарные точки</text>
+  <rect class="panel" x="825" y="25" width="350" height="370" rx="14"/>
+  <text class="label" x="855" y="65">Пространство: 4 точки</text>
+  <path class="edge" d="M890 310 L1090 310 L990 130 Z M890 310 L960 220 L1090 310 M990 130 L960 220"/>
+  <path class="dash" d="M960 220 L1090 310"/>
+  <circle class="accent" cx="890" cy="310" r="8"/><text class="label" x="868" y="345">A₀</text>
+  <circle class="pt" cx="1090" cy="310" r="8"/><text class="label" x="1098" y="345">A₁</text>
+  <circle class="pt" cx="990" cy="130" r="8"/><text class="label" x="998" y="122">A₂</text>
+  <circle class="pt" cx="960" cy="220" r="8"/><text class="label" x="968" y="214">A₃</text>
+  <text class="small" x="855" y="375">Нужны некомпланарные точки</text>
+</svg>

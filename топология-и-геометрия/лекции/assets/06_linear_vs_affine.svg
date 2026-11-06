@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-label="Линейное и аффинное подпространство">
+  <style>
+    .bg{fill:#151515}.panel{fill:#202020;stroke:#505050;stroke-width:2}.axis{stroke:#898989;stroke-width:2}.line{stroke:#8ed1fc;stroke-width:5}.dash{stroke:#ff9f80;stroke-width:3;stroke-dasharray:8 7}.pt{fill:#f2f2f2}.accent{fill:#ff9f80}.label{fill:#f2f2f2;font:600 24px Arial}.small{fill:#c9c9c9;font:500 18px Arial}
+  </style>
+  <defs><marker id="v" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#ff9f80"/></marker></defs>
+  <rect class="bg" width="1200" height="480" rx="18"/>
+  <rect class="panel" x="30" y="30" width="535" height="420" rx="16"/>
+  <text class="label" x="65" y="74">Линейное: L = Lin(v)</text>
+  <line class="axis" x1="80" y1="245" x2="515" y2="245"/><line class="axis" x1="300" y1="110" x2="300" y2="400"/>
+  <line class="line" x1="115" y1="355" x2="485" y2="135"/>
+  <circle class="pt" cx="300" cy="245" r="8"/><text class="small" x="310" y="266">0</text>
+  <path class="dash" d="M300 245 L395 188" marker-end="url(#v)"/><text class="small" x="356" y="190">v</text>
+  <text class="small" x="65" y="415">Проходит через нулевой вектор.</text>
+  <rect class="panel" x="635" y="30" width="535" height="420" rx="16"/>
+  <text class="label" x="670" y="74">Аффинное: x + L</text>
+  <line class="axis" x1="685" y1="300" x2="1120" y2="300"/><line class="axis" x1="905" y1="110" x2="905" y2="410"/>
+  <line class="line" x1="700" y1="350" x2="1070" y2="130"/>
+  <circle class="accent" cx="865" cy="252" r="9"/><text class="small" x="878" y="245">x</text>
+  <path class="dash" d="M865 252 L960 195" marker-end="url(#v)"/><text class="small" x="922" y="197">v</text>
+  <text class="small" x="670" y="415">Те же направления, но сдвиг в точку x.</text>
+</svg>

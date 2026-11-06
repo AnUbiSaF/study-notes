@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr"><head><title>Лекция 14 — Граница множества, подпространства и предел отображения</title><meta charset="utf-8"/><link rel="preload" href="../../index-4ebe8085.css" as="style"/><link rel="preload" href="../../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Учёба"/><meta property="og:title" content="Лекция 14 — Граница множества, подпространства и предел отображения"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Лекция 14 — Граница множества, подпространства и предел отображения"/><meta name="twitter:description" content="Лекция 14 — Граница множества, подпространства и предел отображения ← К лекциям Теоретическая тема: Метрики, линейные и нормированные пространства."/><meta property="og:description" content="Лекция 14 — Граница множества, подпространства и предел отображения ← К лекциям Теоретическая тема: Метрики, линейные и нормированные пространства."/><meta property="og:image:alt" content="Лекция 14 — Граница множества, подпространства и предел отображения ← К лекциям Теоретическая тема: Метрики, линейные и нормированные пространства."/><meta property="og:image" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta property="og:image:url" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta name="twitter:image" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="AnUbiSaF.github.io/study-notes"/><meta property="og:url" content="https://anubisaf.github.io/study-notes/математический-анализ/лекции/лекция-14-—-граница-множества,-подпространства-и-предел-отображения"/><meta property="twitter:url" content="https://anubisaf.github.io/study-notes/математический-анализ/лекции/лекция-14-—-граница-множества,-подпространства-и-предел-отображения"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="Лекция 14 — Граница множества, подпространства и предел отображения ← К лекциям Теоретическая тема: Метрики, линейные и нормированные пространства."/><meta name="generator" content="Quartz"/><link href="../../index-4ebe8085.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-e427079e.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-58d5ff56.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-7262b5a7.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/></head><body data-slug="математический-анализ/лекции/лекция-14-—-граница-множества,-подпространства-и-предел-отображения" data-basepath="/study-notes"><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Учёба</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Поиск" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Поиск</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Найти что-нибудь" placeholder="Найти что-нибудь"/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Тёмный режим"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Тёмный режим"><title>Тёмный режим</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Светлый режим"><title>Светлый режим</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Режим чтения"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Режим чтения"><title>Режим чтения</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a2, b2) => {\n    if (!a2.isFolder &amp;&amp; !b2.isFolder || a2.isFolder &amp;&amp; b2.isFolder) {\n      return (a2.displayName || \&quot;\&quot;).localeCompare(b2.displayName || \&quot;\&quot;, void 0, {\n        numeric: true,\n        sensitivity: \&quot;base\&quot;\n      });\n    }\n    if (!a2.isFolder &amp;&amp; b2.isFolder) {\n      return 1;\n    }\n    return -1;\n  }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-71" aria-label="Проводник"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Проводник</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-71" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../математический-анализ/">Математический анализ</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../математический-анализ/лекции/">Лекции</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Лекция 14 — Граница множества, подпространства и предел отображения</a></div></nav><h1 class="article-title">Лекция 14 — Граница множества, подпространства и предел отображения</h1><p show-comma="true" class="content-meta"><time datetime="2026-11-05T21:35:16.000Z">06 нояб. 2026 г.</time><span>время чтения ~13 мин.</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="лекция-14--граница-множества-подпространства-и-предел-отображения">Лекция 14 — Граница множества, подпространства и предел отображения<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#лекция-14--граница-множества-подпространства-и-предел-отображения" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p><a href="../../математический-анализ/лекции/лекции-по-матану" class="internal internal-link alias" data-slug="математический-анализ/лекции/лекции-по-матану">← К лекциям</a></p>
+<p>Теоретическая тема: <a href="../../математический-анализ/темы/метрики,-линейные-и-нормированные-пространства" class="internal internal-link alias" data-slug="математический-анализ/темы/метрики,-линейные-и-нормированные-пространства">Метрики, линейные и нормированные пространства</a>.</p>
+<blockquote class="callout abstract" data-callout="abstract">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Содержание </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Граничные точки и граница множества → открытые и замкнутые множества в подпространстве → четыре определения предела отображения → замечания → эквивалентность определений Коши и Гейне → единственность предела.</p>
+<p><strong>Принцип изложения:</strong> порядок соответствует лекционным записям. Дополнения и восстановленные доказательства отмечены отдельно. Все определения относятся к метрическим пространствам, если не оговорено иное.</p>
+</div>
+</blockquote>
+<h2 id="1-граничные-точки-и-граница-множества">1. Граничные точки и граница множества<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-граничные-точки-и-граница-множества" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Пусть <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">ρ</span><span class="mclose">)</span></span></span></span> — метрическое пространство, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⊆</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span></span></span></span>. Обозначим открытый шар радиуса <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> с центром <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> через</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0913em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-2.453em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">r</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0785em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ρ</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mclose">}</span><span class="mord">.</span></span></span></span></p>
+<h3 id="11-граничная-точка">1.1. Граничная точка<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-граничная-точка" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Определение.</strong> Точка <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> называется <strong>граничной точкой множества <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span></strong>, если любая её окрестность пересекается как с <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span>, так и с его дополнением <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∖</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span>:</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.8213em;vertical-align:-0.59em;"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2313em;"><span style="top:-3.8213em;"><span class="pstrut" style="height:3.8213em;"></span><span class="boxpad"><span class="mord"><span class="mord"><span class="mord">∀</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-2.453em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">r</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0785em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord amsrm">∅</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-2.453em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">r</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0785em;">X</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∖</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord amsrm">∅</span><span class="mord">.</span></span></span></span></span><span style="top:-3.2313em;"><span class="pstrut" style="height:3.8213em;"></span><span class="stretchy fbox" style="height:1.8213em;border-style:solid;border-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.59em;"><span></span></span></span></span></span></span></span></span></p>
+<p>При этом <strong><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> не обязана принадлежать <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span></strong>.</p>
+<p><strong>Пример.</strong> При <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span> множества <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">)</span></span></span></span> и <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">]</span></span></span></span> имеют одинаковые граничные точки <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> и <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>. Вокруг каждой из них в любом открытом интервале есть как точки из <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span>, так и точки не из <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span>.</p>
+<h3 id="12-граница-множества">1.2. Граница множества<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-граница-множества" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Определение.</strong> Границей множества <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span> называется множество всех его граничных точек:</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.68em;vertical-align:-0.59em;"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.09em;"><span style="top:-3.68em;"><span class="pstrut" style="height:3.68em;"></span><span class="boxpad"><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mopen">{</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">a</span><span class="mord text"><span class="mord"> — </span><span class="mord cyrillic_fallback">граничная</span><span class="mord"> </span><span class="mord cyrillic_fallback">точка</span><span class="mord"> </span></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mclose">}</span><span class="mord">.</span></span></span></span></span><span style="top:-3.09em;"><span class="pstrut" style="height:3.68em;"></span><span class="stretchy fbox" style="height:1.68em;border-style:solid;border-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.59em;"><span></span></span></span></span></span></span></span></span></p>
+<p>Примеры в <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span>:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Множество <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span></th><th>Граница <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span></th></tr></thead><tbody><tr><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">)</span></span></span></span></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">}</span></span></span></span></td></tr><tr><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">]</span></span></span></span></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">}</span></span></span></span></td></tr><tr><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8556em;vertical-align:-0.1667em;"></span><span class="mord mathbb">Q</span></span></span></span></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span></td></tr><tr><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">3</span><span class="mclose">}</span></span></span></span></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">3</span><span class="mclose">}</span></span></span></span></td></tr><tr><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mord amsrm">∅</span></span></span></span></td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mord amsrm">∅</span></span></span></span></td></tr></tbody></table></div>
+<p>В случае <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8556em;vertical-align:-0.1667em;"></span><span class="mord mathbb">Q</span></span></span></span> любой интервал содержит и рациональные, и иррациональные числа.</p>
+<h3 id="13-граница-замкнута">1.3. Граница замкнута<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-граница-замкнута" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Утверждение из лекции:</strong> для любого <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⊆</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span></span></span></span> множество <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span> замкнуто в <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span></span></span></span>.</p>
+<blockquote class="callout note" data-callout="note">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — доказательство через замыкания </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>В записях это утверждение дано как упражнение; ниже приведено короткое доказательство с помощью ранее изученных свойств замыкания.</p>
+</div>
+</blockquote>
+<p>Вспомним: <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span> тогда и только тогда, когда <strong>каждая</strong> окрестность <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> пересекает <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span>. По определению граничной точки должны выполняться <strong>два</strong> таких условия — для <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span> и для <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∖</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span>. Поэтому</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.88em;vertical-align:-0.59em;"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.29em;"><span style="top:-3.88em;"><span class="pstrut" style="height:3.88em;"></span><span class="boxpad"><span class="mord"><span class="mord"><span class="mord" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∖</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span><span style="top:-3.87em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span><span class="mord">.</span></span></span></span></span><span style="top:-3.29em;"><span class="pstrut" style="height:3.88em;"></span><span class="stretchy fbox" style="height:1.88em;border-style:solid;border-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.59em;"><span></span></span></span></span></span></span></span></span></p>
+<p><strong>Доказательство.</strong> Оба множества <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span> и <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∖</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span><span style="top:-3.87em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span></span></span> замкнуты как замыкания. Пересечение конечного числа замкнутых множеств замкнуто. Следовательно, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span> замкнуто. <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.675em;"></span><span class="mord amsrm">□</span></span></span></span></p>
+<p><strong>Почему это не противоречит определению замкнутости?</strong> Множество замкнуто, когда содержит все свои предельные точки. Оно <strong>может вообще не иметь</strong> предельных точек: например, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">}</span></span></span></span> замкнуто в <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span>.</p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Предельная и граничная точки — не одно и то же </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ul>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> — <strong>предельная точка</strong> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span>, если <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord">∀</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> в <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span> есть точка <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span>, отличная от <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span>.</li>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> — <strong>граничная точка</strong> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span>, если в каждом <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0278em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span> есть точки из <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span> и из <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∖</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span>.</li>
+<li><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7519em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord text"><span class="mord cyrillic_fallback">предельные</span><span class="mord"> </span><span class="mord cyrillic_fallback">точки</span><span class="mord"> </span></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mclose">}</span></span></span></span> и <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7519em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span> — разные множества.</li>
+<li>«Граница замкнута» означает, что <strong>само множество <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord" style="margin-right:0.0556em;">∂</span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span></strong> содержит все свои предельные точки, а не то, что исходное <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span> замкнуто.</li>
+</ul>
+</div>
+</blockquote>
+<hr/>
+<h2 id="2-открытые-и-замкнутые-множества-в-подпространстве">2. Открытые и замкнутые множества в подпространстве<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-открытые-и-замкнутые-множества-в-подпространстве" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Пусть <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">ρ</span><span class="mclose">)</span></span></span></span> — метрическое пространство, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⊆</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span></span></span></span>. На <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span></span></span> рассматривается <strong>ограниченная метрика</strong> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ρ</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.2222em;">Y</span><span class="mbin mtight">×</span><span class="mord mathnormal mtight" style="margin-right:0.2222em;">Y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span>.</p>
+<h3 id="21-шар-в-подпространстве">2.1. Шар в подпространстве<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-шар-в-подпространстве" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Для <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>:</p>
+<span class="katex-error" title="ParseError: KaTeX parse error: Expected 'EOF', got '&amp;' at position 9: B_r^Y(a)&amp;̲=\{y\in Y:\rho(…" style="color:#cc0000;">B_r^Y(a)&amp;=\{y\in Y:\rho(y,a)&lt;r\}\\
+&amp;=\{x\in X:\rho(x,a)&lt;r\}\cap Y.
+\end{aligned}$$
+
+То есть
+
+$$\boxed{B_r^Y(a)=B_r^X(a)\cap Y.}$$
+
+**Смысл:** расстояния не изменяются, но в шаре остаются только точки, принадлежащие $Y$.
+
+**Пример.** При $X=\mathbb R$, $Y=[3,4]$:
+
+$$B_{0.1}^{\mathbb R}(3)=(2.9,3.1),\qquad B_{0.1}^{Y}(3)=[3,3.1).$$
+
+Аналогично $B_{0.2}^Y(4)=(3.8,4]$. Крайние точки включаются или исключаются по строгому неравенству $\rho(x,a)&lt;r$ и по принадлежности $Y$.
+
+### 2.2. Критерий открытости в подпространстве
+
+**Теорема.** Для $D\subseteq Y$:
+
+$$\boxed{D\text{ открыто в }Y\iff\exists G\subseteq X:\ G\text{ открыто в }X,\quad D=G\cap Y.}$$
+
+#### Доказательство, направление $\Rightarrow$
+
+**Дано:** $D$ открыто в $Y$. **Требуется:** построить открытое $G\subseteq X$ с $D=G\cap Y$.
+
+1. Для каждой точки $a\in D$ из открытости $D$ в $Y$ следует существование радиуса $r_a>0$ такого, что $B_{r_a}^{Y}(a)\subseteq D$.
+2. По формуле для шаров $B_{r_a}^{X}(a)\cap Y\subseteq D$.
+3. Определим
+
+   $$G=\bigcup_{a\in D}B_{r_a}^{X}(a).$$
+
+   Множество $G$ открыто в $X$ как объединение открытых шаров. Если $D=\varnothing$, берём $G=\varnothing$.
+4. По распределительному закону
+
+   $$\begin{aligned}
+   G\cap Y
+   &amp;=\left(\bigcup_{a\in D}B_{r_a}^{X}(a)\right)\cap Y\\
+   &amp;=\bigcup_{a\in D}\bigl(B_{r_a}^{X}(a)\cap Y\bigr)
+   =\bigcup_{a\in D}B_{r_a}^{Y}(a).
+   \end{aligned}$$
+
+   Каждый шар в объединении содержится в $D$, значит $G\cap Y\subseteq D$. С другой стороны, каждая точка $a\in D$ принадлежит своему шару $B_{r_a}^Y(a)$; следовательно, $D\subseteq G\cap Y$. Таким образом, $G\cap Y=D$. $\square$
+
+#### Доказательство, направление $\Leftarrow$
+
+**Дано:** $D=G\cap Y$, где $G$ открыто в $X$. **Требуется:** доказать открытость $D$ в $Y$.
+
+1. Возьмём произвольную точку $a\in D$. Тогда $a\in G$ и $a\in Y$.
+2. Поскольку $G$ открыто в $X$, найдётся $r>0$ с $B_r^X(a)\subseteq G$.
+3. Пересечём с $Y$:
+
+   $$B_r^Y(a)=B_r^X(a)\cap Y\subseteq G\cap Y=D.$$
+
+   Значит, каждая точка $D$ внутренняя относительно $Y$, и $D$ открыто в $Y$. $\square$
+
+**Пример.** При $Y=[3,4]$ множество $D=[3,4)$ открыто в $Y$, потому что $D=(2,4)\cap Y$, где $G=(2,4)$ открыто в $\mathbb R$. При этом $D$ **не открыто** в $\mathbb R$.
+
+### 2.3. Критерий замкнутости в подпространстве
+
+**Теорема.** Для $D\subseteq Y$:
+
+$$\boxed{D\text{ замкнуто в }Y\iff\exists F\subseteq X:\ F\text{ замкнуто в }X,\quad D=F\cap Y.}$$
+
+> [!note] Дополнение — полное доказательство
+> 
+> В лекции сформулирован критерий; доказательство ниже восстановлено через дополнения и только что доказанный критерий открытости.
+
+#### Доказательство, направление $\Rightarrow$
+
+1. Пусть $D$ замкнуто в $Y$. Тогда $Y\setminus D$ открыто в $Y$.
+2. По критерию открытости существует **открытое в $X$** множество $G$ с
+
+   $$Y\setminus D=G\cap Y.$$
+
+3. Положим $F=X\setminus G$. Оно **замкнуто в $X$**, поскольку $G$ открыто в $X$.
+4. Проверим требуемое равенство:
+
+   $$\begin{aligned}
+   D&amp;=Y\setminus(Y\setminus D)\\
+    &amp;=Y\setminus(G\cap Y)\\
+    &amp;=Y\cap(X\setminus G)\\
+    &amp;=Y\cap F=F\cap Y.
+   \end{aligned}$$
+
+   В третьем переходе используется $Y\setminus(G\cap Y)=Y\cap(X\setminus G)$: из $x\in Y$ и $x\notin(G\cap Y)$ следует $x\notin G$, и наоборот. Получили замкнутое $F$ с $D=F\cap Y$. $\square$
+
+#### Доказательство, направление $\Leftarrow$
+
+1. Пусть $D=F\cap Y$, где $F$ замкнуто в $X$.
+2. Тогда $X\setminus F$ открыто в $X$.
+3. Дополнение $D$ в $Y$ имеет вид:
+
+   $$Y\setminus D=Y\setminus(F\cap Y)=Y\cap(X\setminus F).$$
+
+4. По критерию открытости $Y\cap(X\setminus F)$ открыто в $Y$. Значит, дополнение $Y\setminus D$ открыто в $Y$, а $D$ замкнуто в $Y$. $\square$
+
+**Пример.** $Y=(0,5)$, $D=(0,2]$. Возьмём $F=[0,2]$, замкнутое в $\mathbb R$. Тогда $F\cap Y=(0,2]=D$; следовательно, $D$ замкнуто в $Y$, хотя не замкнуто в $\mathbb R$.
+
+### 2.4. Итог по подпространствам
+
+| Вопрос | Критерий |
+|---|---|
+| Шар в $Y$ | $B_r^Y(a)=B_r^X(a)\cap Y$ |
+| $D$ открыто в $Y$ | $D=G\cap Y$, $G$ открыто в $X$ |
+| $D$ замкнуто в $Y$ | $D=F\cap Y$, $F$ замкнуто в $X$ |
+
+> [!warning] Типичная ошибка
+> 
+> В критерии **не требуется**, чтобы само $D$ было открыто или замкнуто в $X$. Соответствующее свойство требуется от вспомогательного $G$ или $F$ **в пространстве $X$**.
+
+---
+
+## 3. Предел отображения между метрическими пространствами
+
+Пусть $(X,\rho_X)$ и $(Y,\rho_Y)$ — метрические пространства, $D\subseteq X$, $f:D\to Y$, $a\in X$ — **предельная точка** $D$, $L\in Y$.
+
+**Определение.** $\lim_{x\to a}f(x)=L$, если выполнено одно (а значит, любое) из следующих четырёх эквивалентных условий.
+
+### 3.1. Определение Коши ($\varepsilon$–$\delta$)
+
+$$\boxed{\forall\varepsilon>0\ \exists\delta>0\ \forall x\in D:\quad 0&lt;\rho_X(x,a)&lt;\delta\ \Longrightarrow\ \rho_Y(f(x),L)&lt;\varepsilon.}$$
+
+Сначала **задаётся** точность $\varepsilon$ для значений $f(x)$; под неё **подбирается** $\delta$ для аргументов $x$. Выбранное $\delta$ должно подходить для **всех** допустимых $x$ из проколотого $\delta$-шара.
+
+Условие $0&lt;\rho_X(x,a)$ исключает $x=a$: значение $f(a)$ не определяет предел.
+
+### 3.2. Определение на языке окрестностей
+
+Для любой окрестности $U(L)$ в $Y$ должна существовать окрестность $V(a)$ в $X$ такая, что
+
+$$\boxed{f\bigl((V(a)\cap D)\setminus\{a\}\bigr)\subseteq U(L).}$$
+
+Полная запись:
+
+$$\forall U(L)\ \exists V(a)\ \forall x\in (V(a)\cap D)\setminus\{a\}:\ f(x)\in U(L).$$
+
+**Смысл:** для любой, сколь угодно маленькой целевой окрестности $L$ можно подобрать подходящую окрестность $a$, все допустимые точки которой отображаются внутрь целевой.
+
+**Порядок кванторов важен:** $\forall U(L)\ \exists V(a)$, а не наоборот. При обратном порядке одну и ту же входную окрестность пришлось бы отображать сразу внутрь **каждой** окрестности $L$, что потребовало бы $f(x)=L$ в некоторой проколотой окрестности $a$.
+
+**Пример.** Для $f(x)=2x$, $a=1$, $L=2$: если $U(2)=(1.8,2.2)$, подойдёт $V(1)=(0.9,1.1)$, поскольку $x\in V(1)\Rightarrow 2x\in U(2)$.
+
+### 3.3. Определение Гейне (через последовательности)
+
+$$\boxed{\forall(x_n):\quad [x_n\in D,\ x_n\ne a,\ x_n\to a]\ \Longrightarrow\ f(x_n)\to L.}$$
+
+**Важно:** для подтверждения предела необходимо рассмотреть **все** допустимые последовательности. Для опровержения утверждения о едином пределе достаточно предъявить последовательность, для которой $f(x_n)\not\to L$. Для опровержения существования предела удобно найти две последовательности, сходящиеся к $a$, у которых образы имеют разные пределы.
+
+### 3.4. Определение через открытые множества
+
+В записи лекции четвёртый вариант сформулирован **именно через открытые множества**, а не через отдельный повтор определения с шарами.
+
+$$\boxed{\begin{gathered}
+\forall G\subseteq Y:\ [G\text{ открыто в }Y,\ L\in G]\ \\
+\Longrightarrow\ \exists F\subseteq X:\ [F\text{ открыто в }X,\ a\in F]\\
+\text{и }\forall x\in(F\cap D)\setminus\{a\}:\quad f(x)\in G.
+\end{gathered}}$$
+
+**Смысл:** целевая окрестность задаётся **открытым множеством** $G$, а исходная — **открытым множеством** $F$.
+
+**Связь со вторым определением:** в метрическом пространстве всякая окрестность точки содержит открытый шар вокруг неё. Поэтому можно переходить между произвольными окрестностями и открытыми множествами, содержащими соответствующие точки.
+
+### 3.5. Замечания из лекции (перед теоремой Коши — Гейне)
+
+**Замечание 1.** Если $a\in D$, значение $f(a)$ **не влияет** на $\lim_{x\to a}f(x)$: рассматриваются только $x\ne a$.
+
+**Замечание 2.** В определениях можно рассматривать пределы при $x\to\pm\infty$ (для неограниченных областей $D\subseteq\mathbb R$) и бесконечные пределы значений функции.
+
+В конспекте лекции отдельно указан случай:
+
+$$\lim_{x\to+\infty}f(x)=-\infty,$$
+
+при этом $D\subseteq\mathbb R$ не ограничено сверху. Приведены две эквивалентные формулировки:
+
+1. Через окрестности: для любой окрестности $U(-\infty)$ существует окрестность $V(+\infty)$, такая что $f(x)\in U(-\infty)$ при всех $x\in D\cap V(+\infty)$.
+2. Через неравенства:
+
+   $$\boxed{\forall A\in\mathbb R\ \exists b\in\mathbb R\ \forall x\in D:\quad x>b\ \Longrightarrow\ f(x)&lt;A.}$$
+
+Здесь $\pm\infty$ не являются обычными точками $\mathbb R$: окрестности бесконечностей понимаются как лучи, например $V(+\infty)=(b,+\infty)$ и $U(-\infty)=(-\infty,A)$.
+
+> [!info] Граница лекционного материала
+> 
+> Остальные сочетания бесконечных пределов здесь специально не разворачиваются в новые формулировки: они не выписаны подробно в предоставленных записях.
+
+---
+
+## 4. Теорема об эквивалентности определений Коши и Гейне
+
+### 4.1. Формулировка
+
+В обозначениях раздела 3 условия
+
+1. $\lim_{x\to a}f(x)=L$ по Коши;
+2. для всякой последовательности $x_n\in D\setminus\{a\}$, $x_n\to a$ выполняется $f(x_n)\to L$
+
+**эквивалентны**.
+
+### 4.2. Доказательство: Коши $\Rightarrow$ Гейне
+
+**Дано:** для любого $\varepsilon>0$ существует $\delta>0$, такое что
+
+$$\forall x\in D:\quad 0&lt;\rho_X(x,a)&lt;\delta\implies\rho_Y(f(x),L)&lt;\varepsilon.$$
+
+**Требуется:** для всякой последовательности $x_n\in D\setminus\{a\}$, $x_n\to a$ доказать $f(x_n)\to L$.
+
+1. Зафиксируем произвольное $\varepsilon>0$ и выберем соответствующее $\delta>0$ из условия Коши.
+2. Возьмём **произвольную допустимую последовательность** $(x_n)$ с $x_n\to a$.
+3. По определению сходимости существует $N\in\mathbb N$, такое что при всех $n\ge N$:
+
+   $$\rho_X(x_n,a)&lt;\delta.$$
+
+4. Так как $x_n\ne a$, имеем $0&lt;\rho_X(x_n,a)&lt;\delta$.
+5. По условию Коши для каждого $n\ge N$:
+
+   $$\rho_Y(f(x_n),L)&lt;\varepsilon.$$
+
+6. Это определение сходимости $f(x_n)\to L$. Поскольку последовательность была произвольной, условие Гейне выполнено. $\square$
+
+**Суть:** последовательность, стремящаяся к $a$, с некоторого номера попадает в любой подходящий $\delta$-шар, а по Коши все допустимые точки этого шара имеют образы близко к $L$.
+
+### 4.3. Доказательство: Гейне $\Rightarrow$ Коши (от противного)
+
+**Дано:** для каждой последовательности $x_n\in D\setminus\{a\}$ с $x_n\to a$ выполнено $f(x_n)\to L$.
+
+**Требуется:** доказать условие Коши.
+
+1. **Предположим противное:** условие Коши неверно. Его отрицание имеет вид
+
+   $$\boxed{\exists\varepsilon_0>0\ \forall\delta>0\ \exists x\in D:\quad 0&lt;\rho_X(x,a)&lt;\delta\quad\land\quad\rho_Y(f(x),L)\ge\varepsilon_0.}$$
+
+   Это означает: для **одного фиксированного** $\varepsilon_0>0$ при **каждом** радиусе $\delta$ найдётся точка, образ которой остаётся от $L$ на расстоянии хотя бы $\varepsilon_0$.
+
+2. Для каждого $n\in\mathbb N$ возьмём $\delta_n=1/n$. Из отрицания Коши существует точка $x_n\in D$, удовлетворяющая **сразу двум условиям**:
+
+   $$\boxed{0&lt;\rho_X(x_n,a)&lt;\frac1n,\qquad \rho_Y(f(x_n),L)\ge\varepsilon_0.}$$
+
+3. Поскольку $0\le\rho_X(x_n,a)&lt;1/n$ и $1/n\to0$, по теореме о зажатой последовательности $\rho_X(x_n,a)\to0$. Значит, $x_n\to a$. Кроме того, $x_n\ne a$ по строгому неравенству слева.
+4. По условию Гейне **для этой же последовательности** должно выполняться $f(x_n)\to L$, то есть $\rho_Y(f(x_n),L)\to0$.
+5. Но по построению $\rho_Y(f(x_n),L)\ge\varepsilon_0>0$ **для каждого $n$**. Такая последовательность расстояний не может стремиться к нулю: в определении сходимости достаточно выбрать точность $\varepsilon=\varepsilon_0$.
+6. Противоречие. Следовательно, предположение о неверности Коши ложно, и условие Коши выполняется. $\square$
+
+**Ключевой логический узел:** по Гейне *любая* допустимая последовательность должна давать образы, сходящиеся к $L$, а отрицание Коши позволяет специально построить допустимую последовательность, для которой это невозможно.
+
+**Почему выбрано $1/n$?** Нужна последовательность положительных радиусов, стремящихся к нулю. Подошли бы, например, $2^{-n}$; выбор $1/n$ лишь удобен.
+
+### 4.4. Сравнение двух направлений
+
+| Направление | Основной ход |
+|---|---|
+| Коши $\Rightarrow$ Гейне | Берём **любую** последовательность; сходимость переносит её точки в $\delta$-шар, а Коши — образы в $\varepsilon$-шар |
+| Гейне $\Rightarrow$ Коши | **Отрицаем Коши**, строим «плохую» последовательность $x_n\to a$, противоречащую Гейне |
+
+---
+
+## 5. Теорема о единственности предела
+
+**Теорема.** Пусть $f:D\to Y$, где $D\subseteq X$, $a$ — предельная точка $D$, $L,M\in Y$. Если
+
+$$\lim_{x\to a}f(x)=L\qquad\text{и}\qquad \lim_{x\to a}f(x)=M,$$
+
+то
+
+$$\boxed{L=M.}$$
+
+> [!note] Дополнение — доказательство по Гейне
+> 
+> В предоставленных записях приведена формулировка теоремы и начало доказательства, но полный текст доказательства не виден. Ниже — самостоятельное восстановление через теорему Гейне.
+
+### Доказательство
+
+1. Поскольку $a$ — предельная точка $D$, существует последовательность $x_n\in D\setminus\{a\}$, стремящаяся к $a$. Это **другая, ранее изученная теорема** — критерий предельной точки через последовательности:
+
+   $$\boxed{a\in D'\iff\exists(x_n):\quad x_n\in D\setminus\{a\},\quad x_n\to a.}$$
+
+2. По теореме Гейне из $\lim_{x\to a}f(x)=L$ следует $f(x_n)\to L$.
+3. Из $\lim_{x\to a}f(x)=M$ по той же теореме следует $f(x_n)\to M$.
+4. Получилось, что последовательность $(f(x_n))$ имеет одновременно пределы $L$ и $M$. Но предел последовательности в метрическом пространстве единственен.
+5. Следовательно, $L=M$. $\square$
+
+**Разница двух теорем, используемых в доказательстве:**
+
+- Критерий предельной точки: гарантирует существование **хотя бы одной** последовательности из $D\setminus\{a\}$, стремящейся к $a$.
+- Теорема Гейне: говорит об образах **всех** таких последовательностей при наличии предела функции.
+
+---
+
+## 6. Типичные ошибки и тонкости
+
+1. **Путать $D'$ и $\overline D$.** Предельные точки образуют $D'$, а замыкание — $\overline D=D\cup D'$.
+2. **Считать, что у замкнутого множества обязательно есть предельные точки.** Замкнутость требует содержать все имеющиеся предельные точки, даже если их нет.
+3. **Проверять открытость $D$ в $Y$ обычными шарами в $X$.** Используются $B_r^Y(a)=B_r^X(a)\cap Y$.
+4. **Выбирать $G=D$ в критерии открытости, не проверив открытость $G$ в $X$.** Например, $[3,4)$ открыто в $[3,4]$, но не в $\mathbb R$; подходящее $G=(2,4)$.
+5. **Путать дополнения относительно $Y$ и $X$.** $Y\setminus D$ — дополнение в подпространстве, $X\setminus G$ — дополнение в исходном пространстве. Это существенно при построении замкнутого $F=X\setminus G$.
+6. **Менять порядок кванторов $\forall\varepsilon\ \exists\delta$ или $\forall U(L)\ \exists V(a)$.** Допустимая входная окрестность выбирается *в ответ* на заданную точность выхода.
+7. **Забывать $x_n\ne a$ в Гейне.** Функция в $a$ может быть не определена, и её значение не должно влиять на предел.
+8. **Пытаться доказать предел двумя удачными последовательностями.** Две последовательности могут опровергнуть существование предела, но для доказательства требуется условие для всех.
+9. **Не удерживать отрицание Коши.** Отрицание содержит фиксированное $\varepsilon_0>0$ и «плохую» точку для **каждого** $\delta>0$. Именно поэтому выбирают $\delta_n=1/n$.
+10. **Путать две последовательностные теоремы.** Критерий предельной точки утверждает существование последовательности; теорема Гейне описывает образы каждой допустимой последовательности.
+
+---
+
+## 7. Карта связей (для повторения)
+
+```mermaid
+flowchart TD
+  A[Окрестности и шары] --> B[Граничная точка]
+  A --> C[Подпространство Y]
+  B --> D[Граница ∂D]
+  D --> E[Замкнутость границы]
+  C --> F[Шары в Y: пересечение с Y]
+  F --> G[Открытость в Y]
+  G --> H[Замкнутость в Y через дополнение]
+  A --> I[Предел по Коши]
+  I --> J[Предел через окрестности и открытые множества]
+  I &lt;--> K[Теорема Гейне]
+  K --> L[Единственность предела]
+  M[Предельная точка и существование xₙ→a] --> L
+```
+
+### Мини-шпаргалка
+
+$$\begin{gathered}
+\partial D=\overline D\cap\overline{X\setminus D},\\[3pt]
+B_r^Y(a)=B_r^X(a)\cap Y,\\[3pt]
+D\text{ открыто в }Y\iff D=G\cap Y\ (G\text{ открыто в }X),\\[3pt]
+D\text{ замкнуто в }Y\iff D=F\cap Y\ (F\text{ замкнуто в }X),\\[3pt]
+\lim_{x\to a}f(x)=L\iff\forall(x_n)\subseteq D\setminus\{a\}:\ x_n\to a\Rightarrow f(x_n)\to L.
+\end{gathered}$$
+
+---
+
+## 8. Вопросы для самопроверки
+
+1. Чем граничная точка отличается от предельной? Обязательно ли граничная точка принадлежит исходному множеству?
+2. Чему равны $\partial(3,4)$, $\partial[3,4]$, $\partial\mathbb Q$ в $\mathbb R$?
+3. Почему множество без предельных точек может быть замкнутым?
+4. Что означает $\overline{X\setminus D}$ и почему $\partial D=\overline D\cap\overline{X\setminus D}$?
+5. Почему $B_{0.2}^{[3,4]}(4)=(3.8,4]$, а не $[3.8,4]$?
+6. Как проверить, что $[3,4)$ открыто в $Y=[3,4]$?
+7. Докажите критерий открытости в подпространстве в обе стороны.
+8. Докажите критерий замкнутости в подпространстве в обе стороны, используя дополнения.
+9. Чем определения предела по Коши, через окрестности, по Гейне и через открытые множества различаются **формой**, а не содержанием?
+10. Почему в определении Коши нужно $0&lt;\rho_X(x,a)$?
+11. Почему из Коши следует Гейне?
+12. Как отрицать определение Коши? Каким образом из отрицания получается «плохая» последовательность?
+13. В чём именно противоречие при доказательстве Гейне $\Rightarrow$ Коши?
+14. Почему в доказательстве единственности предела можно выбрать последовательность $x_n\to a$ из $D\setminus\{a\}$?
+15. Почему $+\infty$ и $-\infty$ не рассматриваются как обычные точки $\mathbb R$?
+
+> [!summary] Итог
+> 
+> Главная идея лекции — одно и то же свойство можно выразить на языке **шаров**, **окрестностей**, **открытых множеств** или **последовательностей**. Важнее понимать связи между этими формами, чем учить каждую формулу изолированно.</span></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Вид графа</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-58" aria-expanded="true"><h3>Оглавление</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#лекция-14--граница-множества-подпространства-и-предел-отображения" data-for="лекция-14--граница-множества-подпространства-и-предел-отображения">Лекция 14 — Граница множества, подпространства и предел отображения</a></li><li class="depth-1"><a href="#1-граничные-точки-и-граница-множества" data-for="1-граничные-точки-и-граница-множества">1. Граничные точки и граница множества</a></li><li class="depth-2"><a href="#11-граничная-точка" data-for="11-граничная-точка">1.1. Граничная точка</a></li><li class="depth-2"><a href="#12-граница-множества" data-for="12-граница-множества">1.2. Граница множества</a></li><li class="depth-2"><a href="#13-граница-замкнута" data-for="13-граница-замкнута">1.3. Граница замкнута</a></li><li class="depth-1"><a href="#2-открытые-и-замкнутые-множества-в-подпространстве" data-for="2-открытые-и-замкнутые-множества-в-подпространстве">2. Открытые и замкнутые множества в подпространстве</a></li><li class="depth-2"><a href="#21-шар-в-подпространстве" data-for="21-шар-в-подпространстве">2.1. Шар в подпространстве</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Обратные ссылки</h3><ul id="list-0" class="overflow"><li><a href="../../математический-анализ/лекции/лекции-по-матану" class="internal">Лекции по матану</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Создано с помощью <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://github.com/AnUbiSaF/study-notes">GitHub</a></li></ul></footer></div></div></body><script src="../../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript-551b937a.js" type="module" data-persist="true"></script></html>
