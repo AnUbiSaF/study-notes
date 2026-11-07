@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr"><head><title>Лекция 04 — Битовые операции и числа с плавающей запятой</title><meta charset="utf-8"/><link rel="preload" href="../../index-4ebe8085.css" as="style"/><link rel="preload" href="../../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Учёба"/><meta property="og:title" content="Лекция 04 — Битовые операции и числа с плавающей запятой"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Лекция 04 — Битовые операции и числа с плавающей запятой"/><meta name="twitter:description" content="Лекция 04 — Битовые операции и числа с плавающей запятой ← К лекциям О конспекте Материал двух лекций: «Битовые операции» и «Числа с плавающей запятой» (СПбГУ, 05.10.2026)."/><meta property="og:description" content="Лекция 04 — Битовые операции и числа с плавающей запятой ← К лекциям О конспекте Материал двух лекций: «Битовые операции» и «Числа с плавающей запятой» (СПбГУ, 05.10.2026)."/><meta property="og:image:alt" content="Лекция 04 — Битовые операции и числа с плавающей запятой ← К лекциям О конспекте Материал двух лекций: «Битовые операции» и «Числа с плавающей запятой» (СПбГУ, 05.10.2026)."/><meta property="og:image" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta property="og:image:url" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta name="twitter:image" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="AnUbiSaF.github.io/study-notes"/><meta property="og:url" content="https://anubisaf.github.io/study-notes/программирование-на-c/лекции/лекция-04-—-битовые-операции-и-числа-с-плавающей-запятой"/><meta property="twitter:url" content="https://anubisaf.github.io/study-notes/программирование-на-c/лекции/лекция-04-—-битовые-операции-и-числа-с-плавающей-запятой"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="Лекция 04 — Битовые операции и числа с плавающей запятой ← К лекциям О конспекте Материал двух лекций: «Битовые операции» и «Числа с плавающей запятой» (СПбГУ, 05.10.2026)."/><meta name="generator" content="Quartz"/><link href="../../index-4ebe8085.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-e427079e.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-58d5ff56.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-7262b5a7.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/></head><body data-slug="программирование-на-c/лекции/лекция-04-—-битовые-операции-и-числа-с-плавающей-запятой" data-basepath="/study-notes"><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Учёба</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Поиск" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Поиск</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Найти что-нибудь" placeholder="Найти что-нибудь"/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Тёмный режим"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Тёмный режим"><title>Тёмный режим</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Светлый режим"><title>Светлый режим</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Режим чтения"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Режим чтения"><title>Режим чтения</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a2, b2) => {\n    if (!a2.isFolder &amp;&amp; !b2.isFolder || a2.isFolder &amp;&amp; b2.isFolder) {\n      return (a2.displayName || \&quot;\&quot;).localeCompare(b2.displayName || \&quot;\&quot;, void 0, {\n        numeric: true,\n        sensitivity: \&quot;base\&quot;\n      });\n    }\n    if (!a2.isFolder &amp;&amp; b2.isFolder) {\n      return 1;\n    }\n    return -1;\n  }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-186" aria-label="Проводник"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Проводник</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-186" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../программирование-на-c/">Программирование на C</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../программирование-на-c/лекции/">Лекции</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Лекция 04 — Битовые операции и числа с плавающей запятой</a></div></nav><h1 class="article-title">Лекция 04 — Битовые операции и числа с плавающей запятой</h1><details class="note-properties metadata-container" open data-collapsed="false"><summary class="note-properties-header"><span class="note-properties-title">Properties</span><span class="note-properties-count">2</span></summary><table class="note-properties-table"><tbody><tr class="note-properties-row metadata-property"><td class="note-properties-key metadata-property-key">tags</td><td class="note-properties-value metadata-property-value"><span class="note-properties-tags"><a href="../../tags/программирование" class="internal internal-link tag-link">программирование</a><span class="note-properties-separator">, </span><a href="../../tags/c" class="internal internal-link tag-link">c</a><span class="note-properties-separator">, </span><a href="../../tags/битовые-операции" class="internal internal-link tag-link">битовые-операции</a><span class="note-properties-separator">, </span><a href="../../tags/ieee-754" class="internal internal-link tag-link">ieee-754</a><span class="note-properties-separator">, </span><a href="../../tags/летучка" class="internal internal-link tag-link">летучка</a></span></td></tr><tr class="note-properties-row metadata-property"><td class="note-properties-key metadata-property-key">aliases</td><td class="note-properties-value metadata-property-value"><span class="note-properties-list"><span class="note-properties-text">Bitops и Floats</span></span></td></tr></tbody></table></details><p show-comma="true" class="content-meta"><time datetime="2026-11-07T08:21:38.000Z">07 нояб. 2026 г.</time><span>время чтения ~18 мин.</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="лекция-04--битовые-операции-и-числа-с-плавающей-запятой">Лекция 04 — Битовые операции и числа с плавающей запятой<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#лекция-04--битовые-операции-и-числа-с-плавающей-запятой" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p><a href="../../программирование-на-c/лекции/лекции-по-программированию-на-c" class="internal internal-link alias" data-slug="программирование-на-c/лекции/лекции-по-программированию-на-c">← К лекциям</a></p>
+<blockquote class="callout abstract" data-callout="abstract">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>О конспекте </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Материал двух лекций: <strong>«Битовые операции»</strong> и <strong>«Числа с плавающей запятой»</strong> (СПбГУ, 05.10.2026). Акцент — определения, объяснение выражений, короткие задачи и типичные вопросы на летучке. Сложные алгоритмы из лекций сохранены, но помечены отдельно. Примеры рассчитаны преимущественно на <strong>C99</strong>, 32-битный <code>unsigned int</code> в соответствующих местах и обычную реализацию IEEE 754.</p>
+</div>
+</blockquote>
+<h2 id="карта-приоритетов">Карта приоритетов<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#карта-приоритетов" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Приоритет</th><th>Что знать</th></tr></thead><tbody><tr><td><strong>Обязательно</strong></td><td><code>&amp;</code>, <code>|</code>, <code>^</code>, <code>~</code>; отличие от <code>&amp;&amp;</code>, <code>||</code>; short-circuit; <code>&lt;&lt;</code>, <code>>></code>, UB; выделение и изменение битов; <code>x &amp; (x-1)</code>; устройство <code>float</code>/<code>double</code>; bias; <code>NaN</code>, <code>inf</code>, subnormal; ошибки округления; сравнение с погрешностью</td></tr><tr><td><strong>Уметь объяснить</strong></td><td>XOR для восстановления данных; <code>x &amp; -x</code>; подсчёт единиц; XOR-parity; маски полей <code>float</code>; абсолютная и относительная погрешности; неассоциативность</td></tr><tr><td><strong>Знать идею и узнавать код</strong></td><td>Параллельный <code>popcount</code>, SNOOB, среднее без переполнения, ULP-сравнение, Fast Inverse Square Root</td></tr></tbody></table></div>
+<hr/>
+<h2 id="часть-i-битовые-операции">Часть I. Битовые операции<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#часть-i-битовые-операции" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h2 id="1-логические-и-побитовые-операторы">1. Логические и побитовые операторы<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-логические-и-побитовые-операторы" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Логические операции рассматривают <strong>всё число</strong> как логическое значение: <code>0</code> — ложь, любое ненулевое значение — истина. Результат — <code>0</code> или <code>1</code>.</p>
+<p>Побитовые операции обрабатывают <strong>каждую пару соответствующих битов независимо</strong>. Результат — целое число, а не количество совпадений.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Операция</th><th>C</th><th>Когда бит результата равен 1</th></tr></thead><tbody><tr><td>Побитовое И (конъюнкция)</td><td><code>a &amp; b</code></td><td>Оба бита равны 1</td></tr><tr><td>Побитовое ИЛИ (дизъюнкция)</td><td><code>a | b</code></td><td>Хотя бы один бит равен 1</td></tr><tr><td>XOR (исключающее ИЛИ)</td><td><code>a ^ b</code></td><td>Биты различаются</td></tr><tr><td>Побитовое НЕ (инверсия)</td><td><code>~a</code></td><td>Меняет <code>0 ↔ 1</code> во всех битах типа</td></tr><tr><td>Логическое И</td><td><code>a &amp;&amp; b</code></td><td>Оба операнда истинны</td></tr><tr><td>Логическое ИЛИ</td><td><code>a || b</code></td><td>Хотя бы один операнд истинен</td></tr><tr><td>Логическое НЕ</td><td><code>!a</code></td><td>Операнд равен нулю</td></tr></tbody></table></div>
+<p>Таблица для пары битов:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:center;"><code>a</code></th><th style="text-align:center;"><code>b</code></th><th style="text-align:center;"><code>a &amp; b</code></th><th style="text-align:center;"><code>a | b</code></th><th style="text-align:center;"><code>a ^ b</code></th></tr></thead><tbody><tr><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center;">0</td></tr><tr><td style="text-align:center;">0</td><td style="text-align:center;">1</td><td style="text-align:center;">0</td><td style="text-align:center;">1</td><td style="text-align:center;">1</td></tr><tr><td style="text-align:center;">1</td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center;">1</td><td style="text-align:center;">1</td></tr><tr><td style="text-align:center;">1</td><td style="text-align:center;">1</td><td style="text-align:center;">1</td><td style="text-align:center;">1</td><td style="text-align:center;">0</td></tr></tbody></table></div>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>  1101 (13)</span></span>
+<span data-line><span>&amp; 1110 (14)</span></span>
+<span data-line><span>  ----</span></span>
+<span data-line><span>  1100 (12)  ← НЕ «2 совпадения», а число 12</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &amp;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">       // 0: 0001 &amp; 0010 = 0000</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &amp;&amp;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">      // 1: оба числа ненулевые</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">7</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> |</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">       // 7: 0111 | 0010 = 0111</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">5</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> ^</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">       // 6: 0101 ^ 0011 = 0110</span></span></code></pre></figure>
+<p><strong>Об инверсии:</strong> <code>~5</code> на обычной системе с дополнительным кодом равно <code>-6</code>: инвертируются <em>все</em> биты <code>int</code>, включая биты представления знака, а не только видимые <code>101</code>.</p>
+<h3 id="порядок-вычисления-и-short-circuit">Порядок вычисления и short-circuit<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#порядок-вычисления-и-short-circuit" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &amp;&amp;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> func</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">();</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // func НЕ вызывается</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> ||</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> func</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">();</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // func НЕ вызывается</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &amp;</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> func</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">();</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">  // func вызывается</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> func</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">();</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">  // func вызывается</span></span></code></pre></figure>
+<ul>
+<li>Для <code>&amp;&amp;</code> и <code>||</code> вычисление идёт слева направо, правая часть может <strong>не вычисляться</strong>.</li>
+<li>Для <code>&amp;</code>, <code>|</code>, <code>^</code> короткого вычисления нет; операнды вычисляются, <strong>порядок их вычисления не гарантируется</strong>.</li>
+<li><code>false</code> в примерах лекции — значение 0 (в C99 макрос <code>false</code> доступен через <code>&lt;stdbool.h></code>).</li>
+</ul>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Типичная ошибка </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Путать <code>&amp;</code> и <code>&amp;&amp;</code> в условиях. <code>a &amp; b</code> — побитовое действие и не обеспечивает short-circuit; <code>a &amp;&amp; b</code> — логическая проверка.</p>
+</div>
+</blockquote>
+<h2 id="2-сдвиги-битов">2. Сдвиги битов<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-сдвиги-битов" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Для беззнакового числа <code>unsigned</code>:</p>
+<ul>
+<li><code>x &lt;&lt; n</code>: биты перемещаются влево, справа добавляются нули. При допустимом <code>n</code> результат эквивалентен <code>x · 2^n</code> <strong>по модулю</strong> размера типа.</li>
+<li><code>x >> n</code>: биты перемещаются вправо, слева добавляются нули. Результат равен <code>⌊x / 2^n⌋</code>.</li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>00000101 (5) &lt;&lt; 2  → 00010100 (20)</span></span>
+<span data-line><span>00011000 (24) >> 3 → 00000011 (3)</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">5</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;&lt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // 40, потому что 5 × 2³ = 40</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">7</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> >></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // 3: целочисленное деление на 2</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&lt;&lt;=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // то же, что x = x &lt;&lt; 1</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>>=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // то же, что x = x >> 1</span></span></code></pre></figure>
+<p><strong>Другие виды сдвига:</strong></p>
+<ul>
+<li><strong>Логический вправо:</strong> новые старшие биты — нули.</li>
+<li><strong>Арифметический вправо:</strong> новые старшие биты копируют знаковый бит (например, <code>10010111 → 11001011</code>). Для отрицательных <code>signed</code> в C99 результат <code>>></code> <em>implementation-defined</em>.</li>
+<li><strong>Циклический (rotate):</strong> вылетевшие с края биты возвращаются с противоположного края. Оператора rotate в C99 нет.</li>
+</ul>
+<h3 id="ограничения-стандарта-c99-важно-для-летучки">Ограничения стандарта C99 (важно для летучки)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#ограничения-стандарта-c99-важно-для-летучки" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Ситуация</th><th>Поведение</th></tr></thead><tbody><tr><td>Сдвиг на <code>0</code></td><td>Разрешён, значение не меняется</td></tr><tr><td>Отрицательная величина сдвига</td><td><strong>Undefined behavior (UB)</strong></td></tr><tr><td>Сдвиг на число <code>≥</code> ширины <em>продвинутого</em> левого операнда</td><td><strong>UB</strong></td></tr><tr><td><code>unsigned</code> влево</td><td>Арифметика по модулю <code>2^width</code>; выпавшие биты теряются</td></tr><tr><td>Положительный <code>signed</code> влево</td><td>Разрешено, <strong>только если</strong> результат представим в результирующем знаковом типе; иначе UB</td></tr><tr><td>Отрицательный <code>signed</code> вправо</td><td><strong>Implementation-defined</strong> в C99</td></tr></tbody></table></div>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;&lt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 31</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // допустимо, если unsigned int имеет 32 бита</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;&lt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 32</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // UB при ширине 32 бита</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> >></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 32</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // тоже UB</span></span></code></pre></figure>
+<p><strong>UB</strong>: стандарт не задаёт результат. <strong>Implementation-defined</strong>: реализация выбирает и документирует вариант поведения.</p>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Практическое правило </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Для предсказуемой работы с битами выбирайте <code>unsigned</code>/<code>uint32_t</code>, контролируйте ширину типа и диапазон <code>n</code>.</p>
+</div>
+</blockquote>
+<h2 id="3-битовые-маски">3. Битовые маски<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-битовые-маски" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Битовая маска</strong> — число, в котором единицы отмечают нужные позиции.</p>
+<p>Нумерация битов идёт <strong>справа налево, с нуля</strong>:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Индексы: 3 2 1 0</span></span>
+<span data-line><span>Число:   1 1 0 1  = 13</span></span></code></pre></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Задача</th><th>Выражение</th><th>Смысл</th></tr></thead><tbody><tr><td>Прочитать бит <code>i</code></td><td><code>(x >> i) &amp; 1u</code></td><td>Подвинуть бит вправо и оставить только его</td></tr><tr><td>Установить бит <code>i</code></td><td><code>x | (1u &lt;&lt; i)</code></td><td>Принудительно поставить 1</td></tr><tr><td>Сбросить бит <code>i</code></td><td><code>x &amp; ~(1u &lt;&lt; i)</code></td><td>Принудительно поставить 0</td></tr><tr><td>Переключить бит <code>i</code></td><td><code>x ^ (1u &lt;&lt; i)</code></td><td>Поменять 0 ↔ 1</td></tr><tr><td>Проверить, установлен ли бит</td><td><code>(x &amp; (1u &lt;&lt; i)) != 0</code></td><td>Проверить маску без сдвига</td></tr></tbody></table></div>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>x = 1101 (13)</span></span>
+<span data-line><span>x >> 2 = 0011</span></span>
+<span data-line><span>0011 &amp; 0001 = 0001 → бит №2 равен 1</span></span>
+<span data-line> </span>
+<span data-line><span>x >> 1 = 0110</span></span>
+<span data-line><span>0110 &amp; 0001 = 0000 → бит №1 равен 0</span></span></code></pre></figure>
+<p><strong>Выделение диапазона <code>[i, j]</code> включительно</strong>, если корректны ширина и границы:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> part </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> i) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> ((</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (j </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span></span></code></pre></figure>
+<p>Эта форма <strong>нельзя использовать</strong>, если длина выделяемого диапазона равна ширине <code>unsigned</code> (недопустимый сдвиг <code>1u &lt;&lt; width</code>). Это типичная пограничная ошибка.</p>
+<p><strong>Сетевая маска / CIDR:</strong> <code>192.168.1.1/24</code> означает, что первые 24 бита — префикс сети, оставшиеся 8 бит — часть адреса узла. Маска состоит из непрерывных единиц, за которыми следуют нули.</p>
+<h2 id="4-xor-свойства-и-восстановление-данных">4. XOR: свойства и восстановление данных<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-xor-свойства-и-восстановление-данных" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> ==</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> x;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> y) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> y </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> x;</span></span></code></pre></figure>
+<p>Одинаковые значения взаимно уничтожаются при XOR; порядок группировки не важен.</p>
+<p>Если <code>X4 = X1 ^ X2 ^ X3</code>, а <code>X1</code> потеряно, то:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">X1 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> X4 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> X2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> X3;</span></span></code></pre></figure>
+<p>Идея применяется для восстановления одного потерянного компонента по XOR-контрольной сумме (например, в RAID).</p>
+<h2 id="5-проверка-степени-двойки">5. Проверка степени двойки<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-проверка-степени-двойки" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Положительная степень двойки в двоичной записи содержит <strong>ровно одну <code>1</code></strong>.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> is_power_of_2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">long</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> long</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> x</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &amp;&amp;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">}</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>8     = 1000</span></span>
+<span data-line><span>8 - 1 = 0111</span></span>
+<span data-line><span>        ----</span></span>
+<span data-line><span>&amp;       0000   → степень двойки</span></span>
+<span data-line> </span>
+<span data-line><span>12    = 1100</span></span>
+<span data-line><span>11    = 1011</span></span>
+<span data-line><span>        ----</span></span>
+<span data-line><span>&amp;       1000   → не степень двойки</span></span></code></pre></figure>
+<p><strong>Почему:</strong> вычитание единицы обнуляет самую правую единицу и меняет расположенные справа нули на единицы. Поэтому <code>x &amp; (x - 1)</code> <strong>убирает самую правую установленную единицу</strong>.</p>
+<ul>
+<li>Нужна проверка <code>x > 0</code>: ноль тоже дал бы нулевой результат <code>x &amp; (x-1)</code>.</li>
+<li>Скобки у <code>(x &amp; (x - 1)) == 0</code> обязательны: в C <code>==</code> имеет более высокий приоритет, чем <code>&amp;</code>.</li>
+<li>В лекции также приведены варианты с циклическим делением на 2 (<code>O(log x)</code>) и с <code>log2</code>, но логарифм зависит от точности <code>double</code> и не даёт столь же надёжной целочисленной проверки.</li>
+</ul>
+<h2 id="6-выделение-младшей-единицы-и-хвоста-нулей">6. Выделение младшей единицы и хвоста нулей<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-выделение-младшей-единицы-и-хвоста-нулей" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Самая правая единица:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> lowest </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> -</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">x;</span></span></code></pre></figure>
+<p>В дополнительном коде (для <code>unsigned</code> — с арифметикой по модулю) <code>-x</code> оставляет младшую единицу в прежней позиции, а все старшие биты меняются так, что пересечение <code>&amp;</code> сохраняет только её.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>x      = 00101100</span></span>
+<span data-line><span>-x     = 11010100</span></span>
+<span data-line><span>x &amp; -x = 00000100</span></span></code></pre></figure>
+<p><strong>Маска хвостовых нулей</strong> (для ненулевого <code>unsigned x</code>):</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> trailing_zero_mask </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> ~</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>x       = 0101000</span></span>
+<span data-line><span>x - 1   = 0100111</span></span>
+<span data-line><span>~x      = 1010111</span></span>
+<span data-line><span>          -------</span></span>
+<span data-line><span>result  = 0000111</span></span></code></pre></figure>
+<p><code>x - 1</code> создаёт единицы на месте хвостовых нулей, <code>~x</code> убирает посторонние единицы при пересечении <code>&amp;</code>.</p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Типичная ошибка </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Не путать <code>x &amp; -x</code> (оставляет <strong>младшую единицу</strong>) и <code>x &amp; (x - 1)</code> (наоборот, <strong>удаляет</strong> её).</p>
+</div>
+</blockquote>
+<h2 id="7-popcount--количество-единиц">7. Popcount — количество единиц<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-popcount--количество-единиц" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Popcount / Hamming weight</strong> — число единичных битов в слове.</p>
+<p>Простой алгоритм:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> popcount</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> x</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> count </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    while</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">!=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) {</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        count </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // самый правый бит</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>>=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">         // перейти к следующему биту</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    }</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> count;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">}</span></span></code></pre></figure>
+<p>Пример: <code>10110101₂</code> содержит <strong>5</strong> единиц.</p>
+<h3 id="параллельный-popcount-сложный-фрагмент-лекции">Параллельный popcount (сложный фрагмент лекции)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#параллельный-popcount-сложный-фрагмент-лекции" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Идея:</strong> сначала получить счётчики в парах битов, затем в группах по 4, 8, 16 и 32 бита.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>10110101 → группы по 2: [1, 2, 1, 1]</span></span>
+<span data-line><span>         → группы по 4: [3, 2]</span></span>
+<span data-line><span>         → группа по 8: [5]</span></span></code></pre></figure>
+<p>Код со слайда для <strong>32-битного</strong> <code>unsigned int</code>:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> popcount_fast</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> int</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> x</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) {</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> ((x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> 0x</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">55555555</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> 0x</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">33333333</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> ((x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> 0x</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">33333333</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> 0x</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">0F0F0F0F</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 16</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> 0x</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">3F</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">}</span></span></code></pre></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Маска</th><th>Двоичный рисунок</th><th>Назначение</th></tr></thead><tbody><tr><td><code>0x55555555</code></td><td><code>0101 0101 …</code></td><td>Работа внутри каждой пары</td></tr><tr><td><code>0x33333333</code></td><td><code>0011 0011 …</code></td><td>Объединение счётчиков соседних пар</td></tr><tr><td><code>0x0F0F0F0F</code></td><td><code>00001111 …</code></td><td>Объединение четвёрок в восьмёрки</td></tr><tr><td><code>0x3F</code></td><td><code>111111</code></td><td>Оставить итоговое число (до 32)</td></tr></tbody></table></div>
+<p>Для летучки важнее <strong>идея группировки и назначение масок</strong>, чем воспроизведение каждой строки с нуля.</p>
+<h2 id="8-среднее-двух-unsigned-без-переполнения">8. Среднее двух unsigned без переполнения<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-среднее-двух-unsigned-без-переполнения" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Проблема: <code>(x + y) / 2</code> может дать неверный результат при переполнении суммы.</p>
+<p>Формулы из лекции (целочисленное среднее, округление вниз):</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> avg </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> y) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> ((x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> y) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// альтернативно:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> avg2 </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">|</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> y) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> ((x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> y) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span></span></code></pre></figure>
+<p>Обоснование:</p>
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin"><span class="mord">&amp;</span></span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin"><span class="mord">⊕</span></span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mclose">)</span><span class="mord">.</span></span></span></span></span>
+<p>Обычная сумма учитывает общие единичные биты дважды (<code>&amp;</code>), различающиеся — один раз (<code>^</code>). После деления на два получается первая формула. Для <code>unsigned</code> промежуточная сумма не переполняется.</p>
+<h2 id="9-snoob--следующее-число-с-таким-же-popcount">9. SNOOB — следующее число с таким же popcount<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#9-snoob--следующее-число-с-таким-же-popcount" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>SNOOB</strong> (<em>Same Number Of One Bits</em>) находит <strong>минимальное число больше <code>x</code></strong>, в котором столько же единичных битов.</p>
+<p>Пример:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>00101100 (44) → 00110001 (49)</span></span>
+<span data-line><span>     3 единицы →      3 единицы</span></span></code></pre></figure>
+<p><strong>Назначение:</strong> перебор битовых масок, кодирующих подмножества фиксированного размера <code>k</code>.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> snoob</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> x</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> smallest, ripple, ones;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    smallest </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> -</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">x;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">             // младшая единица</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    ripple </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> smallest;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">         // перенос в первый ноль левее группы единиц</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    ones </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> ripple;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">             // какие биты изменились</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    ones </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (ones </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> smallest;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">  // оставшиеся единицы максимально вправо</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> ripple </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">|</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> ones;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">          // собрать результат</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">}</span></span></code></pre></figure>
+<p><strong>Идея:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>[префикс] 0 111...111 000...000</span></span>
+<span data-line><span>          ↓</span></span>
+<span data-line><span>[префикс] 1 000...000 000...000 + (k−1) единиц справа</span></span></code></pre></figure>
+<p><code>ripple</code> переносит первую возможную единицу левее; <code>ones</code> восстанавливает остальные единицы в младших позициях, чтобы новое число оставалось минимальным.</p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Предусловия </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Код из лекции <strong>не обрабатывает</strong> <code>x == 0</code> (деление на ноль), а также отсутствие следующего числа в разрядной сетке типа. Это демонстрация алгоритма, а не готовая проверенная функция на все входы. Для летучки достаточно назначения, общей идеи и роли <code>smallest</code>/<code>ripple</code>.</p>
+</div>
+</blockquote>
+<h2 id="10-бит-чётности--parity">10. Бит чётности — parity<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-бит-чётности--parity" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Parity</strong> показывает, чётно ли количество единиц:</p>
+<ul>
+<li><code>0</code> — чётное число единиц;</li>
+<li><code>1</code> — нечётное число единиц.</li>
+</ul>
+<p>Свойство: XOR всех битов даёт parity, поскольку <code>1 ^ 1 = 0</code>.</p>
+<p>Для 32-битного <code>unsigned</code>:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 16</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">^=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> parity </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span></code></pre></figure>
+<p>Каждый шаг объединяет информацию о чётности двух половин. Последний младший бит содержит ответ.</p>
+<p><strong>Итог лекции по Bitops:</strong> компиляторы иногда сами превращают простой код в эффективные инструкции; сложные битовые трюки полезны в узких случаях и снижают читаемость. Дополнительная литература со слайдов — Henry S. Warren Jr., <em>Hacker’s Delight</em>.</p>
+<hr/>
+<h2 id="часть-ii-числа-с-плавающей-запятой">Часть II. Числа с плавающей запятой<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#часть-ii-числа-с-плавающей-запятой" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h2 id="11-fpu-и-представление-дробных-чисел">11. FPU и представление дробных чисел<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-fpu-и-представление-дробных-чисел" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>FPU</strong> (<em>Floating Point Unit</em>) — вычислительный блок для арифметики с плавающей запятой. В историческом введении лекции: Intel 8087 (сопроцессор), x87 (восемь 80-битных регистров-стек), MMX, SSE/SSE2 (векторные инструкции для нескольких значений за одну команду).</p>
+<p>Общий вид числа:</p>
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1413em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0576em;">S</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">M</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0858em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0576em;">E</span></span></span></span></span></span></span></span><span class="mpunct">,</span></span></span></span></span>
+<p>где <code>S</code> — знак, <code>M</code> — мантисса (значащая часть), <code>B</code> — основание системы счисления, <code>E</code> — порядок. Для обычных двоичных <code>float</code>/<code>double</code> основание <code>B = 2</code>.</p>
+<p><strong>Нормальная форма</strong> в терминологии лекции: мантисса в <code>[0;1)</code>; запись не обязательно единственна.</p>
+<p><strong>Нормализованная форма:</strong> слева от запятой ровно одна ненулевая цифра. В двоичной системе это всегда <strong><code>1</code></strong>.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>5720₁₀    = 5,72 × 10³</span></span>
+<span data-line><span>0,0045₁₀  = 4,5 × 10⁻³</span></span>
+<span data-line><span>101,1₂    = 1,011₂ × 2²</span></span>
+<span data-line><span>0,0011₂   = 1,1₂ × 2⁻³</span></span></code></pre></figure>
+<p>Ноль невозможно представить в нормализованной форме — он кодируется отдельно.</p>
+<h2 id="12-двоичные-дроби-и-неизбежные-округления">12. Двоичные дроби и неизбежные округления<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-двоичные-дроби-и-неизбежные-округления" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Веса разрядов после двоичной запятой: <code>1/2</code>, <code>1/4</code>, <code>1/8</code>, <code>1/16</code>, …</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>1,01₂ = 1 + 1/4 = 1,25₁₀</span></span>
+<span data-line><span>0,11₂ = 1/2 + 1/4 = 0,75₁₀</span></span>
+<span data-line><span>1,1101₂ = 1 + 1/2 + 1/4 + 1/16 = 1,8125₁₀</span></span></code></pre></figure>
+<p><strong>Ключевой факт:</strong> <code>0,1₁₀</code> не имеет конечного двоичного представления:</p>
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mord"><span class="mpunct">,</span></span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">0001100110011</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="minner">…</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">.</span></span></span></span></span>
+<p>Поэтому <code>0.1</code> и другие привычные десятичные дроби часто хранятся в памяти с округлением.</p>
+<h2 id="13-формат-ieee-754-float-и-double">13. Формат IEEE 754: float и double<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-формат-ieee-754-float-и-double" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Поле</th><th style="text-align:right;"><code>float</code> (32 бита)</th><th style="text-align:right;"><code>double</code> (64 бита)</th></tr></thead><tbody><tr><td>Знак</td><td style="text-align:right;">1 бит</td><td style="text-align:right;">1 бит</td></tr><tr><td>Хранимый порядок</td><td style="text-align:right;">8 бит</td><td style="text-align:right;">11 бит</td></tr><tr><td>Дробная часть мантиссы</td><td style="text-align:right;">23 бита</td><td style="text-align:right;">52 бита</td></tr><tr><td>Скрытая ведущая единица</td><td style="text-align:right;">+1 бит</td><td style="text-align:right;">+1 бит</td></tr><tr><td>Итого значащих битов</td><td style="text-align:right;">24</td><td style="text-align:right;">53</td></tr><tr><td>Смещение порядка (<em>bias</em>)</td><td style="text-align:right;">127</td><td style="text-align:right;">1023</td></tr><tr><td>Десятичная точность</td><td style="text-align:right;">примерно 7 цифр</td><td style="text-align:right;">примерно 15–16 цифр</td></tr></tbody></table></div>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>float (32 бита):</span></span>
+<span data-line><span>[ S: 1 ][ E: 8 ][ fraction: 23 ]</span></span>
+<span data-line><span>  бит 31   30–23      22–0</span></span>
+<span data-line> </span>
+<span data-line><span>double (64 бита):</span></span>
+<span data-line><span>[ S: 1 ][ E: 11 ][ fraction: 52 ]</span></span></code></pre></figure>
+<p>У <strong>нормализованного</strong> двоичного числа мантисса имеет вид <code>1,xxxx₂</code>. Первую единицу не записывают: она <strong>неявная</strong>, поэтому 23 хранимых бита дают 24 значащих бита у <code>float</code>.</p>
+<p>Для обычного нормализованного числа:</p>
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord text"><span class="mord cyrillic_fallback">значение</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1413em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0576em;">S</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0935em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathrm mtight">bias</span></span></span></span></span></span></span></span></span></span><span class="mpunct">,</span></span></span></span></span>
+<p>где <code>e</code> — беззнаковое значение битов поля экспоненты, <code>F</code> — дробное значение битов поля мантиссы (например, <code>100…</code> означает <code>1/2</code>).</p>
+<p><strong>Bias:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>float:  реальный порядок = хранимый − 127</span></span>
+<span data-line><span>double: реальный порядок = хранимый − 1023</span></span>
+<span data-line> </span>
+<span data-line><span>float: 130 → 3</span></span>
+<span data-line><span>double: 1025 → 2</span></span></code></pre></figure>
+<p>У <code>float</code> поле <code>e=0</code> и <code>e=255</code> зарезервировано, поэтому нормализованные числа используют <code>e=1…254</code>, реальные порядки <code>−126…127</code>. Для <code>double</code>: <code>e=1…2046</code>, реальные порядки <code>−1022…1023</code>.</p>
+<h3 id="извлечение-полей-с-помощью-масок">Извлечение полей с помощью масок<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#извлечение-полей-с-помощью-масок" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>В лекции (для битового представления <code>float</code> как целого):</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> stored_exp </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (bits </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 23</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> 0x</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">FF</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> exponent </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)stored_exp </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 127</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">unsigned</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> significand </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (bits </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> 0x</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">7FFFFF</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">|</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> 0x</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">800000</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">u</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span></code></pre></figure>
+<ul>
+<li><code>>> 23</code>: сдвинуть поле порядка вправо.</li>
+<li><code>&amp; 0xFF</code>: оставить только 8 бит порядка, убрать знак.</li>
+<li><code>-127</code>: вычесть смещение.</li>
+<li><code>&amp; 0x7FFFFF</code>: выделить хранимые 23 бита мантиссы.</li>
+<li><code>| 0x800000</code>: добавить скрытую ведущую единицу.</li>
+</ul>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Область применимости </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Формулы восстановления обычного порядка и скрытой единицы относятся к <strong>нормализованным</strong> <code>float</code>, а не к <code>0</code>, subnormal, <code>NaN</code> или <code>inf</code>.</p>
+</div>
+</blockquote>
+<h2 id="14-union-и-просмотр-битов-float">14. Union и просмотр битов float<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#14-union-и-просмотр-битов-float" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><code>struct</code> выделяет поля независимо, а <code>union</code> размещает поля <strong>поверх одних и тех же байтов</strong>.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">union</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> Data {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> i;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> f;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">};</span></span></code></pre></figure>
+<p>Если записать <code>f</code>, эти же байты могут интерпретироваться через другое поле. Это называется <em>type punning</em> («каламбур типизации»).</p>
+<p><strong>Дополнение — переносимый способ скопировать битовое представление:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="punctuation">#include</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &lt;stdint.h></span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="punctuation">#include</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &lt;string.h></span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> value </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1.0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">f</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">uint32_t</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> bits;</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">memcpy</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">bits</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">value</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">sizeof</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> bits</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // при sizeof(float) == 4</span></span></code></pre></figure>
+<p>В лекции показан <code>union</code> и отмечены ограничения переноса между C и C++; для строгой переносимости при просмотре представления предпочтительнее <code>memcpy</code>. Код выше предполагает 32-битный <code>float</code> и <code>uint32_t</code>.</p>
+<h2 id="15-специальные-значения-0--nan-subnormal">15. Специальные значения: ±0, ±∞, NaN, subnormal<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#15-специальные-значения-0--nan-subnormal" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Для <strong>32-битного float</strong>:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Поле порядка <code>e</code></th><th>Дробная часть <code>fraction</code></th><th>Значение</th></tr></thead><tbody><tr><td>Все нули</td><td>Все нули</td><td><code>+0</code> / <code>-0</code></td></tr><tr><td>Все нули</td><td>Ненулевая</td><td>Денормализованное / subnormal</td></tr><tr><td>От 1 до 254</td><td>Любая</td><td>Нормализованное число</td></tr><tr><td>Все единицы (255)</td><td>Все нули</td><td><code>+∞</code> / <code>-∞</code></td></tr><tr><td>Все единицы (255)</td><td>Ненулевая</td><td><code>NaN</code></td></tr></tbody></table></div>
+<h3 id="ноль-со-знаком">Ноль со знаком<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#ноль-со-знаком" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><code>+0</code> и <code>-0</code> имеют разные битовые представления, но при сравнении <code>+0.0 == -0.0</code> результат истинен. Знак может влиять на последующие операции.</p>
+<h3 id="бесконечность">Бесконечность<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#бесконечность" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Возникает, например, при переполнении диапазона или при делении ненулевого конечного числа с плавающей запятой на ноль (при обычной арифметике IEEE 754). В отличие от деления целых на ноль, это не обязательно UB.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>+1.0 / +0.0 → +∞</span></span>
+<span data-line><span>-1.0 / +0.0 → −∞</span></span></code></pre></figure>
+<h3 id="nan-not-a-number">NaN (<em>Not a Number</em>)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#nan-not-a-number" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Возникает при неопределённых операциях (при обычной арифметике IEEE 754):</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>0.0 / 0.0 → NaN</span></span>
+<span data-line><span>∞ / ∞     → NaN</span></span>
+<span data-line><span>∞ − ∞     → NaN</span></span>
+<span data-line><span>0 × ∞     → NaN</span></span></code></pre></figure>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="punctuation">#include</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &lt;math.h></span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">isnan</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(x);</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">      // проверить NaN</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> x;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">       // false, если x — NaN</span></span></code></pre></figure>
+<p>Обычная арифметика с <code>NaN</code> распространяет <code>NaN</code> далее. <code>NaN</code> <strong>не равен самому себе</strong>.</p>
+<h3 id="subnormal-денормализованные-числа">Subnormal (денормализованные числа)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#subnormal-денормализованные-числа" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Нормализованная мантисса начинается с <code>1,</code>, у subnormal <strong>нет скрытой единицы</strong>: фактически используется <code>0,xxxx₂ × 2^Emin</code>.</p>
+<p>Это позволяет представлять маленькие ненулевые числа ближе к нулю, чем минимальное положительное нормализованное. У них уменьшается относительная точность; на некоторых аппаратных платформах обработка бывает медленнее.</p>
+<h2 id="16-точность-и-свойства-арифметики">16. Точность и свойства арифметики<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#16-точность-и-свойства-арифметики" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>У <code>float</code> около <strong>7</strong>, а у <code>double</code> около <strong>15–16</strong> десятичных значащих цифр. Шаг между соседними представимыми числами увеличивается с масштабом числа.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 16777216.0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">f</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> // 2^24</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> y </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1.0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">f</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// при обычном IEEE 754 с округлением к ближайшему y == x</span></span></code></pre></figure>
+<p>Для <code>float</code> в этом диапазоне соседние представимые целые — <code>16777216</code> и <code>16777218</code>; промежуточное число округляется.</p>
+<p><strong>Неассоциативность:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">double</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">e</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">20</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, b </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> -</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">e</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">20</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, c </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// (a + b) + c ≈ 1</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// a + (b + c) ≈ 0</span></span></code></pre></figure>
+<p>При сложении чисел сильно разного масштаба маленькое число может «потеряться» в округлении. Поэтому для floating-point в общем случае не гарантированы привычные математические тождества для перестановки и группировки арифметических операций.</p>
+<blockquote class="callout note" data-callout="note">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Точность / «машинное эпсилон» </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>В слайдах приводятся приблизительные величины <code>2^-24 ≈ 5,96·10^-8</code> для <code>float</code> и <code>2^-53 ≈ 1,11·10^-16</code> для <code>double</code>. Это <strong>единица округления</strong> (<em>unit roundoff</em>) при округлении к ближайшему. Стандартное <code>FLT_EPSILON</code> — разность между <code>1</code> и следующим большим <code>float</code> — равно <code>2^-23 ≈ 1,19·10^-7</code> (для <code>double</code>: <code>DBL_EPSILON = 2^-52 ≈ 2,22·10^-16</code>). Не следует путать эти две величины.</p>
+</div>
+</blockquote>
+<h2 id="17-сравнение-floatdouble-с-погрешностью">17. Сравнение float/double с погрешностью<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#17-сравнение-floatdouble-с-погрешностью" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="уровень-0-точное-сравнение">Уровень 0: точное сравнение<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#уровень-0-точное-сравнение" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">double</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0.1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> +</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0.2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">double</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> b </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0.3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// a == b часто false из-за различий округления</span></span></code></pre></figure>
+<p>Оператор <code>==</code> допустим, когда <strong>требуется именно точное совпадение представленных чисел</strong>, но плохо подходит для проверки приближённого результата вычислений.</p>
+<h3 id="уровень-1-абсолютная-погрешность">Уровень 1: абсолютная погрешность<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#уровень-1-абсолютная-погрешность" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">fabs</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> b) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&lt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">e-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">9</span></span></code></pre></figure>
+<p>Проверяем <code>|a-b| &lt; ε</code>. Недостаток: фиксированный порог не подходит одновременно для чисел около нуля и около миллиарда.</p>
+<h3 id="уровень-2-относительная-погрешность">Уровень 2: относительная погрешность<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#уровень-2-относительная-погрешность" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">fabs</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">((a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> b) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> b) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&lt;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">e-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">5</span></span></code></pre></figure>
+<p>Проверяется <code>|a-b| / |b| &lt; ε</code>: сравнение учитывает масштаб числа. Недостатки:</p>
+<ul>
+<li>При <code>b = 0</code> — деление на ноль (<code>0/0 → NaN</code>, ненулевое/0 → бесконечность в IEEE 754).</li>
+<li>Результат может зависеть от выбора знаменателя.</li>
+<li>Близкие к нулю величины требуют отдельной обработки.</li>
+</ul>
+<h3 id="комбинированное-сравнение">Комбинированное сравнение<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#комбинированное-сравнение" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Идея со слайдов: сначала проверить точное совпадение, затем отдельную околонулевую ветку, иначе относительную погрешность на симметричном масштабе <code>|a|+|b|</code>.</p>
+<p>Учебная функция из лекции:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="punctuation">#include</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &lt;stdbool.h></span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="punctuation">#include</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &lt;float.h></span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="punctuation">#include</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &lt;math.h></span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">bool</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> nearlyEqual</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">float</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">float</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> b</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">float</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> epsilon</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> absA </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> fabsf</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(a), absB </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> fabsf</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(b);</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    float</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> diff </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> fabsf</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> b);</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> b) {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        return</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">else</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> ||</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> b </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> ||</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (absA </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> absB </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> FLT_MIN)) {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> diff </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> epsilon </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> FLT_MIN;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">else</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> diff </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">/</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> fminf</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(absA </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> absB, FLT_MAX) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> epsilon;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    }</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">}</span></span></code></pre></figure>
+<p><strong>Важно:</strong> это именно пример из лекции, <strong>не универсальная библиотечная реализация</strong>: в реальном коде нужны явная политика обработки <code>NaN</code>/бесконечностей, корректный <code>epsilon</code> и защита от проблем промежуточных вычислений. Если масштаб известен заранее, часто достаточно простого абсолютного порога.</p>
+<h3 id="уровень-3-сравнение-в-шагах-представимых-чисел-ulp">Уровень 3: сравнение в шагах представимых чисел (ULP)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#уровень-3-сравнение-в-шагах-представимых-чисел-ulp" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>ULP</strong> — расстояние между соседними представимыми floating-point значениями в рассматриваемой области. Идея сравнения: оценивать <strong>количество шагов</strong> между битовыми представлениями чисел, а не обычную разность.</p>
+<p>Для неотрицательных конечных IEEE 754 <code>float</code> порядок битовых представлений как <code>uint32_t</code> согласуется с порядком числовых значений. Для отрицательных и специальных значений требуется дополнительная логика.</p>
+<h2 id="18-fast-inverse-square-root-идея-без-углублённого-вывода">18. Fast Inverse Square Root (идея, без углублённого вывода)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#18-fast-inverse-square-root-идея-без-углублённого-вывода" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Задача: быстро оценить</p>
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.2514em;vertical-align:-0.93em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.3097em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8003em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal">x</span></span></span><span style="top:-2.7603em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2397em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.93em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.</span></span></span></span></span>
+<p>Исторический пример из <strong>Quake III</strong> для 3D-графики:</p>
+<ol>
+<li>Взять битовое представление 32-битного <code>float</code> как целое.</li>
+<li>Сдвинуть его на 1 вправо и вычесть из <strong><code>0x5f3759df</code></strong> — получить грубое приближение.</li>
+<li>Улучшить приближение <strong>одной итерацией метода Ньютона</strong>:</li>
+</ol>
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">new</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.35em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mopen"><span class="delimsizing size1">(</span></span><span class="mord">1</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.2141em;vertical-align:-0.35em;"></span><span class="mord">0</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">5</span><span class="mord mathnormal">x</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing size1">)</span></span><span class="mord">.</span></span></span></span></span>
+<p>Константа связана с приближением логарифмической зависимости, возникающей при кодировании порядков <code>float</code>. <strong>В лекции нет полного вывода константы.</strong> Алгоритм приводится как исторический пример битовой оптимизации; на современных процессорах он не обязательно лучше аппаратных инструкций.</p>
+<hr/>
+<h2 id="шпаргалка-перед-летучкой">Шпаргалка перед летучкой<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#шпаргалка-перед-летучкой" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Если спрашивают…</th><th>Краткий ответ</th></tr></thead><tbody><tr><td><code>&amp;</code> vs <code>&amp;&amp;</code></td><td>Битовое И vs логическое И; только <code>&amp;&amp;</code> имеет short-circuit</td></tr><tr><td><code>1 &amp; 2</code>, <code>1 &amp;&amp; 2</code></td><td><code>0</code>, <code>1</code></td></tr><tr><td>XOR</td><td>Единица при разных битах; <code>a ^ a = 0</code></td></tr><tr><td>Что делает <code>(x >> i) &amp; 1</code>?</td><td>Возвращает бит <code>i</code>, нумерация справа с нуля</td></tr><tr><td><code>x &lt;&lt;= 1</code></td><td>То же, что <code>x = x &lt;&lt; 1</code></td></tr><tr><td><code>1u &lt;&lt; 32</code> на 32-битном <code>unsigned</code></td><td>UB</td></tr><tr><td><code>x > 0 &amp;&amp; (x &amp; (x-1)) == 0</code></td><td>Проверка степени двойки</td></tr><tr><td><code>x &amp; -x</code></td><td>Выделение младшего единичного бита</td></tr><tr><td><code>~x &amp; (x-1)</code></td><td>Маска хвостовых нулей (<code>x != 0</code>)</td></tr><tr><td><code>popcount</code></td><td>Количество единиц</td></tr><tr><td><code>parity</code></td><td>Чётность количества единиц (<code>0</code> / <code>1</code>)</td></tr><tr><td><code>SNOOB</code></td><td>Следующее большее число с тем же popcount</td></tr><tr><td><code>float</code></td><td>1 знак + 8 порядок + 23 дробная часть, 24 значащих бита</td></tr><tr><td><code>double</code></td><td>1 знак + 11 порядок + 52 дробная часть, 53 значащих бита</td></tr><tr><td>Почему ведущая единица скрытая?</td><td>У нормализованного двоичного числа она всегда 1</td></tr><tr><td>Bias</td><td><code>float: 127</code>, <code>double: 1023</code></td></tr><tr><td>Порядок <code>float = 130</code></td><td>Настоящий порядок 3</td></tr><tr><td><code>e=255, fraction=0</code> для float</td><td>Бесконечность</td></tr><tr><td><code>e=255, fraction≠0</code></td><td>NaN</td></tr><tr><td><code>e=0, fraction≠0</code></td><td>Subnormal</td></tr><tr><td><code>NaN == NaN</code></td><td>Ложь</td></tr><tr><td>Почему <code>0.1 + 0.2 != 0.3</code>?</td><td>Округление бесконечных двоичных дробей</td></tr><tr><td>Почему <code>(a+b)+c</code> может отличаться от <code>a+(b+c)</code>?</td><td>Потеря точности при промежуточных округлениях</td></tr><tr><td>Абсолютная vs относительная погрешность</td><td>`</td></tr><tr><td>Fast Inverse Square Root</td><td>Битовая оценка <code>1/sqrt(x)</code> + уточнение Ньютона</td></tr></tbody></table></div>
+<h2 id="мини-самопроверка">Мини-самопроверка<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#мини-самопроверка" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ol>
+<li>Чему равны <code>13 &amp; 14</code>, <code>5 | 2</code>, <code>5 ^ 3</code>?</li>
+<li>Вызовется ли <code>func()</code> при <code>0 &amp;&amp; func()</code>? А при <code>0 &amp; func()</code>?</li>
+<li>Чему равно <code>7u &lt;&lt; 3</code>? Разрешено ли <code>1u >> 32</code> при ширине 32 бита?</li>
+<li>Найти <code>(13 >> 1) &amp; 1</code> и <code>(13 >> 2) &amp; 1</code>.</li>
+<li>Почему проверка степени двойки требует условия <code>x > 0</code>?</li>
+<li>Чем отличаются <code>x &amp; -x</code> и <code>x &amp; (x-1)</code>?</li>
+<li>Сколько битов отведено под порядок <code>float</code>? Почему не используется значение <code>255</code> для обычного порядка?</li>
+<li>Если хранимый порядок <code>double</code> равен 1025, какой настоящий?</li>
+<li>Чем <code>NaN</code> отличается от бесконечности по битовому представлению <code>float</code>?</li>
+<li>Почему фиксированное <code>epsilon = 1e-5</code> плохо работает для всех масштабов?</li>
+</ol>
+<details>
+<summary>Ответы для самопроверки</summary>
+<ol>
+<li><code>12</code>, <code>7</code>, <code>6</code>.</li>
+<li>При <code>&amp;&amp;</code> — нет, при <code>&amp;</code> — да.</li>
+<li><code>56</code>; <code>1u >> 32</code> — UB.</li>
+<li><code>0</code>, <code>1</code>.</li>
+<li>Ноль тоже даёт <code>(0 &amp; (0-1)) == 0</code>, но степенью двойки не является.</li>
+<li>Первое оставляет младшую единицу; второе её убирает.</li>
+<li>8 бит; <code>255</code> — специальный порядок для бесконечностей и NaN.</li>
+<li><code>1025-1023 = 2</code>.</li>
+<li>У обоих все биты порядка равны 1; у бесконечности дробная часть нулевая, у NaN — ненулевая.</li>
+<li>При малых значениях порог чрезмерно велик, при больших — слишком мал.</li>
+</ol>
+</details>
+<h2 id="источники">Источники<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#источники" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>В. А. Кутуев, А. И. Васенина. <strong>«Битовые операции»</strong>, СПбГУ, 05.10.2026 — слайды 2–36.</li>
+<li>В. А. Кутуев, А. И. Васенина. <strong>«Числа с плавающей запятой»</strong>, СПбГУ, 05.10.2026 — слайды 2–33 (в PDF некоторые слайды разбиты на промежуточные страницы).</li>
+</ul>
+<blockquote class="callout note" data-callout="note">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>О точности изложения </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Основной материал, терминология и учебные алгоритмы взяты из презентаций. Дополнительные оговорки о безопасных границах, переносимости кода, предпосылках алгоритмов и различии между <code>unit roundoff</code> и <code>FLT_EPSILON</code> добавлены отдельно для предотвращения типичных ошибок.</p>
+</div>
+</blockquote></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Вид графа</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-126" aria-expanded="true"><h3>Оглавление</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#лекция-04--битовые-операции-и-числа-с-плавающей-запятой" data-for="лекция-04--битовые-операции-и-числа-с-плавающей-запятой">Лекция 04 — Битовые операции и числа с плавающей запятой</a></li><li class="depth-1"><a href="#карта-приоритетов" data-for="карта-приоритетов">Карта приоритетов</a></li><li class="depth-1"><a href="#часть-i-битовые-операции" data-for="часть-i-битовые-операции">Часть I. Битовые операции</a></li><li class="depth-1"><a href="#1-логические-и-побитовые-операторы" data-for="1-логические-и-побитовые-операторы">1. Логические и побитовые операторы</a></li><li class="depth-2"><a href="#порядок-вычисления-и-short-circuit" data-for="порядок-вычисления-и-short-circuit">Порядок вычисления и short-circuit</a></li><li class="depth-1"><a href="#2-сдвиги-битов" data-for="2-сдвиги-битов">2. Сдвиги битов</a></li><li class="depth-2"><a href="#ограничения-стандарта-c99-важно-для-летучки" data-for="ограничения-стандарта-c99-важно-для-летучки">Ограничения стандарта C99 (важно для летучки)</a></li><li class="depth-1"><a href="#3-битовые-маски" data-for="3-битовые-маски">3. Битовые маски</a></li><li class="depth-1"><a href="#4-xor-свойства-и-восстановление-данных" data-for="4-xor-свойства-и-восстановление-данных">4. XOR: свойства и восстановление данных</a></li><li class="depth-1"><a href="#5-проверка-степени-двойки" data-for="5-проверка-степени-двойки">5. Проверка степени двойки</a></li><li class="depth-1"><a href="#6-выделение-младшей-единицы-и-хвоста-нулей" data-for="6-выделение-младшей-единицы-и-хвоста-нулей">6. Выделение младшей единицы и хвоста нулей</a></li><li class="depth-1"><a href="#7-popcount--количество-единиц" data-for="7-popcount--количество-единиц">7. Popcount — количество единиц</a></li><li class="depth-2"><a href="#параллельный-popcount-сложный-фрагмент-лекции" data-for="параллельный-popcount-сложный-фрагмент-лекции">Параллельный popcount (сложный фрагмент лекции)</a></li><li class="depth-1"><a href="#8-среднее-двух-unsigned-без-переполнения" data-for="8-среднее-двух-unsigned-без-переполнения">8. Среднее двух unsigned без переполнения</a></li><li class="depth-1"><a href="#9-snoob--следующее-число-с-таким-же-popcount" data-for="9-snoob--следующее-число-с-таким-же-popcount">9. SNOOB — следующее число с таким же popcount</a></li><li class="depth-1"><a href="#10-бит-чётности--parity" data-for="10-бит-чётности--parity">10. Бит чётности — parity</a></li><li class="depth-1"><a href="#часть-ii-числа-с-плавающей-запятой" data-for="часть-ii-числа-с-плавающей-запятой">Часть II. Числа с плавающей запятой</a></li><li class="depth-1"><a href="#11-fpu-и-представление-дробных-чисел" data-for="11-fpu-и-представление-дробных-чисел">11. FPU и представление дробных чисел</a></li><li class="depth-1"><a href="#12-двоичные-дроби-и-неизбежные-округления" data-for="12-двоичные-дроби-и-неизбежные-округления">12. Двоичные дроби и неизбежные округления</a></li><li class="depth-1"><a href="#13-формат-ieee-754-float-и-double" data-for="13-формат-ieee-754-float-и-double">13. Формат IEEE 754: float и double</a></li><li class="depth-2"><a href="#извлечение-полей-с-помощью-масок" data-for="извлечение-полей-с-помощью-масок">Извлечение полей с помощью масок</a></li><li class="depth-1"><a href="#14-union-и-просмотр-битов-float" data-for="14-union-и-просмотр-битов-float">14. Union и просмотр битов float</a></li><li class="depth-1"><a href="#15-специальные-значения-0--nan-subnormal" data-for="15-специальные-значения-0--nan-subnormal">15. Специальные значения: ±0, ±∞, NaN, subnormal</a></li><li class="depth-2"><a href="#ноль-со-знаком" data-for="ноль-со-знаком">Ноль со знаком</a></li><li class="depth-2"><a href="#бесконечность" data-for="бесконечность">Бесконечность</a></li><li class="depth-2"><a href="#nan-not-a-number" data-for="nan-not-a-number">NaN (Not a Number)</a></li><li class="depth-2"><a href="#subnormal-денормализованные-числа" data-for="subnormal-денормализованные-числа">Subnormal (денормализованные числа)</a></li><li class="depth-1"><a href="#16-точность-и-свойства-арифметики" data-for="16-точность-и-свойства-арифметики">16. Точность и свойства арифметики</a></li><li class="depth-1"><a href="#17-сравнение-floatdouble-с-погрешностью" data-for="17-сравнение-floatdouble-с-погрешностью">17. Сравнение float/double с погрешностью</a></li><li class="depth-2"><a href="#уровень-0-точное-сравнение" data-for="уровень-0-точное-сравнение">Уровень 0: точное сравнение</a></li><li class="depth-2"><a href="#уровень-1-абсолютная-погрешность" data-for="уровень-1-абсолютная-погрешность">Уровень 1: абсолютная погрешность</a></li><li class="depth-2"><a href="#уровень-2-относительная-погрешность" data-for="уровень-2-относительная-погрешность">Уровень 2: относительная погрешность</a></li><li class="depth-2"><a href="#комбинированное-сравнение" data-for="комбинированное-сравнение">Комбинированное сравнение</a></li><li class="depth-2"><a href="#уровень-3-сравнение-в-шагах-представимых-чисел-ulp" data-for="уровень-3-сравнение-в-шагах-представимых-чисел-ulp">Уровень 3: сравнение в шагах представимых чисел (ULP)</a></li><li class="depth-1"><a href="#18-fast-inverse-square-root-идея-без-углублённого-вывода" data-for="18-fast-inverse-square-root-идея-без-углублённого-вывода">18. Fast Inverse Square Root (идея, без углублённого вывода)</a></li><li class="depth-1"><a href="#шпаргалка-перед-летучкой" data-for="шпаргалка-перед-летучкой">Шпаргалка перед летучкой</a></li><li class="depth-1"><a href="#мини-самопроверка" data-for="мини-самопроверка">Мини-самопроверка</a></li><li class="depth-1"><a href="#источники" data-for="источники">Источники</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Обратные ссылки</h3><ul id="list-0" class="overflow"><li><a href="../../программирование-на-c/лекции/лекции-по-программированию-на-c" class="internal">Лекции по программированию на C</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Создано с помощью <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://github.com/AnUbiSaF/study-notes">GitHub</a></li></ul></footer></div></div></body><script src="../../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript-551b937a.js" type="module" data-persist="true"></script></html>
