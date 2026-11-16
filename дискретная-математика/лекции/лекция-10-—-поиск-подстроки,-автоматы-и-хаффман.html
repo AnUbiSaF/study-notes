@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr"><head><title>Лекция 10 — Поиск подстроки, автоматы и Хаффман</title><meta charset="utf-8"/><link rel="preload" href="../../index-4ebe8085.css" as="style"/><link rel="preload" href="../../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Учёба"/><meta property="og:title" content="Лекция 10 — Поиск подстроки, автоматы и Хаффман"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Лекция 10 — Поиск подстроки, автоматы и Хаффман"/><meta name="twitter:description" content="Лекция № 10."/><meta property="og:description" content="Лекция № 10."/><meta property="og:image:alt" content="Лекция № 10."/><meta property="og:image" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta property="og:image:url" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta name="twitter:image" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="AnUbiSaF.github.io/study-notes"/><meta property="og:url" content="https://anubisaf.github.io/study-notes/дискретная-математика/лекции/лекция-10-—-поиск-подстроки,-автоматы-и-хаффман"/><meta property="twitter:url" content="https://anubisaf.github.io/study-notes/дискретная-математика/лекции/лекция-10-—-поиск-подстроки,-автоматы-и-хаффман"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="Лекция № 10."/><meta name="generator" content="Quartz"/><link href="../../index-4ebe8085.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-e427079e.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-58d5ff56.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-7262b5a7.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/></head><body data-slug="дискретная-математика/лекции/лекция-10-—-поиск-подстроки,-автоматы-и-хаффман" data-basepath="/study-notes"><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Учёба</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Поиск" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Поиск</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Найти что-нибудь" placeholder="Найти что-нибудь"/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Тёмный режим"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Тёмный режим"><title>Тёмный режим</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Светлый режим"><title>Светлый режим</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Режим чтения"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Режим чтения"><title>Режим чтения</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a2, b2) => {\n    if (!a2.isFolder &amp;&amp; !b2.isFolder || a2.isFolder &amp;&amp; b2.isFolder) {\n      return (a2.displayName || \&quot;\&quot;).localeCompare(b2.displayName || \&quot;\&quot;, void 0, {\n        numeric: true,\n        sensitivity: \&quot;base\&quot;\n      });\n    }\n    if (!a2.isFolder &amp;&amp; b2.isFolder) {\n      return 1;\n    }\n    return -1;\n  }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-36" aria-label="Проводник"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Проводник</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-36" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../дискретная-математика/">Дискретная математика</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../дискретная-математика/лекции/">Лекции</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Лекция 10 — Поиск подстроки, автоматы и Хаффман</a></div></nav><h1 class="article-title">Лекция 10 — Поиск подстроки, автоматы и Хаффман</h1><details class="note-properties metadata-container" open data-collapsed="false"><summary class="note-properties-header"><span class="note-properties-title">Properties</span><span class="note-properties-count">1</span></summary><table class="note-properties-table"><tbody><tr class="note-properties-row metadata-property"><td class="note-properties-key metadata-property-key">tags</td><td class="note-properties-value metadata-property-value"><span class="note-properties-tags"><a href="../../tags/дискретная-математика" class="internal internal-link tag-link">дискретная-математика</a><span class="note-properties-separator">, </span><a href="../../tags/алгоритмы" class="internal internal-link tag-link">алгоритмы</a><span class="note-properties-separator">, </span><a href="../../tags/поиск-подстроки" class="internal internal-link tag-link">поиск-подстроки</a><span class="note-properties-separator">, </span><a href="../../tags/динамическое-программирование" class="internal internal-link tag-link">динамическое-программирование</a><span class="note-properties-separator">, </span><a href="../../tags/кодирование" class="internal internal-link tag-link">кодирование</a></span></td></tr></tbody></table></details><p show-comma="true" class="content-meta"><time datetime="2026-11-16T09:38:30.000Z">16 нояб. 2026 г.</time><span>время чтения ~18 мин.</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="лекция--10-поиск-подстроки-конечные-автоматы-и-начало-кодирования">Лекция № 10. Поиск подстроки, конечные автоматы и начало кодирования<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#лекция--10-поиск-подстроки-конечные-автоматы-и-начало-кодирования" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p><a href="../../дискретная-математика/лекции/лекции-по-дискретной-математике" class="internal internal-link alias" data-slug="дискретная-математика/лекции/лекции-по-дискретной-математике">← К лекциям</a></p>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Как читать конспект </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>Основной текст</strong> следует порядку аудиолекции и фиксирует изучавшиеся определения, идеи, примеры и замечания.<br/>
+<strong>«Дополнение»</strong> — сведения, которых нет в расшифровке в явном виде: развернутые числовые примеры, уточнённые формулы, программная реализация и авторские схемы. Такие материалы отделены от содержания лекции.<br/>
+В расшифровке иногда искажены названия и слова; используется общепринятое написание имён алгоритмов. Примеры с доски, не восстановимые по аудио, не выдаются за точную запись преподавателя.</p>
+</div>
+</blockquote>
+<h2 id="план-и-навигация">План и навигация<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#план-и-навигация" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Время</th><th>Раздел</th><th>Ключевая идея</th></tr></thead><tbody><tr><td>00:00–08:00</td><td>Наибольшая общая подпоследовательность (LCS)</td><td>DP, восстановление ответа через «скачки», сложность</td></tr><tr><td>08:00–12:00</td><td>Точный поиск подстроки. Наивный метод</td><td>Проверка образца с каждой возможной позиции</td></tr><tr><td>12:00–23:30</td><td>Рабин — Карп</td><td>Хеши, скользящий пересчёт, полином, остатки, коллизии</td></tr><tr><td>23:30–63:00</td><td>Бойер — Мур</td><td>Сравнение с конца; «плохой символ» и «хороший суффикс»</td></tr><tr><td>63:00–76:00</td><td>Кнут — Моррис — Пратт (КМП)</td><td>Конечный автомат, состояния, переходы при несовпадении</td></tr><tr><td>76:00–90:00</td><td>Кодирование и Хаффман</td><td>Задача сжатия, префиксность, Крафт, объединение вероятностей</td></tr></tbody></table></div>
+<hr/>
+<h2 id="1-наибольшая-общая-подпоследовательность-lcs">1. Наибольшая общая подпоследовательность (LCS)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-наибольшая-общая-подпоследовательность-lcs" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Задача.</strong> Даны две строки. Требуется найти их общую <em>подпоследовательность</em> максимальной длины. Символы можно пропускать, <strong>порядок менять нельзя</strong>. В отличие от подстроки, символы подпоследовательности <strong>не обязаны стоять подряд</strong>.</p>
+<h3 id="11-динамическое-программирование">1.1. Динамическое программирование<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-динамическое-программирование" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Пусть строки имеют длины <code>n</code> и <code>m</code>. В лекции используется таблица <code>V(i,j)</code>:</p>
+<ul>
+<li><code>i</code> — число взятых символов первой строки;</li>
+<li><code>j</code> — число взятых символов второй строки;</li>
+<li><code>V(i,j)</code> — длина LCS этих двух префиксов (начальных частей строк).</li>
+</ul>
+<p><strong>Зачем таблица:</strong> маленькие задачи о префиксах решаются один раз, их результаты используются в следующих клетках. В правом нижнем углу, <code>V(n,m)</code>, находится <strong>длина</strong> искомой подпоследовательности.</p>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — точная рекуррентная запись </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Обозначим <code>A[i]</code>, <code>B[j]</code> символы строк с <strong>математической индексацией от 1</strong>. Тогда</p>
+<span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:4.32em;vertical-align:-1.91em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.35em;"><span style="top:-2.2em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-2.192em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.316em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.316em" style="width:0.8889em;" viewBox="0 0 888.89 316" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V316 H384z M384 0 H504 V316 H384z"></path></svg></span></span><span style="top:-3.15em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.292em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.316em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.316em" style="width:0.8889em;" viewBox="0 0 888.89 316" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V316 H384z M384 0 H504 V316 H384z"></path></svg></span></span><span style="top:-4.6em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.85em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.41em;"><span style="top:-4.41em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">0</span><span class="mpunct">,</span></span></span><span style="top:-2.97em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mpunct">,</span></span></span><span style="top:-1.53em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mop">max</span><span class="mopen">{</span><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mclose">)}</span><span class="mpunct">,</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.91em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.41em;"><span style="top:-4.41em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0</span><span class="mpunct">,</span></span></span><span style="top:-2.97em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mclose">]</span><span class="mpunct">,</span></span></span><span style="top:-1.53em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mclose">]</span><span class="mord">.</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.91em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
+<p><strong>Почему диагональ <code>−1,−1</code>:</strong> совпавший последний символ берётся из <strong>обеих</strong> строк, значит, каждый из двух префиксов сокращается на один символ. Иначе можно посчитать один символ повторно.</p>
+<p><strong>Почему максимум:</strong> если последние символы разные, они не могут оба быть последним символом одной общей подпоследовательности. Следовательно, хотя бы один придётся исключить; выбирается лучший из двух вариантов.</p>
+</div>
+</blockquote>
+<h3 id="12-значение-ответа-и-само-решение--не-одно-и-то-же">1.2. Значение ответа и само решение — не одно и то же<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-значение-ответа-и-само-решение--не-одно-и-то-же" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>В лекции отдельно подчёркивается: для экстремальной задачи обычно нужны <strong>два результата</strong>:</p>
+<ol>
+<li><strong>Значение целевой функции</strong> — здесь максимальная длина <code>V(n,m)</code>.</li>
+<li><strong>Объект, на котором достигается максимум</strong> — конкретная последовательность букв.</li>
+</ol>
+<p>Число <code>5</code> не говорит, какие именно буквы образуют общую подпоследовательность, так же как длина кратчайшего маршрута не задаёт сам маршрут.</p>
+<h3 id="13-восстановление-через-скачки">1.3. Восстановление через «скачки»<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-восстановление-через-скачки" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>По формулировке лекции ищутся <strong>скачки</strong> — клетки, в которых значение увеличилось благодаря совпавшему символу. Символы из выбранных скачков образуют ответ. При движении назад по выбранным скачкам необходимо двигаться <strong>и вверх, и влево</strong>, иначе порядок символов нарушится.</p>
+<p><strong>Дополнение — практический способ восстановить одну LCS из готовой таблицы:</strong></p>
+<ol>
+<li>Начать в клетке <code>V(n,m)</code> — в правом нижнем углу.</li>
+<li>Если текущие последние символы двух префиксов совпадают: включить символ в ответ и перейти <strong>по диагонали вверх-влево</strong>.</li>
+<li>Иначе перейти в соседнюю клетку <strong>вверх</strong> или <strong>влево</strong> с большим значением <code>V</code> (при равенстве можно выбрать любую).</li>
+<li>Остановиться при достижении нулевой строки или столбца.</li>
+<li>Перевернуть записанные символы: восстановление шло от конца строк к началу.</li>
+</ol>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — полный учебный пример </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><code>A = АБВ</code>, <code>B = АВБ</code>. Таблица:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th><code>A \ B</code></th><th style="text-align:right;">∅</th><th style="text-align:right;">А</th><th style="text-align:right;">В</th><th style="text-align:right;">Б</th></tr></thead><tbody><tr><td>∅</td><td style="text-align:right;">0</td><td style="text-align:right;">0</td><td style="text-align:right;">0</td><td style="text-align:right;">0</td></tr><tr><td>А</td><td style="text-align:right;">0</td><td style="text-align:right;">1</td><td style="text-align:right;">1</td><td style="text-align:right;">1</td></tr><tr><td>Б</td><td style="text-align:right;">0</td><td style="text-align:right;">1</td><td style="text-align:right;">1</td><td style="text-align:right;">2</td></tr><tr><td>В</td><td style="text-align:right;">0</td><td style="text-align:right;">1</td><td style="text-align:right;">2</td><td style="text-align:right;"><strong>2</strong></td></tr></tbody></table></div>
+<p>Начало восстановления: <code>V(3,3)=2</code>.</p>
+<ul>
+<li><code>В</code> и <code>Б</code> не совпали → можно пойти вверх в <code>V(2,3)=2</code>.</li>
+<li><code>Б</code> и <code>Б</code> совпали → записать <code>Б</code>, перейти по диагонали к <code>V(1,2)</code>.</li>
+<li><code>А</code> и <code>В</code> не совпали → влево к <code>V(1,1)</code>.</li>
+<li><code>А</code> и <code>А</code> совпали → записать <code>А</code>.</li>
+</ul>
+<p>Получили в обратном порядке <code>БА</code> → ответ <strong><code>АБ</code></strong>, длина <strong>2</strong>. Другая допустимая LCS этих строк — <strong><code>АВ</code></strong>.</p>
+<p><object data="../assets/lcs_path.svg" type="image/svg+xml" width="900" height="auto" aria-label></object></p>
+</div>
+</blockquote>
+<p><strong>Решение может быть не единственным.</strong> В лекции отмечается, что задача обычно требует <em>хотя бы один</em> оптимальный вариант, не обязательно все.</p>
+<h3 id="14-сложность">1.4. Сложность<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#14-сложность" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>На каждую пару префиксов вычисляется одна клетка; работа в клетке постоянна:</p>
+<ul>
+<li>Заполнение таблицы: <strong><code>O(nm)</code></strong>.</li>
+<li>Восстановление одного ответа: <strong><code>O(n+m)</code></strong>, поскольку при каждом шаге хотя бы один индекс уменьшается.</li>
+</ul>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — почему DP выгоднее перебора </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Для первой строки длины <code>n</code> есть <code>2^n</code> способов выбрать/не выбрать её символы. Прямой перебор этих подпоследовательностей требует экспоненциального числа кандидатов. DP вместо этого заполняет только <code>nm</code> состояний. При <code>n=m=20</code>: <code>2^20 = 1 048 576</code> кандидатов против <code>400</code> клеток (количество кандидатов и клеток не является точным сравнением машинных операций).</p>
+</div>
+</blockquote>
+<p><strong>Упоминание лектора:</strong> термин <em>псевдополиномиальный алгоритм</em> будет подробно рассматриваться позднее в связи с динамическим программированием.</p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Типичные ошибки </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ul>
+<li>Путать <strong>подпоследовательность</strong> с <strong>подстрокой</strong> (у подстроки символы подряд).</li>
+<li>Считать число <code>V(n,m)</code> самой подпоследовательностью.</li>
+<li>При совпадении символов уменьшать только один индекс.</li>
+<li>При восстановлении принимать скачки, не сохраняя движения вверх <strong>и</strong> влево.</li>
+</ul>
+</div>
+</blockquote>
+<hr/>
+<h2 id="2-точный-поиск-образца-в-строке">2. Точный поиск образца в строке<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-точный-поиск-образца-в-строке" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Новая задача лекции:</strong> есть <em>текст</em> и <em>образец</em>. Нужно найти позицию, с которой образец целиком совпадает с непрерывным фрагментом текста.</p>
+<ul>
+<li><strong>Точный поиск</strong> — все соответствующие символы равны.</li>
+<li><strong>Приближённый поиск</strong> — разрешены отклонения (например, опечатки); он упомянут, но <strong>в лекции не разбирается</strong>.</li>
+</ul>
+<h3 id="21-наивный-алгоритм">2.1. Наивный алгоритм<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-наивный-алгоритм" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>Совместить начало образца с первой возможной позицией текста.</li>
+<li>Сравнивать символы <strong>слева направо</strong> до полного совпадения или первого различия.</li>
+<li>При различии сдвинуть образец вправо <strong>ровно на один символ</strong> и начать сравнение заново.</li>
+<li>Проверить все позиции, где образец ещё целиком помещается в тексте.</li>
+</ol>
+<p>В худшем случае алгоритм сравнивает почти весь образец при каждой позиции: <strong><code>O(nm)</code></strong>.</p>
+<p><strong>Плохой пример из идеи лекции:</strong> текст содержит много одинаковых букв <code>A</code>, а образец — много <code>A</code> и в конце <code>B</code>; различие обнаруживается только на последней букве. Программа каждый раз выполняет почти <code>m</code> сравнений.</p>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — небольшой пример </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><code>Текст = ABABA</code>, <code>образец = ABA</code>.</p>
+<ul>
+<li>Позиция <code>0</code>: <code>ABA</code> = <code>ABA</code> → найдено.</li>
+<li>Позиция <code>1</code>: <code>BAB</code> ≠ <code>ABA</code> → пропуск.</li>
+<li>Позиция <code>2</code>: <code>ABA</code> = <code>ABA</code> → найдено.</li>
+</ul>
+<p>Ответ: индексы <strong><code>0</code>, <code>2</code></strong> (нумерация от нуля). Последняя возможная стартовая позиция равна <code>n−m</code>.</p>
+</div>
+</blockquote>
+<p><strong>Почему нужны следующие алгоритмы:</strong> сократить количество посимвольных сравнений и/или число рассматриваемых позиций.</p>
+<hr/>
+<h2 id="3-рабин--карп-поиск-с-помощью-хешей">3. Рабин — Карп: поиск с помощью хешей<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-рабин--карп-поиск-с-помощью-хешей" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="31-вместо-строки-сначала-сравниваем-число">3.1. Вместо строки сначала сравниваем число<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#31-вместо-строки-сначала-сравниваем-число" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Каждому потенциальному фрагменту текста длины образца ставится в соответствие число — <strong>хеш</strong>. То же делается для образца.</p>
+<ul>
+<li><strong>Хеши разные:</strong> строки точно разные, проверка символов не нужна.</li>
+<li><strong>Хеши равны:</strong> <em>возможно</em> совпадение; нужно проверить соответствующие символы.</li>
+</ul>
+<p>Ситуация «разные строки — одинаковый хеш» называется <strong>коллизией</strong>. Сравнение реальных строк при равенстве хешей гарантирует корректный ответ независимо от коллизий.</p>
+<h3 id="32-первый-вариант-сумма-числовых-кодов-символов">3.2. Первый вариант: сумма числовых кодов символов<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#32-первый-вариант-сумма-числовых-кодов-символов" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Назначим символам числа и сложим. Главный плюс — новый хеш после сдвига окна получается <strong>удалением ушедшего значения и добавлением пришедшего</strong>:</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.0139em;">new</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">old</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">out</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">in</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span></span></span></span></p>
+<p>Но коллизий много: перестановка символов не меняет сумму, и даже разные наборы символов могут давать равные суммы.</p>
+<h3 id="33-второй-вариант-полиномиальный-хеш">3.3. Второй вариант: полиномиальный хеш<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#33-второй-вариант-полиномиальный-хеш" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Чтобы учесть <strong>порядок символов</strong>, числовые коды используют как коэффициенты полинома. Пусть:</p>
+<ul>
+<li><code>m</code> — длина образца;</li>
+<li><code>a₁, …, aₘ</code> — числовые коды символов по порядку;</li>
+<li><code>x</code> — заранее зафиксированное основание.</li>
+</ul>
+<p>Тогда:</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9641em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9641em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mbin mtight">−</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span></span></span></span></p>
+<p>В отличие от суммы, разные позиции получают разные степени <code>x</code>.</p>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — наглядное влияние разрядов </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>При <code>A=1</code>, <code>B=2</code>, <code>C=3</code>, <code>D=4</code>, <code>E=5</code>, <code>F=6</code> и <code>x=10</code>:</p>
+<p><code>ABCDE → 12345</code>, а <code>BCDEF → 23456</code>.</p>
+<p><strong>Как получить второй хеш из первого без пересчёта всех букв:</strong></p>
+<ol>
+<li>Удалить первую <code>A</code>: <code>12345 − 10000 = 2345</code>.</li>
+<li>Сдвинуть все оставшиеся разряды: <code>2345 × 10 = 23450</code>.</li>
+<li>Добавить <code>F</code>: <code>23450 + 6 = 23456</code>.</li>
+</ol>
+<p><object data="../assets/rk_rolling.svg" type="image/svg+xml" width="900" height="auto" aria-label></object></p>
+</div>
+</blockquote>
+<h3 id="34-скользящий-пересчёт-полиномиального-хеша">3.4. Скользящий пересчёт полиномиального хеша<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#34-скользящий-пересчёт-полиномиального-хеша" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Если <code>a</code> — числовой код <strong>уходящего первого</strong> символа, <code>b</code> — код <strong>приходящего нового</strong> символа, то:</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.7941em;vertical-align:-0.59em;"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2041em;"><span style="top:-3.7941em;"><span class="pstrut" style="height:3.7941em;"></span><span class="boxpad"><span class="mord"><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.0139em;">new</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">old</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">b</span><span class="mord">.</span></span></span></span></span><span style="top:-3.2041em;"><span class="pstrut" style="height:3.7941em;"></span><span class="stretchy fbox" style="height:1.7941em;border-style:solid;border-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.59em;"><span></span></span></span></span></span></span></span></span></p>
+<p>Чтение формулы по действиям: <strong>вычесть вклад первого символа → умножить на <code>x</code> (сдвинуть разряды) → прибавить новый символ</strong>. Значение <code>x^(m−1)</code> рассчитывают заранее.</p>
+<h3 id="35-ограничение-размера-чисел-остаток-по-модулю-d">3.5. Ограничение размера чисел: остаток по модулю <code>d</code><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#35-ограничение-размера-чисел-остаток-по-модулю-d" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Чем длиннее образец, тем больше может быть полиномиальный хеш. Для ограничения размера чисел лектор предлагает хранить <strong>остаток от деления на фиксированное <code>d</code></strong>.</p>
+<p>Переход к следующему окну также вычисляется рекуррентно по остаткам.</p>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — явная формула с модулем </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.0139em;">new</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.35em;"></span><span class="mopen"><span class="delimsizing size1">(</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">old</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.35em;"></span><span class="mord mathnormal">b</span><span class="mclose"><span class="delimsizing size1">)</span></span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.0556em;"></span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span><span class="mord">.</span></span></span></span><br/>
+Здесь можно использовать <code>x^(m−1) mod d</code>, а промежуточные отрицательные значения нормализовать по модулю.</p>
+</div>
+</blockquote>
+<p><strong>Компромисс:</strong> маленькие остатки легче хранить, но разные большие числа могут иметь одинаковый остаток → коллизий становится больше → чаще выполняется посимвольная проверка.</p>
+<h3 id="36-проверка-при-совпадении-хешей">3.6. Проверка при совпадении хешей<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#36-проверка-при-совпадении-хешей" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Это обязательный этап алгоритма:</p>
+<ol>
+<li>Вычислить хеш образца и первого окна текста.</li>
+<li>Если хеши совпали — <strong>сравнить сами строки посимвольно</strong>.</li>
+<li>При полном совпадении записать начальную позицию вхождения.</li>
+<li>Сдвинуть окно на один символ, пересчитать хеш за постоянное число арифметических операций.</li>
+<li>Повторять до конца текста.</li>
+</ol>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — реальная коллизия </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><code>A=1</code>, <code>B=2</code>, <code>C=3</code>, <code>x=10</code>, <code>d=11</code>, образец <code>ABC</code>.</p>
+<ul>
+<li><code>ABC → 123 mod 11 = 2</code>;</li>
+<li><code>CBA → 321 mod 11 = 2</code>.</li>
+</ul>
+<p>Хеши совпали, но уже первые символы <code>A</code> и <code>C</code> различаются. Это <strong>ложный кандидат</strong>, не найденный образец.</p>
+</div>
+</blockquote>
+<p><strong>Сложность:</strong> при редких коллизиях — близко к <strong><code>O(n+m)</code></strong>; при большом числе совпадающих хешей и длинных проверках — до <strong><code>O(nm)</code></strong>. Корректность от вероятности коллизий не зависит.</p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Типичные ошибки </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ul>
+<li>Считать равенство хешей доказательством равенства строк.</li>
+<li>Забывать убрать старший разряд при скользящем пересчёте.</li>
+<li>Умножать на <code>x</code> <strong>до</strong> удаления вклада ушедшего символа.</li>
+<li>Путать числовой код символа, основание <code>x</code> и модуль <code>d</code>.</li>
+</ul>
+</div>
+</blockquote>
+<hr/>
+<h2 id="4-бойер--мур-сравнение-справа-налево">4. Бойер — Мур: сравнение справа налево<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-бойер--мур-сравнение-справа-налево" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="41-идея">4.1. Идея<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-идея" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Алгоритм похож на наивный поиск, но с двумя принципиальными отличиями:</p>
+<ol>
+<li>При приложении образца сравнение идёт <strong>с конца образца к началу</strong>.</li>
+<li>При несовпадении образец обычно сдвигается <strong>больше чем на одну позицию</strong>.</li>
+</ol>
+<p>В лекции эти два способа определения перемещения называются <strong>«сдвиг»</strong> (<em>плохой символ</em>) и <strong>«прыжок»</strong> (<em>хороший суффикс</em>). Для каждого несовпадения оценивается, какой из допустимых сдвигов больше.</p>
+<h3 id="42-плохой-символ">4.2. Плохой символ<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-плохой-символ" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Смотрим на символ текста, <strong>на котором произошло несовпадение</strong>.</p>
+<ul>
+<li>Если такого символа <strong>нет в образце</strong>, часто можно пропустить сразу большой фрагмент текста.</li>
+<li>Если есть, стараемся совместить его с подходящим вхождением <strong>внутри образца</strong>, тем самым пропустив невозможные выравнивания.</li>
+</ul>
+<p><strong>Подготовка в лекции:</strong> рассматривается таблица <code>t(α)</code> для символов алфавита. Сначала всем символам присваивается длина образца; затем для встречающихся символов запоминается расстояние от <strong>последнего вхождения</strong> до конца образца. Для последнего символа иногда получается <code>0</code>. Лектор отмечает, что <strong>в литературе есть варианты определения таблиц и трактовки последнего символа</strong>.</p>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — конкретная проверка </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Образец <code>ABCD</code>, текст <code>ZZZZABCD</code>.</p>
+<p>Сравниваем последний <code>D</code> с <code>Z</code>. <code>Z</code> отсутствует в <code>ABCD</code>, поэтому сдвигаем образец вправо на <strong>4 позиции</strong>, сразу под <code>ABCD</code>.</p>
+<p><object data="../assets/bm_shift.svg" type="image/svg+xml" width="900" height="auto" aria-label></object></p>
+</div>
+</blockquote>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — уточнение общего правила </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>В зависимости от позиции несовпадения расстояние в таблице <code>t(α)</code> <strong>не всегда прямо равно окончательному сдвигу образца</strong>. Если несовпадение произошло на позиции <code>j</code> (нумерация с 0), можно найти правейшее вхождение плохого символа <strong>строго левее <code>j</code></strong>, на позиции <code>r</code>; тогда безопасный сдвиг равен <code>j−r</code>. Если такого вхождения нет, принять <code>r=−1</code>, сдвиг <code>j+1</code>.</p>
+<p>Это конкретная реализация правила; в лекции подчёркивается различие между перемещением образца на схеме и переносом указателя в тексте. <strong>Не нужно смешивать величины из разных вариантов таблиц.</strong></p>
+</div>
+</blockquote>
+<h3 id="43-хороший-суффикс-прыжок">4.3. Хороший суффикс («прыжок»)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#43-хороший-суффикс-прыжок" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Если несколько последних символов образца <strong>уже совпали с текстом</strong>, но левее возникло несовпадение, эту информацию можно использовать:</p>
+<ol>
+<li>Найти подходящее <strong>предыдущее вхождение совпавшего суффикса</strong> в образце.</li>
+<li>Сдвинуть образец так, чтобы этот фрагмент совместился с уже проверенным текстом.</li>
+<li>Если полного подходящего повторения нет, может использоваться совпадающая с началом образца часть суффикса.</li>
+</ol>
+<p><strong>Важное замечание лектора:</strong> таблица «прыжков» зависит от <strong>позиции внутри образца</strong>, а не просто от символа. В аудио для одного образца диктуется последовательность значений <strong><code>11, 10, 9, 8, 11, 10, 3, 1</code></strong>, но точные буквы и расположение элементов на доске по аудио не восстанавливаются однозначно. Преподаватель отдельно говорит, что запоминать программу вычисления прыжков <strong>не требуется</strong>: достаточно понимать идею.</p>
+<p><strong>Примечание о терминологии:</strong> в лекции некоторое время обсуждается, что технически в программе можно говорить не о «движении картинки образца», а о <strong>переносе указателя в тексте</strong>; примеры величин <code>8</code>, <code>10</code>, <code>11</code> относятся к такой трактовке и не обязательно равны геометрическому сдвигу образца.</p>
+<h3 id="44-сводный-алгоритм">4.4. Сводный алгоритм<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#44-сводный-алгоритм" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>Приложить образец к очередной позиции текста.</li>
+<li>Сравнивать <strong>справа налево</strong>.</li>
+<li>При полном совпадении зафиксировать вхождение.</li>
+<li>При несовпадении воспользоваться плохим символом и, если применимо, хорошим суффиксом.</li>
+<li>Выбрать <strong>наибольший безопасный сдвиг</strong> и повторить проверку.</li>
+</ol>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Типичные ошибки </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ul>
+<li>Думать, что всегда ждём совпадения <strong>только последней буквы</strong> образца.</li>
+<li>Считать, что при несовпадении последней буквы сдвиг <strong>всегда</strong> равен длине образца.</li>
+<li>Использовать формулу <code>длина образца − число совпавших символов</code> как универсальный «хороший суффикс» — она неверна.</li>
+<li>Приравнивать значения таблицы плохих символов к любым указательным прыжкам, не учитывая позицию несовпадения.</li>
+</ul>
+</div>
+</blockquote>
+<hr/>
+<h2 id="5-кнут--моррис--пратт-кмп-и-конечные-автоматы">5. Кнут — Моррис — Пратт (КМП) и конечные автоматы<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-кнут--моррис--пратт-кмп-и-конечные-автоматы" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="51-зачем-вводится-конечный-автомат">5.1. Зачем вводится конечный автомат<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-зачем-вводится-конечный-автомат" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>В лекции КМП объясняется <strong>через конечный автомат</strong>, прежде чем перейти к очередной теме теории автоматов.</p>
+<p>У конечного автомата есть:</p>
+<ul>
+<li><strong>множество состояний</strong>;</li>
+<li><strong>входной алфавит</strong>;</li>
+<li><strong>выходной алфавит</strong>;</li>
+<li>правила, задающие <strong>новое состояние и выходное действие</strong> по текущему состоянию и входному символу.</li>
+</ul>
+<p>Каждый такт: <strong>состояние + вход → новое состояние + выход</strong>. В лекции приведён бытовой пример автомата продажи кофе/шоколада: ожидание, нажатие кнопки, оплата, выдача товара.</p>
+<h3 id="52-состояния-при-поиске-образца">5.2. Состояния при поиске образца<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-состояния-при-поиске-образца" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>В лекции разбирается образец вида <code>АБАБСБ</code> (ниже тот же образец записан латиницей: <code>ABABCB</code>).</p>
+<p><strong>Состояние <code>j</code></strong> означает: последние <code>j</code> прочитанных символов текста совпадают с <strong>первыми <code>j</code> символами образца</strong> (и это максимально подходящий текущий префикс).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Состояние</th><th>Уже совпавшее начало образца</th><th>Следующий ожидаемый символ</th></tr></thead><tbody><tr><td><code>0</code></td><td>ничего</td><td><code>A</code></td></tr><tr><td><code>1</code></td><td><code>A</code></td><td><code>B</code></td></tr><tr><td><code>2</code></td><td><code>AB</code></td><td><code>A</code></td></tr><tr><td><code>3</code></td><td><code>ABA</code></td><td><code>B</code></td></tr><tr><td><code>4</code></td><td><code>ABAB</code></td><td><code>C</code></td></tr><tr><td><code>5</code></td><td><code>ABABC</code></td><td><code>B</code></td></tr><tr><td><code>6</code></td><td><code>ABABCB</code></td><td>образец найден</td></tr></tbody></table></div>
+<p>При совпадении ожидаемого символа происходит переход <code>j → j+1</code>.</p>
+<h3 id="53-что-делать-при-несовпадении">5.3. Что делать при несовпадении<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#53-что-делать-при-несовпадении" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Главная идея КМП: <strong>не начинать сравнение с нуля, если часть уже прочитанного текста подходит под начало образца</strong>.</p>
+<p>Например, совпало <code>ABAB</code> (состояние <code>4</code>), но вместо ожидаемой <code>C</code> пришла <code>A</code>.</p>
+<p>Уже совпавшее <code>ABAB</code>:</p>
+<ul>
+<li>начинается с <code>AB</code>;</li>
+<li>заканчивается на <code>AB</code>.</li>
+</ul>
+<p>Можно <strong>сохранить два известных совпадения</strong> и перейти из состояния <code>4</code> в состояние <code>2</code>. <strong>Текущую новую букву <code>A</code> ещё не обработали</strong>: её снова сравнивают, теперь с третьей буквой образца. Она подходит → переход <code>2 → 3</code>.</p>
+<p><strong>Смысл:</strong> новая попытка поиска начинается правее, но начальные <code>AB</code> уже были проверены в старом положении. Никаких пропусков букв <em>внутри</em> предполагаемой подстроки нет. Указатель по тексту <strong>не возвращается назад</strong>.</p>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — диаграмма двух указателей и перехода </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><object data="../assets/kmp_fallback.svg" type="image/svg+xml" width="900" height="auto" aria-label></object><br/>
+Здесь <code>i</code> — позиция очередного символа текста, <code>j</code> — состояние автомата. При откате <code>j</code> изменяется, а <code>i</code> остаётся на текущей букве до её обработки.</p>
+</div>
+</blockquote>
+<h3 id="54-как-работает-поиск-целиком">5.4. Как работает поиск целиком<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#54-как-работает-поиск-целиком" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>Один раз подготовить автомат переходов <strong>по самому образцу</strong>.</li>
+<li>Читать текст <strong>слева направо</strong>.</li>
+<li>При совпадении с ожидаемым символом перейти в следующее состояние.</li>
+<li>При несовпадении перейти в состояние, где сохраняется максимально длинное подходящее окончание ранее совпавшего текста, и обработать <strong>тот же</strong> символ.</li>
+<li>Если состояние достигло длины образца, <strong>образец найден</strong>; сохранить позицию начала вхождения.</li>
+</ol>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — полный короткий прогон </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Ищем <code>ABABCB</code> в тексте <code>ABABABCB</code> (индексы <code>0…7</code>).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th style="text-align:right;">Индекс текста</th><th style="text-align:center;">Буква</th><th style="text-align:left;">Состояние после обработки</th></tr></thead><tbody><tr><td style="text-align:right;">0</td><td style="text-align:center;">A</td><td style="text-align:left;">1</td></tr><tr><td style="text-align:right;">1</td><td style="text-align:center;">B</td><td style="text-align:left;">2</td></tr><tr><td style="text-align:right;">2</td><td style="text-align:center;">A</td><td style="text-align:left;">3</td></tr><tr><td style="text-align:right;">3</td><td style="text-align:center;">B</td><td style="text-align:left;">4</td></tr><tr><td style="text-align:right;">4</td><td style="text-align:center;">A</td><td style="text-align:left;"><code>4 → 2 → 3</code></td></tr><tr><td style="text-align:right;">5</td><td style="text-align:center;">B</td><td style="text-align:left;">4</td></tr><tr><td style="text-align:right;">6</td><td style="text-align:center;">C</td><td style="text-align:left;">5</td></tr><tr><td style="text-align:right;">7</td><td style="text-align:center;">B</td><td style="text-align:left;">6 — найдено</td></tr></tbody></table></div>
+<p>Позиция начала: <code>7 − 6 + 1 = 2</code>.</p>
+</div>
+</blockquote>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — связь с префикс-функцией </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Реализацию КМП часто записывают через массив <strong>префикс-функции</strong> <code>pi</code>. Для образца <code>ABABCB</code> он равен <code>[0, 0, 1, 2, 0, 0]</code>.</p>
+<p>Значение <code>pi[k]</code> — длина наибольшего <em>собственного</em> префикса части образца, заканчивающейся на позиции <code>k</code>, который одновременно является её суффиксом. В частности, <code>pi[3]=2</code> для <code>ABAB</code>.</p>
+<p>При несовпадении после состояния <code>j=4</code> делают <code>j=pi[3]=2</code>, <strong>не меняя позицию текста</strong>. Подробная реализация <code>pi</code> на лекции не рассматривается; это альтернативное программное представление той же идеи.</p>
+</div>
+</blockquote>
+<p><strong>Сложность (дополнение):</strong> при стандартном вычислении переходов/префикс-функции подготовка <code>O(m)</code>, поиск <code>O(n)</code>, суммарно <strong><code>O(n+m)</code></strong>. Эту оценку следует отличать от размера явно заданной полной таблицы переходов по всему алфавиту.</p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Типичные ошибки </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ul>
+<li>Думать, что «откат состояния» означает возврат назад по тексту.</li>
+<li>Искать просто <strong>любой</strong> повторяющийся кусок, а не окончание совпавшей части, являющееся также началом образца.</li>
+<li>После отката сразу пропускать букву, которая вызвала несовпадение: её ещё нужно обработать.</li>
+<li>Считать, что алгоритм разрешает пропуски внутри найденной <strong>подстроки</strong> — это по-прежнему точный поиск.</li>
+</ul>
+</div>
+</blockquote>
+<hr/>
+<h2 id="6-новая-глава-кодирование-и-защита-информации">6. Новая глава: кодирование и защита информации<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-новая-глава-кодирование-и-защита-информации" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>В конце лекции начинается новая глава. Рассматриваются три задачи кодирования:</p>
+<ol>
+<li><strong>Сжатие информации</strong> — уменьшить объём представления.</li>
+<li><strong>Защита от ошибок</strong> — обнаруживать/исправлять искажения из-за сбоев или передачи.</li>
+<li><strong>Шифрование</strong> — защита от постороннего доступа.</li>
+</ol>
+<p>Здесь начинается обсуждение <strong>сжатия</strong>.</p>
+<h3 id="61-задача-оптимального-префиксного-кодирования">6.1. Задача оптимального префиксного кодирования<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#61-задача-оптимального-префиксного-кодирования" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Каждому символу исходного алфавита сопоставляется <strong>двоичное кодовое слово переменной длины</strong>.</p>
+<ul>
+<li><code>pᵢ</code> — вероятность (или относительная частота) символа <code>i</code>;</li>
+<li><code>sᵢ</code> — длина его двоичного кода;</li>
+<li><code>n</code> — количество кодируемых символов.</li>
+</ul>
+<p>Нужно минимизировать <strong>среднюю длину</strong>:</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.6091em;vertical-align:-1.6177em;"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.9914em;"><span style="top:-5.6091em;"><span class="pstrut" style="height:5.6091em;"></span><span class="boxpad"><span class="mord"><span class="mord"><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6514em;"><span style="top:-1.8723em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟶</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop">min</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">.</span></span></span></span></span><span style="top:-3.9914em;"><span class="pstrut" style="height:5.6091em;"></span><span class="stretchy fbox" style="height:3.6091em;border-style:solid;border-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.6177em;"><span></span></span></span></span></span></span></span></span></p>
+<p>Идея: <strong>частые символы получают короткие коды</strong>, редкие могут получать длинные.</p>
+<p><strong>Префиксный код:</strong> ни одно кодовое слово не является началом другого. Благодаря этому поток нулей и единиц можно декодировать <strong>без разделителей</strong>: как только встречено полное кодовое слово, его можно вывести и продолжить чтение.</p>
+<p>В лекции эта задача связывается с <strong>неравенством Крафта</strong> и двоичным деревом: кодовые слова находятся в <strong>листьях</strong>, а не посередине пути к другим словам.</p>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — точная форма неравенства Крафта </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Для длин двоичного префиксного кода обязательно</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.104em;vertical-align:-0.2997em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.</span></span></span></span></p>
+<p>Более того, если набор положительных целых длин удовлетворяет неравенству, префиксный код с такими длинами существует. Сами кодовые слова при этом ещё нужно построить.</p>
+</div>
+</blockquote>
+<h3 id="62-построение-алгоритма-хаффмана">6.2. Построение алгоритма Хаффмана<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#62-построение-алгоритма-хаффмана" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Алгоритм из лекции:</strong></p>
+<ol>
+<li>Выбрать <strong>два символа с наименьшими вероятностями</strong>.</li>
+<li>Объединить их в новый составной символ; его вероятность равна <strong>сумме</strong> исходных.</li>
+<li>Повторять объединения двух минимальных вероятностей, сохраняя историю объединений, пока не получится одно дерево (в лекции сначала сводят список к двум элементам, затем соединяют их корнем).</li>
+<li>Назначить каждому ветвлению <code>0</code> и <code>1</code>.</li>
+<li>Код исходного символа — последовательность битов на пути <strong>от корня к соответствующему листу</strong>.</li>
+</ol>
+<p><strong>Что получается:</strong> корректный префиксный код с переменной длиной. При распаковке нужно знать <strong>таблицу кодов или само дерево</strong>; без этой информации декодировать поток нельзя.</p>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — пример объединений </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Пусть частоты: <code>A=0.4</code>, <code>B=0.3</code>, <code>C=0.2</code>, <code>D=0.1</code>.</p>
+<ul>
+<li><code>C + D = 0.3</code>;</li>
+<li><code>B + (CD) = 0.6</code>;</li>
+<li><code>A + (BCD) = 1.0</code>.</li>
+</ul>
+<p>Один из возможных кодов: <code>A→0</code>, <code>B→10</code>, <code>C→110</code>, <code>D→111</code>.</p>
+<p>Средняя длина: <code>0.4·1 + 0.3·2 + 0.2·3 + 0.1·3 = 1.9</code> бита на символ.</p>
+</div>
+</blockquote>
+<h3 id="63-ограничения-посимвольного-хаффмана">6.3. Ограничения посимвольного Хаффмана<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#63-ограничения-посимвольного-хаффмана" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Лектор подчёркивает: если кодировать <strong>отдельные символы</strong>, алгоритм учитывает их <strong>частоты</strong>, но не учитывает устойчивые сочетания букв, слоги и повторяющиеся пары/тройки как самостоятельные объекты.</p>
+<p>Поэтому Хаффман может применяться <strong>в сочетании с другими способами преобразования или сжатия</strong>. В лекции отдельно отмечается, что кодируемыми объектами могут быть не только буквы естественного языка.</p>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение — иллюстрация ограничения </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Для <code>ABABABAB</code> посимвольный Хаффман рассматривает отдельные <code>A</code> и <code>B</code>, но сам не выделяет повторяющийся блок <code>AB</code>. Блочное кодирование возможно при <strong>изменении исходного алфавита/единицы кодирования</strong>, но это уже другая постановка задачи.</p>
+</div>
+</blockquote>
+<p><strong>Граница данной лекции:</strong> доказательство оптимальности Хаффмана <strong>объявлено темой следующего занятия</strong>. Три леммы, их доказательства и Зив — Лемпель в эту аудиолекцию не входят; здесь не добавляются как якобы её материал.</p>
+<hr/>
+<h2 id="7-краткая-шпаргалка">7. Краткая шпаргалка<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-краткая-шпаргалка" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><em>Дополнение: сводная таблица по материалу лекции; асимптотические оценки там, где они не названы явно в записи, приведены для ориентира.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Алгоритм</th><th>Что ищет / делает</th><th>Ключевой приём</th><th>Сложность / особенность</th></tr></thead><tbody><tr><td><strong>LCS (DP)</strong></td><td>Общая <em>подпоследовательность</em></td><td>Таблица для пар префиксов + обратный проход</td><td><code>O(nm)</code></td></tr><tr><td><strong>Наивный поиск</strong></td><td>Точное вхождение <em>подстроки</em></td><td>Посимвольная проверка с каждой позиции</td><td><code>O(nm)</code> в худшем случае</td></tr><tr><td><strong>Рабин — Карп</strong></td><td>Точную подстроку</td><td>Скользящий хеш, подтверждение при равенстве</td><td>Обычно близко к <code>O(n+m)</code>, худшее <code>O(nm)</code></td></tr><tr><td><strong>Бойер — Мур</strong></td><td>Точную подстроку</td><td>Справа налево; плохой символ / хороший суффикс</td><td>Пропускает многие выравнивания; оценка зависит от варианта</td></tr><tr><td><strong>КМП</strong></td><td>Точную подстроку</td><td>Состояния и переходы без отката указателя текста</td><td><code>O(n+m)</code> в стандартной реализации</td></tr><tr><td><strong>Хаффман</strong></td><td>Префиксный код малой средней длины</td><td>Объединение двух минимальных вероятностей</td><td>Нужны частоты и дерево/таблица кодов</td></tr></tbody></table></div>
+<h3 id="быстрые-алгоритмы-действий">Быстрые алгоритмы действий<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#быстрые-алгоритмы-действий" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>LCS:</strong> заполнить таблицу → взять значение в правом нижнем углу → пройти назад по совпадениям и большим соседям → перевернуть собранные символы.</p>
+<p><strong>Рабин — Карп:</strong> хеш образца → хеш окна → сравнить числа → при равенстве проверить символы → пересчитать хеш при сдвиге.</p>
+<p><strong>Бойер — Мур:</strong> сравнение с конца → несовпадение → оценить плохой символ и хороший суффикс → безопасный сдвиг → повторить.</p>
+<p><strong>КМП:</strong> подготовить переходы → читать текст один раз слева направо → при несовпадении сохранить подходящий префикс через откат состояния → полное совпадение означает найденное вхождение.</p>
+<p><strong>Хаффман:</strong> две минимальные вероятности → объединить → повторить → назначить <code>0/1</code> рёбрам → читать код от корня к листу.</p>
+<h3 id="вопросы-на-самопроверку">Вопросы на самопроверку<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#вопросы-на-самопроверку" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>Почему при LCS иногда идём по диагонали, а иногда вверх или влево?</li>
+<li>Почему значение в углу DP-таблицы ещё не является полной подпоследовательностью?</li>
+<li>Чем подпоследовательность отличается от подстроки?</li>
+<li>Почему наивный поиск может выполнить почти <code>nm</code> сравнений?</li>
+<li>Почему при разных хешах можно сразу отбрасывать окно, а при одинаковых — нельзя сразу объявлять совпадение?</li>
+<li>Что удаляется и добавляется при скользящем пересчёте полиномиального хеша?</li>
+<li>Чем плохой символ отличается от хорошего суффикса в Бойере — Муре?</li>
+<li>Что означает состояние <code>j=4</code> для образца <code>ABABCB</code>?</li>
+<li>Почему переход состояния <code>4→2</code> не означает переход назад по тексту?</li>
+<li>Зачем префиксное кодирование позволяет обойтись без разделителей?</li>
+<li>Что объединяется на каждом шаге Хаффмана?</li>
+<li>Почему посимвольный Хаффман не использует непосредственно повторяющиеся сочетания символов?</li>
+</ol>
+<hr/>
+<h2 id="приложение-учебный-код">Приложение. Учебный код<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#приложение-учебный-код" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote class="callout example" data-callout="example">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Дополнение </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>В аудиолекции не приводятся готовые Python-реализации этих алгоритмов. Код ниже добавлен <strong>только как иллюстрация вычислений</strong>, не как обязательный материал преподавателя. Алгоритмы Бойера — Мура и КМП в данном конспекте оставлены на уровне логики, соответствующем занятию.</p>
+</div>
+</blockquote>
+<h3 id="a-lcs-длина-и-одна-оптимальная-подпоследовательность">A. LCS: длина и одна оптимальная подпоследовательность<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#a-lcs-длина-и-одна-оптимальная-подпоследовательность" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">def</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> lcs</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(a: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property">str</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, b: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property">str</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) -> tuple[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property">str</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">]:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    n, m </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> len</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(a), </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">len</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(b)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    dp </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> [[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (m </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> _ </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> range</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(n </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">)]</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> range</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, n </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">):</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> j </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> range</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, m </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">):</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">            if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> a[i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> b[j </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">]:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">                dp[i][j] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> dp[i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">][j </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">            else</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">                dp[i][j] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> max</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(dp[i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">][j], dp[i][j </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">])</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    i, j </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> n, m</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    result </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> []</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    while</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> and</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> j </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> a[i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> b[j </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">]:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">            result.append(a[i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">])</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            j </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        elif</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> dp[i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">][j] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">>=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> dp[i][j </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">]:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        else</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            j </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> dp[n][m], </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">''</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">.join(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">reversed</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(result))</span></span>
+<span data-line> </span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">print</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(lcs(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">'АБВ'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">'АВБ'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">))  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># (2, 'АБ')</span></span></code></pre></figure>
+<p><strong>Зачем дополнительные нулевые строка и столбец?</strong> Для сравнения с пустым префиксом. Обращение <code>a[i-1]</code> связано с индексацией Python <strong>с нуля</strong>, а не с математической идеей <code>i−1,j−1</code> при совпадении.</p>
+<h3 id="b-рабин--карп-проверка-реальных-строк-после-хеша">B. Рабин — Карп: проверка реальных строк после хеша<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#b-рабин--карп-проверка-реальных-строк-после-хеша" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="python" data-theme="github-light github-dark"><code data-language="python" data-theme="github-light github-dark" style="display:grid;"><span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">def</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> rabin_karp</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(text: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property">str</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, pattern: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property">str</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) -> list[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">]:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    n, m </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> len</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(text), </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">len</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(pattern)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> m </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> or</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> m </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> n:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> []</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">    # Учебная версия: только заглавные латинские буквы A–Z.</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    def</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> code</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(ch: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property">str</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) -> </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="property">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        return</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> ord</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(ch) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> ord</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">'A'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">    x, mod </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 10</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">11</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">  # Небольшой модуль специально показывает коллизии.</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    target_hash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> current_hash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> range</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(m):</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        target_hash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (target_hash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> code(pattern[i])) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> mod</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        current_hash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (current_hash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> code(text[i])) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> mod</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    power </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> pow</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(x, m </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, mod)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    positions </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> []</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> start </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">in</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function"> range</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(n </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> m </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">):</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">        # Совпадение хешей — лишь повод проверить сами символы.</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> current_hash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> target_hash:</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">            if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> text[start:start </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> m] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">==</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> pattern:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">                positions.append(start)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> start </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&lt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> n </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> m:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            outgoing </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> code(text[start])</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            incoming </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> code(text[start </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> m])</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            current_hash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> ((current_hash </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> outgoing </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> power) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">*</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">                            +</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> incoming) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> mod</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> positions</span></span>
+<span data-line> </span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">print</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(rabin_karp(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">'ABCBA'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">'ABC'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">))  </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># [0]</span></span></code></pre></figure>
+<p><strong>Проверка корректности:</strong> даже если <code>ABC</code> и <code>CBA</code> имеют одинаковый остаток при делении на <code>11</code>, второй фрагмент <strong>не принимается</strong>, поскольку реальная строка отличается от образца.</p></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Вид графа</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-32" aria-expanded="true"><h3>Оглавление</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#лекция--10-поиск-подстроки-конечные-автоматы-и-начало-кодирования" data-for="лекция--10-поиск-подстроки-конечные-автоматы-и-начало-кодирования">Лекция № 10. Поиск подстроки, конечные автоматы и начало кодирования</a></li><li class="depth-1"><a href="#план-и-навигация" data-for="план-и-навигация">План и навигация</a></li><li class="depth-1"><a href="#1-наибольшая-общая-подпоследовательность-lcs" data-for="1-наибольшая-общая-подпоследовательность-lcs">1. Наибольшая общая подпоследовательность (LCS)</a></li><li class="depth-2"><a href="#11-динамическое-программирование" data-for="11-динамическое-программирование">1.1. Динамическое программирование</a></li><li class="depth-2"><a href="#12-значение-ответа-и-само-решение--не-одно-и-то-же" data-for="12-значение-ответа-и-само-решение--не-одно-и-то-же">1.2. Значение ответа и само решение — не одно и то же</a></li><li class="depth-2"><a href="#13-восстановление-через-скачки" data-for="13-восстановление-через-скачки">1.3. Восстановление через «скачки»</a></li><li class="depth-2"><a href="#14-сложность" data-for="14-сложность">1.4. Сложность</a></li><li class="depth-1"><a href="#2-точный-поиск-образца-в-строке" data-for="2-точный-поиск-образца-в-строке">2. Точный поиск образца в строке</a></li><li class="depth-2"><a href="#21-наивный-алгоритм" data-for="21-наивный-алгоритм">2.1. Наивный алгоритм</a></li><li class="depth-1"><a href="#3-рабин--карп-поиск-с-помощью-хешей" data-for="3-рабин--карп-поиск-с-помощью-хешей">3. Рабин — Карп: поиск с помощью хешей</a></li><li class="depth-2"><a href="#31-вместо-строки-сначала-сравниваем-число" data-for="31-вместо-строки-сначала-сравниваем-число">3.1. Вместо строки сначала сравниваем число</a></li><li class="depth-2"><a href="#32-первый-вариант-сумма-числовых-кодов-символов" data-for="32-первый-вариант-сумма-числовых-кодов-символов">3.2. Первый вариант: сумма числовых кодов символов</a></li><li class="depth-2"><a href="#33-второй-вариант-полиномиальный-хеш" data-for="33-второй-вариант-полиномиальный-хеш">3.3. Второй вариант: полиномиальный хеш</a></li><li class="depth-2"><a href="#34-скользящий-пересчёт-полиномиального-хеша" data-for="34-скользящий-пересчёт-полиномиального-хеша">3.4. Скользящий пересчёт полиномиального хеша</a></li><li class="depth-2"><a href="#35-ограничение-размера-чисел-остаток-по-модулю-d" data-for="35-ограничение-размера-чисел-остаток-по-модулю-d">3.5. Ограничение размера чисел: остаток по модулю d</a></li><li class="depth-2"><a href="#36-проверка-при-совпадении-хешей" data-for="36-проверка-при-совпадении-хешей">3.6. Проверка при совпадении хешей</a></li><li class="depth-1"><a href="#4-бойер--мур-сравнение-справа-налево" data-for="4-бойер--мур-сравнение-справа-налево">4. Бойер — Мур: сравнение справа налево</a></li><li class="depth-2"><a href="#41-идея" data-for="41-идея">4.1. Идея</a></li><li class="depth-2"><a href="#42-плохой-символ" data-for="42-плохой-символ">4.2. Плохой символ</a></li><li class="depth-2"><a href="#43-хороший-суффикс-прыжок" data-for="43-хороший-суффикс-прыжок">4.3. Хороший суффикс («прыжок»)</a></li><li class="depth-2"><a href="#44-сводный-алгоритм" data-for="44-сводный-алгоритм">4.4. Сводный алгоритм</a></li><li class="depth-1"><a href="#5-кнут--моррис--пратт-кмп-и-конечные-автоматы" data-for="5-кнут--моррис--пратт-кмп-и-конечные-автоматы">5. Кнут — Моррис — Пратт (КМП) и конечные автоматы</a></li><li class="depth-2"><a href="#51-зачем-вводится-конечный-автомат" data-for="51-зачем-вводится-конечный-автомат">5.1. Зачем вводится конечный автомат</a></li><li class="depth-2"><a href="#52-состояния-при-поиске-образца" data-for="52-состояния-при-поиске-образца">5.2. Состояния при поиске образца</a></li><li class="depth-2"><a href="#53-что-делать-при-несовпадении" data-for="53-что-делать-при-несовпадении">5.3. Что делать при несовпадении</a></li><li class="depth-2"><a href="#54-как-работает-поиск-целиком" data-for="54-как-работает-поиск-целиком">5.4. Как работает поиск целиком</a></li><li class="depth-1"><a href="#6-новая-глава-кодирование-и-защита-информации" data-for="6-новая-глава-кодирование-и-защита-информации">6. Новая глава: кодирование и защита информации</a></li><li class="depth-2"><a href="#61-задача-оптимального-префиксного-кодирования" data-for="61-задача-оптимального-префиксного-кодирования">6.1. Задача оптимального префиксного кодирования</a></li><li class="depth-2"><a href="#62-построение-алгоритма-хаффмана" data-for="62-построение-алгоритма-хаффмана">6.2. Построение алгоритма Хаффмана</a></li><li class="depth-2"><a href="#63-ограничения-посимвольного-хаффмана" data-for="63-ограничения-посимвольного-хаффмана">6.3. Ограничения посимвольного Хаффмана</a></li><li class="depth-1"><a href="#7-краткая-шпаргалка" data-for="7-краткая-шпаргалка">7. Краткая шпаргалка</a></li><li class="depth-2"><a href="#быстрые-алгоритмы-действий" data-for="быстрые-алгоритмы-действий">Быстрые алгоритмы действий</a></li><li class="depth-2"><a href="#вопросы-на-самопроверку" data-for="вопросы-на-самопроверку">Вопросы на самопроверку</a></li><li class="depth-1"><a href="#приложение-учебный-код" data-for="приложение-учебный-код">Приложение. Учебный код</a></li><li class="depth-2"><a href="#a-lcs-длина-и-одна-оптимальная-подпоследовательность" data-for="a-lcs-длина-и-одна-оптимальная-подпоследовательность">A. LCS: длина и одна оптимальная подпоследовательность</a></li><li class="depth-2"><a href="#b-рабин--карп-проверка-реальных-строк-после-хеша" data-for="b-рабин--карп-проверка-реальных-строк-после-хеша">B. Рабин — Карп: проверка реальных строк после хеша</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Обратные ссылки</h3><ul id="list-0" class="overflow"><li><a href="../../дискретная-математика/лекции/лекции-по-дискретной-математике" class="internal">Лекции по дискретной математике</a></li><li><a href="../../дискретная-математика/справочник/определения-по-дискретной-математике" class="internal">Определения по дискретной математике</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Создано с помощью <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://github.com/AnUbiSaF/study-notes">GitHub</a></li></ul></footer></div></div></body><script src="../../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript-551b937a.js" type="module" data-persist="true"></script></html>
