@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="760" height="296" viewBox="0 0 760 296" role="img" aria-labelledby="title desc">
+<title id="title">Как строится шар вокруг точки вне компакта</title>
+<desc id="desc">Пример на прямой: K от нуля до единицы покрыто двумя открытыми интервалами вокруг точек x1 и x2; открытый шар около a равно двум с радиусом минимум выбранных радиусов не пересекает K.</desc>
+<style>
+ text{font-family:Inter,Arial,sans-serif;fill:#cbd5e1} .sub{font-size:14px;fill:#94a3b8} .h{font-size:16px;font-weight:600}
+ .axis{stroke:#64748b;stroke-width:2} .tick{stroke:#94a3b8;stroke-width:1.5}
+ .blue{stroke:#60a5fa;fill:none;stroke-width:5;stroke-linecap:round} .cyan{stroke:#38bdf8;fill:none;stroke-width:5;stroke-linecap:round}
+ .amber{stroke:#fbbf24;fill:none;stroke-width:5;stroke-linecap:round} .dot{fill:#fbbf24} .small{font-size:13px}
+</style>
+<text x="35" y="28" class="h">Иллюстрация в ℝ: K = [0, 1], a = 2 ∉ K</text>
+<text x="35" y="61" class="small" fill="#60a5fa">Bᵣ₁(x₁)</text><line class="blue" x1="102" y1="75" x2="392" y2="75"/>
+<circle cx="102" cy="75" r="4" fill="#101827" stroke="#60a5fa" stroke-width="2"/><circle cx="392" cy="75" r="4" fill="#101827" stroke="#60a5fa" stroke-width="2"/>
+<text x="35" y="108" class="small" fill="#38bdf8">Bᵣ₂(x₂)</text><line class="cyan" x1="228" y1="121" x2="436" y2="121"/>
+<circle cx="228" cy="121" r="4" fill="#101827" stroke="#38bdf8" stroke-width="2"/><circle cx="436" cy="121" r="4" fill="#101827" stroke="#38bdf8" stroke-width="2"/>
+<text x="35" y="153" class="small" fill="#fbbf24">Bδ(a)</text><line class="amber" x1="436" y1="166" x2="644" y2="166"/>
+<circle cx="436" cy="166" r="4" fill="#101827" stroke="#fbbf24" stroke-width="2"/><circle cx="644" cy="166" r="4" fill="#101827" stroke="#fbbf24" stroke-width="2"/>
+<line x1="68" y1="213" x2="707" y2="213" class="axis"/>
+<line x1="220" y1="210" x2="380" y2="210" stroke="#4ade80" stroke-width="9" stroke-linecap="round"/>
+<g class="tick"><line x1="220" y1="205" x2="220" y2="222"/><line x1="380" y1="205" x2="380" y2="222"/><line x1="540" y1="205" x2="540" y2="222"/></g>
+<circle cx="244" cy="213" r="5" fill="#60a5fa"/><circle cx="332" cy="213" r="5" fill="#38bdf8"/><circle cx="540" cy="213" r="6" fill="#fbbf24"/>
+<text x="218" y="240" class="small">0</text><text x="376" y="240" class="small">1</text><text x="537" y="240" class="small">2</text>
+<text x="235" y="191" class="small">x₁</text><text x="322" y="191" class="small">x₂</text><text x="532" y="191" class="small">a</text>
+<text x="295" y="258" text-anchor="middle" class="small" style="fill:#4ade80">K</text>
+<text x="35" y="283" class="sub">δ = min(r₁,r₂) &gt; 0. Жёлтый шар не пересекает шары покрытия K.</text>
+</svg>

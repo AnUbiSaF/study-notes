@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" role="img" aria-label="Арктангенс переводит расширенную действительную прямую в отрезок от минус пи пополам до пи пополам">
+  <line x1="95" y1="60" x2="628" y2="60" stroke="#81b8e5" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="95" cy="60" r="6" fill="#d1b4e9"/><circle cx="361" cy="60" r="6" fill="#d1b4e9"/><circle cx="628" cy="60" r="6" fill="#d1b4e9"/>
+  <text x="95" y="40" text-anchor="middle" fill="#d9e3f0" font-size="18" font-family="sans-serif">−∞</text>
+  <text x="361" y="40" text-anchor="middle" fill="#d9e3f0" font-size="18" font-family="sans-serif">0</text>
+  <text x="628" y="40" text-anchor="middle" fill="#d9e3f0" font-size="18" font-family="sans-serif">+∞</text>
+  <path d="M361 87V139" stroke="#c6d0e0" stroke-width="2" stroke-dasharray="5 5"/>
+  <path d="M353 129L361 139L369 129" stroke="#c6d0e0" stroke-width="2" fill="none"/>
+  <text x="390" y="119" fill="#a9d6f3" font-family="sans-serif" font-size="17">arctan</text>
+  <line x1="95" y1="166" x2="628" y2="166" stroke="#71c8b7" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="95" cy="166" r="6" fill="#71c8b7"/><circle cx="361" cy="166" r="6" fill="#71c8b7"/><circle cx="628" cy="166" r="6" fill="#71c8b7"/>
+  <text x="95" y="191" text-anchor="middle" fill="#d9e3f0" font-family="sans-serif" font-size="17">−π/2</text>
+  <text x="361" y="191" text-anchor="middle" fill="#d9e3f0" font-family="sans-serif" font-size="17">0</text>
+  <text x="628" y="191" text-anchor="middle" fill="#d9e3f0" font-family="sans-serif" font-size="17">+π/2</text>
+  <text x="361" y="227" text-anchor="middle" fill="#aabed0" font-family="sans-serif" font-size="14">Расстояние измеряется как модуль разности значений arctan</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 236" role="img" aria-label="Шар радиуса L/2 около положительного L целиком лежит справа от нуля">
+  <defs><marker id="m" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6Z" fill="#b7c6d8"/></marker></defs>
+  <line x1="62" y1="152" x2="672" y2="152" stroke="#b7c6d8" stroke-width="2" marker-end="url(#m)"/>
+  <rect x="276" y="110" width="255" height="66" rx="9" fill="#71c8b7" fill-opacity="0.14"/>
+  <line x1="276" y1="100" x2="531" y2="100" stroke="#71c8b7" stroke-width="3"/>
+  <circle cx="276" cy="152" r="6" fill="#1b2633" stroke="#71c8b7" stroke-width="3"/>
+  <circle cx="531" cy="152" r="6" fill="#1b2633" stroke="#71c8b7" stroke-width="3"/>
+  <circle cx="403" cy="152" r="7" fill="#71c8b7"/>
+  <line x1="143" y1="142" x2="143" y2="163" stroke="#d68a8a" stroke-width="3"/>
+  <text x="143" y="182" text-anchor="middle" font-size="20" fill="#e0a7a7" font-family="sans-serif">0</text>
+  <text x="276" y="186" text-anchor="middle" font-size="18" fill="#cbd5e1" font-family="sans-serif">L/2</text>
+  <text x="403" y="186" text-anchor="middle" font-size="18" fill="#cbd5e1" font-family="sans-serif">L</text>
+  <text x="531" y="186" text-anchor="middle" font-size="18" fill="#cbd5e1" font-family="sans-serif">3L/2</text>
+  <text x="403" y="71" text-anchor="middle" font-size="18" fill="#bdece1" font-family="sans-serif">B(L, L/2) — все значения положительны</text>
+  <text x="365" y="222" text-anchor="middle" font-size="14" fill="#aabed0" font-family="sans-serif">Выбор одного такого шара достаточен по определению предела</text>
+</svg>
