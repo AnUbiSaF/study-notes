@@ -278,7 +278,7 @@ def main() -> None:
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, dest)
             bundle_assets.append(rel)
-        payload_subject = {key: value for key, value in subject.items() if key != "withheldDocs"}
+        payload_subject = {key: value for key, value in subject.items() if key not in {"withheldDocs", "status"}}
         payload = {"subject": payload_subject, "docs": collected[subject["id"]], "assets": bundle_assets}
         (out / "unified-data" / f"{subject['id']}.json").write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
         route = out / subject["id"]

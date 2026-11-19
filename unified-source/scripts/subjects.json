@@ -1,10 +1,10 @@
 [
-  {"id":"algebra","title":"Алгебра и теория чисел","directory":"Алгебра и теория чисел","excludePaths":["Лекции/Лекция 02 — Индукция, операции и делимость.md"]},
-  {"id":"tp-intro","title":"Введение в ТП","directory":"Введение в ТП — завершено"},
-  {"id":"discrete","title":"Дискретная математика","directory":"Дискретная математика"},
-  {"id":"informatics","title":"Информатика и основы программирования","directory":"Информатика и основы программирования"},
-  {"id":"matan","title":"Математический анализ","directory":"Математический анализ"},
-  {"id":"c-programming","title":"Программирование на C","directory":"Программирование на C"},
-  {"id":"topology","title":"Топология и геометрия","directory":"Топология и геометрия"},
-  {"id":"cpp","title":"Факультатив по C++","directory":"Факультатив по C++"}
+  {"id":"algebra","title":"Алгебра и теория чисел","directory":"Алгебра и теория чисел","status":"active","excludePaths":["Лекции/Лекция 02 — Индукция, операции и делимость.md"]},
+  {"id":"tp-intro","title":"Введение в ТП","directory":"Введение в ТП — завершено","status":"completed"},
+  {"id":"discrete","title":"Дискретная математика","directory":"Дискретная математика","status":"active"},
+  {"id":"informatics","title":"Информатика и основы программирования","directory":"Информатика и основы программирования","status":"active"},
+  {"id":"matan","title":"Математический анализ","directory":"Математический анализ","status":"active"},
+  {"id":"c-programming","title":"Программирование на C","directory":"Программирование на C","status":"active"},
+  {"id":"topology","title":"Топология и геометрия","directory":"Топология и геометрия","status":"active"},
+  {"id":"cpp","title":"Факультатив по C++","directory":"Факультатив по C++","status":"active"}
 ]
