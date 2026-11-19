@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr"><head><title>Лекция 06 — Язык программирования (на примере C)</title><meta charset="utf-8"/><link rel="preload" href="../../index-4ebe8085.css" as="style"/><link rel="preload" href="../../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Учёба"/><meta property="og:title" content="Лекция 06 — Язык программирования (на примере C)"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Лекция 06 — Язык программирования (на примере C)"/><meta name="twitter:description" content="Лекция 06 — Язык программирования (на примере C) ← К лекциям Информатика и основы программирования — Я. А. Кириленко, 2026."/><meta property="og:description" content="Лекция 06 — Язык программирования (на примере C) ← К лекциям Информатика и основы программирования — Я. А. Кириленко, 2026."/><meta property="og:image:alt" content="Лекция 06 — Язык программирования (на примере C) ← К лекциям Информатика и основы программирования — Я. А. Кириленко, 2026."/><meta property="og:image" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta property="og:image:url" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta name="twitter:image" content="https://AnUbiSaF.github.io/study-notes/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="AnUbiSaF.github.io/study-notes"/><meta property="og:url" content="https://anubisaf.github.io/study-notes/информатика-и-основы-программирования/лекции/лекция-06-—-язык-программирования-(на-примере-c)"/><meta property="twitter:url" content="https://anubisaf.github.io/study-notes/информатика-и-основы-программирования/лекции/лекция-06-—-язык-программирования-(на-примере-c)"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="Лекция 06 — Язык программирования (на примере C) ← К лекциям Информатика и основы программирования — Я. А. Кириленко, 2026."/><meta name="generator" content="Quartz"/><link href="../../index-4ebe8085.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-e427079e.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-58d5ff56.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-7262b5a7.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/></head><body data-slug="информатика-и-основы-программирования/лекции/лекция-06-—-язык-программирования-(на-примере-c)" data-basepath="/study-notes"><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Учёба</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Поиск" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Поиск</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Найти что-нибудь" placeholder="Найти что-нибудь"/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Тёмный режим"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Тёмный режим"><title>Тёмный режим</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Светлый режим"><title>Светлый режим</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Режим чтения"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Режим чтения"><title>Режим чтения</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a2, b2) => {\n    if (!a2.isFolder &amp;&amp; !b2.isFolder || a2.isFolder &amp;&amp; b2.isFolder) {\n      return (a2.displayName || \&quot;\&quot;).localeCompare(b2.displayName || \&quot;\&quot;, void 0, {\n        numeric: true,\n        sensitivity: \&quot;base\&quot;\n      });\n    }\n    if (!a2.isFolder &amp;&amp; b2.isFolder) {\n      return 1;\n    }\n    return -1;\n  }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-83" aria-label="Проводник"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Проводник</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-83" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../информатика-и-основы-программирования/">Информатика и основы программирования</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../информатика-и-основы-программирования/лекции/">Лекции</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Лекция 06 — Язык программирования (на примере C)</a></div></nav><h1 class="article-title">Лекция 06 — Язык программирования (на примере C)</h1><p show-comma="true" class="content-meta"><time datetime="2026-11-19T11:21:36.000Z">19 нояб. 2026 г.</time><span>время чтения ~25 мин.</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="лекция-06--язык-программирования-на-примере-c">Лекция 06 — Язык программирования (на примере C)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#лекция-06--язык-программирования-на-примере-c" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<p><a href="../../информатика-и-основы-программирования/лекции/лекции-по-информатике-и-основам-программирования" class="internal internal-link alias" data-slug="информатика-и-основы-программирования/лекции/лекции-по-информатике-и-основам-программирования">← К лекциям</a></p>
+<blockquote>
+<p><strong>Информатика и основы программирования — Я. А. Кириленко, 2026.</strong><br/>
+Материал составлен по <strong>слайдам 1–31 и комментариям преподавателя</strong>. Исходные примеры из презентации сохранены; дополнительные иллюстрации обозначены отдельно.<br/>
+<strong>Связь с экзаменом:</strong> прежде всего темы <strong>№19</strong> (управляющие конструкции, блок-схемы), <strong>№28</strong> (процедуры, область видимости и время жизни), <strong>№32</strong> (парадигмы), <strong>№33</strong> (структурное программирование, теорема Бёма — Якопини). В лекции также затрагиваются отдельные части тем №15–18 и материал о трансляции/библиотеках из №9–11. Это не исчерпывающие ответы на все перечисленные билеты.</p>
+</blockquote>
+<h2 id="1-по-какому-критерию-выбирать-язык-программирования-слайды-12">1. По какому критерию выбирать язык программирования? (слайды 1–2)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-по-какому-критерию-выбирать-язык-программирования-слайды-12" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Абсолютно лучшего языка программирования нет:</strong> выбор зависит от задачи и критерия оценки.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Критерий</th><th>Что оценивается</th></tr></thead><tbody><tr><td>Быстродействие</td><td>Производительность <strong>готовой программы</strong></td></tr><tr><td>Надёжность</td><td>Насколько легко допустить случайную ошибку и насколько язык помогает её предотвратить</td></tr><tr><td>Библиотеки</td><td>Доступность готового кода для конкретных задач</td></tr><tr><td>Популярность</td><td>Распространённость, доступность специалистов, документации и инструментов</td></tr><tr><td>Экономическая эффективность</td><td>Стоимость разработки, поддержки и эксплуатации</td></tr></tbody></table></div>
+<p><strong>TCO (Total Cost of Ownership — совокупная стоимость владения)</strong> включает разработку, сопровождение, исправление ошибок, эксплуатацию и развитие ПО. Иногда важнее быстро выпустить продукт, иногда — снизить многолетние расходы и риски. Критерии «первый изученный» и «без фигурных скобок» показывают, что субъективный вкус сам по себе не делает язык объективно лучшим.</p>
+<p><strong>Вывод:</strong> выбирать язык нужно <strong>под задачу</strong> и обосновывать выбор, а не объявлять универсального победителя.</p>
+<h2 id="2-ассемблер-и-языки-высокого-уровня-слайды-34">2. Ассемблер и языки высокого уровня (слайды 3–4)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-ассемблер-и-языки-высокого-уровня-слайды-34" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Язык ассемблера (assembly language)</strong> — низкоуровневый язык, в котором инструкции процессора записаны <strong>мнемониками</strong> — короткими текстовыми именами команд. Ассемблер (программа-транслятор) преобразует эти записи в машинные инструкции целевой архитектуры.</p>
+<ul>
+<li><strong>Регистр</strong> — небольшое высокоскоростное хранилище внутри процессора; команды ассемблера часто явно указывают регистры.</li>
+<li>Ассемблер — <strong>семейство языков</strong>, а не один универсальный язык: набор команд и регистров зависит от архитектуры (например, x86-64 или ARM).</li>
+<li>Иногда ассемблеры предоставляют дополнительные макросы и конструкции, похожие на высокоуровневые циклы и ветвления.</li>
+</ul>
+<p><strong>Исходный пример из лекции:</strong> <a href="https://godbolt.org/z/6cTbY7nr6" class="external external-link">Compiler Explorer — пример ассемблера<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>.</p>
+<p><strong>Почему возникла проблема переносимости.</strong> Программа на ассемблере тесно связана с набором инструкций конкретного процессора. При переходе на другую архитектуру код приходится существенно перерабатывать. Когда в 1960–1970-е годы стало больше несовместимых машин, такое переписывание оказалось дорогостоящим.</p>
+<p><strong>АЯВУ — алгоритмические языки высокого уровня (HLL, High-Level Languages)</strong> позволяют описывать вычисления без прямого перечисления машинных команд. Компилятор переводит один исходный код в инструкции нужной архитектуры. Это основа <strong>переносимости (portability)</strong>, хотя платформенно-зависимый код и особенности библиотек могут потребовать доработок.</p>
+<p>В маломощных микроконтроллерах аппаратных операций бывает меньше, чем у процессоров общего назначения. Например, если инструкции произвольного умножения нет, компилятор может реализовать его последовательностью команд; умножение беззнакового значения на <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span> часто сводится к сдвигу влево на <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> бит (при соблюдении условий применимости).</p>
+<h2 id="3-происхождение-c-unix-и-разработчики-слайды-57">3. Происхождение C, Unix и разработчики (слайды 5–7)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-происхождение-c-unix-и-разработчики-слайды-57" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Язык <strong>C</strong> появился при развитии операционной системы <strong>Unix</strong>. Раннюю Unix писали на ассемблере для <strong>PDP-7</strong> (PDP — <em>Programmed Data Processor</em>, семейство компьютеров DEC). При переносе на PDP-11 понадобился более переносимый инструмент.</p>
+<p>Историческая линия:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Год</th><th>Событие</th></tr></thead><tbody><tr><td><strong>1967</strong></td><td>Мартин Ричардс создал <strong>BCPL (Basic Combined Programming Language)</strong> — упрощение CPL (Combined Programming Language).</td></tr><tr><td><strong>Около 1969</strong></td><td>Кен Томпсон разработал <strong>B</strong> на основе BCPL; в его развитии участвовал Деннис Ритчи. B не имел привычной системы типов.</td></tr><tr><td><strong>1972</strong></td><td>Деннис Ритчи разработал C как развитие B с типами данных; язык использовали при работе над Unix.</td></tr><tr><td><strong>1973</strong></td><td>Появилось <code>struct</code>, позволившее объединять данные в структуры.</td></tr><tr><td><strong>1978</strong></td><td>Брайан Керниган и Деннис Ритчи опубликовали <em>The C Programming Language</em> (<strong>K&amp;R</strong>); это описание C уже близко к привычному языку.</td></tr></tbody></table></div>
+<p><strong>Исторический пример со слайда:</strong> ранний синтаксис вычитания с присваиванием использовал <code>i =- 5</code>, что визуально смешивалось с присваиванием отрицательного числа. Современная запись устраняет неоднозначность:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// Дополнение: современная иллюстрация неоднозначности</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// i =- 5;  // старая запись операции вычитания с присваиванием</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">-=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">     // вычесть 5 из i</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">i </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> -</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">     // присвоить i значение -5</span></span></code></pre></figure>
+<p><strong>Предшественники Unix:</strong> среди ранних систем с использованием языков высокого уровня в лекции названы ОС для <strong>Burroughs B5000</strong> (Algol, 1961) и <strong>Multics</strong> (PL/I, середина 1960-х). Unix не была первой подобной системой, но стала чрезвычайно влиятельной.</p>
+<p><strong>Персоналии:</strong></p>
+<ul>
+<li><strong>Кен Томпсон (Ken Thompson)</strong> — Unix, B, <code>grep</code> и работа с регулярными выражениями; участвовал в разработке <strong>UTF-8 (Unicode Transformation Format, 8-bit)</strong> и Go.</li>
+<li><strong>Деннис Ритчи (Dennis Ritchie)</strong> — главный создатель C, один из создателей Unix; позднее работал над <strong>Plan 9</strong> и <strong>Inferno</strong>.</li>
+<li><strong>Брайан Керниган (Brian Kernighan)</strong> — соавтор книги K&amp;R, участвовал в создании AWK; сам подчёркивал, что язык C — прежде всего работа Ритчи.</li>
+<li>Томпсон и Ритчи получили <strong>премию Тьюринга в 1983 году</strong> за вклад в теорию и реализацию операционных систем, прежде всего Unix.</li>
+</ul>
+<p>На слайдах также различаются <strong>hacker</strong> — исторически технический энтузиаст и исследователь — и <strong>cracker</strong> — человек, взламывающий защиту. В современном употреблении терминология бывает менее строгой.</p>
+<h2 id="4-стандарты-c-и-флаг--std-слайд-8">4. Стандарты C и флаг <code>-std=</code> (слайд 8)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-стандарты-c-и-флаг--std-слайд-8" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Стандарт C</strong> задаёт правила языка и требования к стандартной библиотеке, чтобы независимые реализации были совместимы. <strong>ANSI (American National Standards Institute)</strong> — американский институт стандартизации; <strong>ISO (International Organization for Standardization)</strong> — международная организация по стандартизации.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Стандарт</th><th>Существенные изменения</th></tr></thead><tbody><tr><td><strong>C89 / C90</strong></td><td>Первый стандарт ANSI (1989), затем ISO (1990); база современного C.</td></tr><tr><td><strong>C99</strong></td><td>Однострочные комментарии <code>//</code>, <code>long long</code>, <code>_Complex</code>, <code>inline</code>, <code>restrict</code>, уточнения арифметики с плавающей точкой.</td></tr><tr><td><strong>C11</strong></td><td>Средства атомарных операций и многопоточности.</td></tr><tr><td><strong>C18</strong></td><td>Преимущественно исправления и уточнения C11.</td></tr><tr><td><strong>C23</strong></td><td><code>bool</code>, <code>true</code>, <code>false</code> стали ключевыми словами; также добавлены, в частности, <code>nullptr</code>, <code>typeof</code>, <code>constexpr</code> для объектов, <code>#embed</code>, новые возможности <code>auto</code>; убраны старые K&amp;R-определения функций. Стандарт опубликован как ISO/IEC 9899:2024.</td></tr></tbody></table></div>
+<p><strong>Примеры указания стандарта (суть рекомендации преподавателя):</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">gcc</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -std=c99</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> prog.c</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -o</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> prog</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">gcc</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -std=c11</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> prog.c</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -o</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> prog</span></span></code></pre></figure>
+<p>Без <code>-std=</code> режим по умолчанию зависит от компилятора и его версии. По материалам лекции <strong>C99/C11</strong> остаются важны для совместимости со старыми реализациями и проектами; пример — <strong>tcc (Tiny C Compiler)</strong> и проект <strong>GNU Mes</strong>, связанный с построением проверяемой цепочки начальной сборки (<em>bootstrap</em>).</p>
+<p><strong>Почему в C99 появился <code>_Bool</code>, а не <code>bool</code>?</strong> Имя <code>bool</code> могло уже использоваться в старом коде как обычный идентификатор. Имена с подчёркиванием и заглавной буквой заранее резервировались для реализации, поэтому добавление <code>_Bool</code> реже ломало существующие программы. В C99–C18 удобное имя <code>bool</code> предоставлял заголовок <code>&lt;stdbool.h></code>; в C23 <code>bool</code> стало ключевым словом, а <code>_Bool</code> сохранился.</p>
+<blockquote>
+<p><strong>Уточнение:</strong> <code>auto</code> в C99/C11 — спецификатор автоматического времени хранения; в C23 у него появилась также возможность вывода типа по инициализатору. Различать версии стандарта обязательно.</p>
+</blockquote>
+<h2 id="5-оригинальные-примеры-bcpl-и-b-слайды-910">5. Оригинальные примеры BCPL и B (слайды 9–10)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-оригинальные-примеры-bcpl-и-b-слайды-910" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="51-bcpl-valof-и-resultis">5.1. BCPL: <code>VALOF</code> и <code>RESULTIS</code><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-bcpl-valof-и-resultis" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Пример слайда 9 (сохранён полностью):</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>GET &quot;LIBHDR&quot;</span></span>
+<span data-line> </span>
+<span data-line><span>LET START() = VALOF $(</span></span>
+<span data-line><span>    FOR I = 1 TO 5 DO</span></span>
+<span data-line><span>        WRITEF(&quot;%N! = %I4*N&quot;, I, FACT(I))</span></span>
+<span data-line><span>    RESULTIS 0</span></span>
+<span data-line><span>$)</span></span>
+<span data-line> </span>
+<span data-line><span>AND FACT(N) = N = 0 -> 1, N * FACT(N - 1)</span></span></code></pre></figure>
+<p>Программа печатает факториалы чисел <strong>1–5</strong>:</p>
+<ul>
+<li><code>GET &quot;LIBHDR&quot;</code> — подключение библиотечного заголовка.</li>
+<li><code>FOR I = 1 TO 5 DO</code> — цикл по <code>I</code>.</li>
+<li><code>WRITEF(...)</code> — форматированный вывод числа и <code>FACT(I)</code>.</li>
+<li><code>FACT(N)</code> — рекурсивный факториал: при <code>N = 0</code> возвращается <code>1</code>, иначе <code>N * FACT(N - 1)</code>.</li>
+<li>Конструкция <code>N = 0 -> 1, N * FACT(N - 1)</code> — условное выражение (по идее соответствует <code>N == 0 ? 1 : N * FACT(N - 1)</code> в C).</li>
+<li><code>VALOF $( ... $)</code> — <strong>блок операторов, имеющий значение как выражение</strong>; <code>RESULTIS 0</code> завершает его вычисление и задаёт значение <code>0</code>.</li>
+</ul>
+<p><strong>Суть <code>RESULTIS</code>:</strong> это <strong>не печать</strong>. После выполнения цикла всё выражение <code>VALOF ...</code> получает значение <code>0</code>; функция <code>START()</code> возвращает именно его. Особенность BCPL — объединение последовательности действий и возвращаемого значения в одной конструкции.</p>
+<h3 id="52-b-машинное-слово-без-объявленного-типа">5.2. B: машинное слово без объявленного типа<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-b-машинное-слово-без-объявленного-типа" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Пример слайда 10 (сохранён полностью):</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">printn</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(n, b) {</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">        extrn putchar;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">        auto a;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">        if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> n </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> b)</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">   /* assignment, not test for equality*/</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">                printn</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(a, b);</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> /* recursive */</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">        putchar</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(n </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="function"> b </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> '0'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">}</span></span></code></pre></figure>
+<p>Это рекурсивная печать неотрицательного целого <code>n</code> в системе счисления с основанием <code>b</code> (в данном варианте — для цифр <code>0</code>–<code>9</code>):</p>
+<ol>
+<li><code>a = n / b</code> получает целую часть от деления на основание.</li>
+<li>Если <code>a != 0</code>, вызывается <code>printn(a, b)</code> — сначала печатаются старшие цифры.</li>
+<li><code>n % b + '0'</code> получает символьный код последней цифры, <code>putchar</code> печатает её.</li>
+</ol>
+<p><code>extrn putchar</code> — обращение к внешней функции; <code>auto a</code> — локальная переменная с автоматическим временем хранения; <code>if (a = n / b)</code> <strong>присваивает</strong> значение <code>a</code>, затем проверяет результат присваивания на ненулевость. Это не сравнение <code>==</code>.</p>
+<p><strong>Как здесь представлены данные?</strong> В B нет объявлений <code>int</code>, <code>float</code> и подобных типов: переменные вроде <code>a</code> и параметров <code>n</code>, <code>b</code> в базовой модели содержат <strong>машинные слова</strong> — группы битов характерной для машины длины. В коде не требуется писать <code>word</code>: это способ представления значений по умолчанию. Число и адрес различаются тем, как программа использует биты, а не системой типов, привычной по C.</p>
+<h2 id="6-почему-c-сохранил-популярность-слайды-1112">6. Почему C сохранил популярность (слайды 11–12)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-почему-c-сохранил-популярность-слайды-1112" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>В лекции подчёркивается длительное применение C в системном программировании: ядрах ОС, низкоуровневых библиотеках, прошивках, реализациях языков. Например, <strong>CPython</strong> — основная реализация Python — преимущественно написана на C. <strong>TIOBE</strong> на слайде использован как пример рейтинга популярности; рейтинг измеряет косвенные показатели публичной распространённости, <strong>а не долю реального исходного кода</strong>.</p>
+<p>Сочетание свойств C:</p>
+<ul>
+<li><strong>Близость к аппаратуре:</strong> указатели, управление размещением и представлением данных.</li>
+<li><strong>Переносимость исходного кода:</strong> компиляция под разные целевые архитектуры.</li>
+<li><strong>Относительно небольшая языковая среда выполнения:</strong> нет обязательного сборщика мусора и управляемого рантайма.</li>
+<li><strong>Цена контроля:</strong> высокий риск ошибок памяти, неопределённого поведения и сложность обеспечения безопасности.</li>
+</ul>
+<p>Утверждения «Rust / Go / Java лучше C» имеют смысл <strong>только с указанными задачей и критерием</strong>: например, безопасность памяти или скорость разработки могут оказаться важнее прямого низкоуровневого контроля.</p>
+<h2 id="7-парадигмы-и-технологические-характеристики-c-слайд-13">7. Парадигмы и технологические характеристики C (слайд 13)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-парадигмы-и-технологические-характеристики-c-слайд-13" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Парадигма программирования</strong> — подход к организации вычислений и кода. Три подхода, выделенные преподавателем, <strong>не взаимоисключают друг друга</strong>:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Подход</th><th>Главная идея</th><th>Признак в C</th></tr></thead><tbody><tr><td><strong>Императивное</strong></td><td>Программа задаёт <strong>команды, изменяющие состояние</strong>.</td><td>Присваивания, изменение переменных.</td></tr><tr><td><strong>Структурное</strong></td><td>Поток выполнения организован <strong>последовательностью, ветвлениями и циклами</strong>, без необходимости хаотичных переходов.</td><td><code>if</code>, <code>while</code>, <code>for</code>, <code>do ... while</code>.</td></tr><tr><td><strong>Процедурное</strong></td><td>Код организован в <strong>процедуры/функции с параметрами и локальными переменными</strong>.</td><td>Определение и вызов функций.</td></tr></tbody></table></div>
+<p>В классификации лекции это развитие <strong>императивный → структурный → процедурный подход</strong>; речь не о выборе одного из трёх режимов. Обычная функция C с переменными, циклами и ветвлениями использует все три подхода. <strong>Структурное программирование допускает функции</strong>; процедурное дополнительно подчёркивает организацию кода на уровне функций.</p>
+<p>Технические особенности C:</p>
+<ul>
+<li><strong>Раздельная трансляция (separate compilation):</strong> единицы трансляции компилируются отдельно, объектные файлы соединяются редактором связей.</li>
+<li><strong>Препроцессор (preprocessor):</strong> директивы <code>#include</code>, <code>#define</code> и др. обрабатываются до собственно компиляции.</li>
+<li><strong>Нет встроенных пространств имён и системы модулей как в C++:</strong> конфликты имён предотвращаются соглашениями (<code>library_print</code>), а внутреннее связывание (<code>static</code>) помогает скрывать вспомогательные имена.</li>
+</ul>
+<p><strong>Namespace (пространство имён)</strong> — механизм логической группировки имён, позволяющий иметь одинаковые короткие имена в разных группах. В C++ возможно <code>First::print()</code> и <code>Second::print()</code>; в C обычно используют префиксы (<code>first_print</code>, <code>second_print</code>). <em>Это дополнительная иллюстрация, не код со слайда.</em></p>
+<h2 id="8-структура-языка-программирования-слайд-14">8. Структура языка программирования (слайд 14)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-структура-языка-программирования-слайд-14" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Часть языка</th><th>Какой вопрос решает</th><th>Примеры</th></tr></thead><tbody><tr><td><strong>Лексика</strong></td><td>Из каких <strong>токенов</strong> состоит исходный текст?</td><td>Идентификаторы, ключевые слова, литералы, знаки операций.</td></tr><tr><td><strong>Синтаксис</strong></td><td>Какие сочетания токенов <strong>допустимы</strong>?</td><td>Выражения, операторы, блоки, процедуры, область видимости.</td></tr><tr><td><strong>Семантика</strong></td><td><strong>Что означает и делает</strong> корректная конструкция?</td><td>Типы, смысл операций, порядок вычисления.</td></tr><tr><td><strong>Библиотеки</strong></td><td>Какие <strong>готовые возможности</strong> доступны?</td><td><code>printf</code>, <code>malloc</code>, <code>strlen</code>.</td></tr></tbody></table></div>
+<p><strong>Дополнительная иллюстрация:</strong> в <code>int x = 5;</code> лексический анализ выделяет <code>int</code>, <code>x</code>, <code>=</code>, <code>5</code>, <code>;</code>; синтаксис допускает такое объявление; семантика задаёт создание объекта <code>int</code>, инициализированного значением <code>5</code>.</p>
+<h2 id="9-лексика-c-токены-и-ключевые-слова-слайды-1516">9. Лексика C: токены и ключевые слова (слайды 15–16)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#9-лексика-c-токены-и-ключевые-слова-слайды-1516" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Токен</strong> — элементарная значимая единица текста программы. На слайде перечислены следующие категории:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Категория</th><th><strong>Оригинальные примеры лекции</strong></th><th>Значение</th></tr></thead><tbody><tr><td>Пробельные символы (<em>whitespace</em>)</td><td>Пробел, табуляция, новая строка</td><td>Разделяют токены.</td></tr><tr><td>Комментарии</td><td><code>/* ... */</code>, <code>// ...</code></td><td>Не участвуют в выполнении программы.</td></tr><tr><td>Десятичные целые литералы</td><td><code>100500L</code></td><td><code>L</code> указывает целочисленный тип семейства <code>long</code>.</td></tr><tr><td>Шестнадцатеричные литералы</td><td><code>0xBADF00D</code></td><td><code>0x</code> обозначает основание 16.</td></tr><tr><td>Литералы с плавающей точкой</td><td><code>1.5</code>, <code>.4</code>, <code>1.7e+2</code>, <code>.3f</code></td><td><code>1.7e+2 = 170</code>; <code>f</code> задаёт <code>float</code>.</td></tr><tr><td>Символьный/строковый литерал</td><td><code>'A'</code>, <code>&quot;literal string&quot;</code></td><td>Значение символа / строковый литерал.</td></tr><tr><td>Операции и разделители</td><td><code>=</code>, <code>/=</code>, <code>{</code>, <code>}</code></td><td>Действия и синтаксические знаки.</td></tr><tr><td>Ключевые слова</td><td><code>if</code>, <code>int</code>, <code>return</code></td><td>Зарезервированные слова языка.</td></tr><tr><td>Идентификаторы</td><td><code>abc</code>, <code>main</code>, <code>printf</code></td><td>Имена сущностей.</td></tr></tbody></table></div>
+<p><strong>Идентификатор</strong> — имя переменной, функции или другой именованной сущности. <strong>Ключевое слово</strong> — слово, закреплённое за синтаксисом языка; использовать его как имя переменной или функции нельзя. Например, <code>printf</code> — идентификатор библиотечной функции, <strong>не</strong> ключевое слово.</p>
+<p><strong>Комментарии C не вложены:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">/* первый /* второй */</span></span></code></pre></figure>
+<p>Первый <code>/*</code> открывает комментарий, второй находится <strong>внутри</strong> комментария как текст, первый <code>*/</code> закрывает его. Второго независимого уровня вложенности нет.</p>
+<p><strong>Суффиксы целочисленных литералов</strong>, перечисленные преподавателем: <code>U</code> (<em>unsigned</em>), <code>L</code> (<em>long</em>), <code>UL</code>, <code>LL</code> (<em>long long</em>), <code>ULL</code>; регистр суффиксов может варьироваться. Они задают категорию целочисленного типа (например, <code>100ULL</code> — <code>unsigned long long</code>). Для вещественных литералов есть другие суффиксы: <code>.3f</code> — <code>float</code>, <code>1.5L</code> — <code>long double</code>.</p>
+<p><strong>Группы ключевых слов C89 (исходный список):</strong></p>
+<ul>
+<li><strong>Управление:</strong> <code>break</code>, <code>case</code>, <code>continue</code>, <code>default</code>, <code>do</code>, <code>else</code>, <code>for</code>, <code>goto</code>, <code>if</code>, <code>return</code>, <code>switch</code>, <code>while</code>.</li>
+<li><strong>Типы и конструкторы типов:</strong> <code>char</code>, <code>double</code>, <code>enum</code>, <code>float</code>, <code>int</code>, <code>long</code>, <code>short</code>, <code>signed</code>, <code>struct</code>, <code>typedef</code>, <code>union</code>, <code>unsigned</code>, <code>void</code>.</li>
+<li><strong>Спецификаторы/квалификаторы:</strong> <code>auto</code>, <code>const</code>, <code>extern</code>, <code>register</code>, <code>static</code>, <code>volatile</code>.</li>
+<li><strong>Оператор:</strong> <code>sizeof</code> — размер типа или выражения в байтах C.</li>
+</ul>
+<p><strong>В C99</strong> добавлены, в частности, <code>_Bool</code>, <code>_Complex</code>, <code>_Imaginary</code>, <code>inline</code>, <code>restrict</code>.</p>
+<p><strong>Имена с <code>_</code>.</strong> Стандарт резервирует ряд идентификаторов для реализации языка (например, начинающихся с <code>_</code> и заглавной буквы, либо с <code>__</code>). Это позволяет расширять язык, не занимая распространённые пользовательские имена. В собственном коде следует избегать зарезервированных имён.</p>
+<h2 id="10-синтаксис-объявление-и-определение-слайд-17">10. Синтаксис. Объявление и определение (слайд 17)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-синтаксис-объявление-и-определение-слайд-17" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Синтаксис</strong> устанавливает допустимый порядок токенов. Блоки могут обозначаться <code>{}</code> (C, Java, Rust), <code>begin/end</code> (Algol, Pascal и др.), отступами (Python, Haskell). В C <code>;</code> — <strong>терминатор оператора/объявления</strong>, а не просто разделитель. Одиночный <code>;</code> — допустимый <strong>пустой оператор</strong>.</p>
+<p><strong>Программа на C</strong> состоит из объявлений (<em>declarations</em>) и определений (<em>definitions</em>) объектов, функций и типов.</p>
+<ul>
+<li><strong>Объявление (declaration)</strong> сообщает компилятору имя и правила его использования (например, тип и параметры функции).</li>
+<li><strong>Определение (definition)</strong> создаёт сам объект или задаёт реализацию функции. Оно также служит объявлением, но обратное неверно.</li>
+</ul>
+<p><strong>Дополнительная иллюстрация:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> sum</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> b</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">          // Объявление функции: тела нет</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> sum</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> b</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) {</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">         // Определение функции: реализация есть</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> b;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">extern</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> count;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">               // Объявление внешней переменной</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> count </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">                  // Определение переменной</span></span></code></pre></figure>
+<p>Объявление функции позволяет проверить вызов <strong>до обнаружения реализации</strong>. Но если при сборке определение нигде не найдено, линкер выдаёт ошибку вроде <code>undefined reference to 'sum'</code>.</p>
+<p><strong>Раздельная трансляция и единица трансляции:</strong> препроцессор формирует из одного исходного <code>.c</code> с включёнными заголовками единицу трансляции (<em>translation unit</em>). Компилятор обрабатывает её отдельно. <strong>Linkage (связывание имени)</strong> — правило языка, определяющее, обозначает ли одно имя одну сущность в разных местах программы; <strong>linker (редактор связей)</strong> — инструмент, который объединяет объектные файлы и разрешает внешние ссылки. Термины связаны, но не тождественны.</p>
+<p><img src="../../assets/lecture-06/translation-units.svg" alt="Единицы трансляции и связывание объектных файлов"/></p>
+<h2 id="11-семантика-c-и-порядок-вычислений-слайд-18">11. Семантика C и порядок вычислений (слайд 18)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-семантика-c-и-порядок-вычислений-слайд-18" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Семантика</strong> — смысл конструкций языка. Для обычной программы C основная точка входа — <code>main()</code>; до неё происходит необходимая инициализация, в том числе статических данных, а при нормальном завершении могут выполняться зарегистрированные через <code>atexit()</code> функции. Функция с возвращаемым типом <code>void</code> не возвращает значения.</p>
+<p><strong>Важнейший пример слайда:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">func3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">func1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(), </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">func2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">());</span></span></code></pre></figure>
+<p><strong>Оба</strong> вызова <code>func1()</code> и <code>func2()</code> выполняются до фактического вызова <code>func3()</code>, но <strong>порядок двух внутренних вызовов не определён стандартом</strong>: допустим и <code>func1 → func2</code>, и <code>func2 → func1</code>. Аналогично не стоит полагаться на порядок вычисления операндов в большинстве арифметических выражений.</p>
+<p>Это сделано в том числе ради свободы оптимизации. <strong>Отсутствие гарантированного порядка само по себе не означает неопределённое поведение.</strong></p>
+<p><strong>UB (Undefined Behavior — неопределённое поведение)</strong> — ситуация, для которой стандарт языка не предъявляет требований к результату выполнения. Например, при 32-битном <code>int</code> переполнение <code>2147483647 + 1</code> для знакового целого — UB. Оно отличается от <em>неуточнённого порядка вычисления</em>, когда стандарт допускает несколько конкретных вариантов.</p>
+<h2 id="12-типы-представление-данных-и-строки-слайд-19">12. Типы, представление данных и строки (слайд 19)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-типы-представление-данных-и-строки-слайд-19" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Тип данных</strong> задаёт: <strong>(1) представление/размещение значений в памяти</strong> и <strong>(2) семантику операций над ними</strong>. У встроенных типов C набор относительно невелик:</p>
+<ul>
+<li>Целочисленные: <code>char</code>, <code>short</code>, <code>int</code>, <code>long</code>, <code>long long</code>; для подходящих типов — варианты <code>signed</code>/<code>unsigned</code>.</li>
+<li>Вещественные: <code>float</code>, <code>double</code>, <code>long double</code>.</li>
+<li>Логический: <code>_Bool</code> (начиная с C99), в C23 ключевое слово <code>bool</code>.</li>
+<li>Комплексные: <code>_Complex</code> (C99).</li>
+<li>Указатели и составные типы: <code>struct</code>, <code>union</code>, массивы <code>[]</code>.</li>
+</ul>
+<p><strong>Почему <code>char</code> — целочисленный тип?</strong> Символ хранится как числовой код. В ASCII-совместимом наборе <code>'A'</code> соответствует коду <code>65</code>, и операции с <code>char</code> используют целочисленную арифметику. <strong>Байт C</strong> — единица размера <code>sizeof(char) == 1</code>; типичны 8-битные байты, но стандарт не гарантирует ровно 8 бит на всех архитектурах.</p>
+<p><strong>Составные типы:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Тип</th><th>Размещение</th></tr></thead><tbody><tr><td><code>struct</code></td><td>Поля имеют отдельные области памяти (возможны промежутки для выравнивания).</td></tr><tr><td><code>union</code></td><td>Поля разделяют одну область памяти; интерпретация тех же байтов зависит от выбранного поля и правил языка.</td></tr><tr><td>Массив <code>[]</code></td><td>Элементы одного типа расположены последовательно.</td></tr></tbody></table></div>
+<p>В C нельзя произвольно <strong>перегружать операторы</strong> для собственных структур, как в C++; при этом допустимы предусмотренные языком операции, например присваивание структур одинакового типа.</p>
+<p><strong>Встроенного самостоятельного строкового типа в C нет.</strong> Строка в обычной модели C — последовательность <code>char</code>, завершающаяся нулевым символом <code>\0</code>. Например, литерал <code>&quot;Cat&quot;</code> при хранении как массив <code>char</code> занимает четыре элемента: <code>'C'</code>, <code>'a'</code>, <code>'t'</code>, <code>'\0'</code>.</p>
+<h2 id="13-выражения-присваивание-и-гарантированный-порядок-слайд-20">13. Выражения, присваивание и гарантированный порядок (слайд 20)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-выражения-присваивание-и-гарантированный-порядок-слайд-20" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Выражение (expression)</strong> — синтаксическая конструкция, при вычислении которой получается значение (или, для <code>void</code>-выражения, вычисление без значения). <strong>Value</strong> — результат вычисления.</p>
+<p>В C <strong>присваивание — тоже выражение</strong>: результат <code>b = 5</code> имеет значение <code>5</code>, поэтому корректно:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// Дополнительная иллюстрация</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> a, b;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> b </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">   // Сначала b получает 5, затем a получает 5</span></span></code></pre></figure>
+<p><strong>Важные исключения, где порядок вычисления специально определён:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Оператор</th><th>Поведение</th></tr></thead><tbody><tr><td><code>,</code> (оператор запятая)</td><td>Сначала левое выражение, потом правое; значение — у правого.</td></tr><tr><td><code>a ? b : c</code></td><td>Сначала <code>a</code>; вычисляется <strong>только</strong> <code>b</code> при истинном <code>a</code> или <code>c</code> при ложном.</td></tr><tr><td><code>&amp;&amp;</code> — логическое И</td><td>Если слева ложь, справа <strong>не вычисляется</strong>.</td></tr><tr><td>`</td><td></td></tr></tbody></table></div>
+<p><strong>Оригинальный пример из комментариев:</strong> <code>a = (x, y)</code> — вычисляется <code>x</code>, затем <code>y</code>, и в <code>a</code> присваивается значение <code>y</code>.</p>
+<p>Не путать <strong>оператор запятая</strong> с запятой, разделяющей аргументы: <code>func(x, y)</code> <strong>не</strong> задаёт порядок вычисления <code>x</code> и <code>y</code>. В <code>f() + g()</code> порядок вызовов также не гарантируется. Выражение <code>2 + 3;</code> допустимо: результат просто не используется.</p>
+<h2 id="14-l-value-и-r-value-слайд-21">14. L-value и R-value (слайд 21)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#14-l-value-и-r-value-слайд-21" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Названия исторически происходят от <em>left/right value</em>, но <strong>категория выражения не определяется его буквальным положением слева или справа от <code>=</code></strong>.</p>
+<ul>
+<li><strong>L-value</strong> — выражение, <strong>обозначающее объект</strong>; например, имя переменной <code>x</code>. В C существует также понятие <em>modifiable lvalue</em> — l-value, в который разрешено записывать.</li>
+<li><strong>R-value</strong> — удобное учебное обозначение вычисленного значения, не обозначающего самостоятельный объект (например, числовой литерал <code>5</code> или результат <code>x + 3</code>). Терминология стандарта C отличается от классификации выражений C++.</li>
+</ul>
+<p><strong>Дополнительная иллюстрация:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> y </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// x и y обозначают объекты: l-value</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// 5 и (x + 3) — вычисленные значения</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// &amp;x — допустимо; &amp;(x + 3) и &amp;5 — недопустимы</span></span></code></pre></figure>
+<p>Важно: <code>x</code> остаётся <strong>l-value даже справа</strong> в <code>y = x;</code>. <code>const int x = 5;</code> также даёт l-value, но оно не модифицируемо. <strong>Не у всех l-value можно брать адрес</strong>: исключения — например, битовое поле структуры или переменная со спецификатором <code>register</code>. Тип <code>void</code> не имеет обычных значений.</p>
+<h2 id="15-область-видимости-время-хранения-связывание-модификаторы-слайд-22">15. Область видимости, время хранения, связывание. Модификаторы (слайд 22)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#15-область-видимости-время-хранения-связывание-модификаторы-слайд-22" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Для экзамена важно разделять <strong>три разных свойства</strong>:</p>
+<ol>
+<li><strong>Область видимости (scope)</strong> — в какой части исходного текста доступно <strong>имя</strong>.</li>
+<li><strong>Время хранения (storage duration)</strong> — как долго существует <strong>сам объект</strong>.</li>
+<li><strong>Связывание (linkage)</strong> — могут ли объявления одного имени в разных местах означать <strong>одну сущность</strong>.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Спецификатор</th><th>Основная идея</th></tr></thead><tbody><tr><td><code>auto</code></td><td>Для локального объекта: автоматическое время хранения; в C99/C11 обычно не пишется явно.</td></tr><tr><td><code>static</code></td><td>Локально: объект сохраняется между вызовами; на уровне файла: внутреннее связывание имени.</td></tr><tr><td><code>extern</code></td><td>Используется для обращения к объявлению с внешним связыванием, определение может быть в другом модуле.</td></tr><tr><td><code>register</code></td><td>Историческая просьба хранить значение в регистре; в C запрещает брать <code>&amp;</code> от такой переменной.</td></tr><tr><td><code>const</code></td><td>Не позволяет модифицировать объект через данное квалифицированное l-value.</td></tr><tr><td><code>volatile</code></td><td>Существенные чтения/записи нельзя произвольно устранять: значение может изменяться вне обычной логики программы.</td></tr><tr><td><code>inline</code></td><td>Связано с возможностью встраивания тела функции; <strong>не гарантирует</strong> фактического встраивания.</td></tr><tr><td><code>restrict</code></td><td>Обещание программиста об особенностях доступа к памяти через указатель, позволяющее оптимизации.</td></tr></tbody></table></div>
+<h3 id="auto-и-локальный-static"><code>auto</code> и локальный <code>static</code><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#auto-и-локальный-static" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Дополнительный пример:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">void</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> f</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">void</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">          // как auto int a = 0; (C11)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    static</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> b </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">    ++</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">a;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">    ++</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">b;</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">    printf</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">%d</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> %d\n</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, a, b);</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">}</span></span></code></pre></figure>
+<p>При последовательных вызовах <code>f()</code> результаты будут <code>1 1</code>, затем <code>1 2</code>, затем <code>1 3</code>: <code>a</code> создаётся заново при каждом входе, а <code>b</code> существует всё время выполнения программы. Автоматическое время хранения <strong>не гарантирует физического размещения строго на стеке</strong>: возможны регистры и оптимизации.</p>
+<h3 id="static-на-уровне-файла-extern-и-единицы-трансляции"><code>static</code> на уровне файла, <code>extern</code> и единицы трансляции<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#static-на-уровне-файла-extern-и-единицы-трансляции" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// Дополнительная иллюстрация: data.c</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> counter </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">             // Определение, внешнее связывание</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">static</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> hidden </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 7</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">       // Имя имеет внутреннее связывание</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// Дополнительная иллюстрация: main.c</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">extern</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> counter;</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">          // Ссылаемся на определение из data.c</span></span></code></pre></figure>
+<p><code>counter</code> доступен другим единицам трансляции через корректное внешнее объявление; <code>hidden</code> нельзя найти из другого <code>.c</code> по этому имени. Для <strong>локальной переменной</strong> <code>static</code> означает <strong>время хранения</strong>, а для <strong>имени на уровне файла</strong> — <strong>внутреннее связывание</strong>. Сочетать эти два смысла нельзя автоматически.</p>
+<h3 id="const-volatile-inline-restrict"><code>const</code>, <code>volatile</code>, <code>inline</code>, <code>restrict</code><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#const-volatile-inline-restrict" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><code>const int x = 5;</code> — присваивание <code>x = 6;</code> запрещено. При этом <code>const</code> <strong>не равен</strong> «значение обязательно вычислено компилятором заранее».</li>
+<li><code>volatile</code> нужен, например, при чтении отображённого в память регистра устройства: компилятор не должен устранять значимые повторные обращения. <strong><code>volatile</code> не даёт атомарности и сам по себе не делает обмен между потоками безопасным.</strong></li>
+<li><code>inline</code> не гарантирует замену вызова на тело: компилятор решает, выгодно ли это; правила <code>inline</code> касаются и связывания определений.</li>
+<li><code>restrict</code> — для оптимизации кода с указателями: программист обещает, что определённые обращения к изменяемому объекту в данном контексте не будут конфликтовать через посторонние указатели.</li>
+</ul>
+<p><strong>Дополнительная иллюстрация для <code>restrict</code>:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">void</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function"> add</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> *restrict</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> a</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> *restrict</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important"> b</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">) {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">    *</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+=</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> *</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">b;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 10</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, y </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">add</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">x</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">y</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">  // корректно: x станет 15</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">add</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">x</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">&amp;</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">x</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">  // нарушает restrict-контракт; UB</span></span></code></pre></figure>
+<p>Без соответствующей гарантии компилятор вынужден учитывать <strong>aliasing (алиасинг)</strong> — ситуацию, когда несколько указателей обращаются к одному объекту. <code>restrict</code> не делает проверку во время исполнения, а возлагает соблюдение контракта на программиста. Формальные правила несколько точнее, чем простое «все адреса различны».</p>
+<h2 id="16-управляющие-конструкции-c-слайды-2324">16. Управляющие конструкции C (слайды 23–24)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#16-управляющие-конструкции-c-слайды-2324" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Управляющие конструкции</strong> определяют порядок выполнения операторов:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Конструкция</th><th>Семантика</th></tr></thead><tbody><tr><td>Последовательность</td><td>Выполнить первый оператор, затем следующий.</td></tr><tr><td><code>if / else</code></td><td>Выбрать ветвь по условию.</td></tr><tr><td><code>while</code></td><td><strong>Предусловие:</strong> проверить условие до тела; возможно ноль итераций.</td></tr><tr><td><code>for</code></td><td>В C — цикл с предусловием, дополненный выражениями инициализации и шага.</td></tr><tr><td><code>do ... while</code></td><td><strong>Постусловие:</strong> выполнить тело, затем проверить условие; минимум одна итерация.</td></tr><tr><td><code>switch</code> / <code>case</code></td><td>Вычислить целочисленное управляющее выражение и перейти к подходящей метке.</td></tr><tr><td><code>goto</code></td><td>Безусловно перейти к метке <strong>в пределах функции</strong>.</td></tr></tbody></table></div>
+<p><strong>Оригинальные конструкции со слайда:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// Иллюстративная запись синтаксиса из презентации</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">goto</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> SomeLabel;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">for</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (;;) { }</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">do</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> { } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">while</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (condition);</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">switch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x) { </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">case</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> /* ... */</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword"> break</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">; </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">default</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"> /* ... */</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> }</span></span></code></pre></figure>
+<p>В <strong>C нет отдельного строгого «цикла со счётчиком»</strong>: <code>for</code> может не иметь счётчика (<code>for (;;)</code>), его переменные можно менять в теле, три части заголовка могут быть произвольными допустимыми выражениями. В отличие от более строгих конструкций некоторых других языков, <code>for</code> C не обещает выполнение ровно заданного числа итераций.</p>
+<p><strong><code>switch</code> — это не автоматически независимые ветви.</strong> Он передаёт управление на метку внутри блока; при отсутствии <code>break</code> выполнение <strong>проваливается (fall-through)</strong> к следующим операторам и меткам.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// Дополнительная иллюстрация</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> x </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">switch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> (x) {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    case</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">printf</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;A&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    case</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">printf</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;B&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">); </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">break</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">    default</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">printf</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;C&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">);</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">}</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">// Вывод: AB</span></span></code></pre></figure>
+<p><strong><code>goto</code> не запрещён языком.</strong> Практический пример — единая метка <code>cleanup</code> для освобождения нескольких ресурсов при ошибке. Опасность заключается в запутанном и неконтролируемом потоке управления, а не в существовании самой инструкции.</p>
+<p><strong>Duff’s device (устройство Даффа)</strong> — нестандартный на вид, но исторически известный приём, совмещающий <code>switch</code> и <code>do ... while</code> ради <strong>развёртки цикла (loop unrolling)</strong> без отдельной обработки оставшихся итераций. Возможен благодаря механизму перехода к метке внутри блока <code>switch</code>. Его важно <strong>узнавать и уметь объяснить</strong>, а не считать обычным стилем написания циклов.</p>
+<p><img src="../../assets/lecture-06/control-flow.svg" alt="Поток управления: while, do while, switch"/></p>
+<h2 id="17-подпрограммы-процедуры-рекурсия-слайды-2526">17. Подпрограммы, процедуры, рекурсия (слайды 25–26)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#17-подпрограммы-процедуры-рекурсия-слайды-2526" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Подпрограмма (subroutine)</strong> в историческом смысле — именованный участок кода, который можно выполнить и затем вернуться к вызвавшему месту. Примеры старых механизмов: <code>GOSUB</code> в BASIC (<em>Beginner’s All-purpose Symbolic Instruction Code</em>), <code>PERFORM</code> в COBOL (<em>Common Business-Oriented Language</em>).</p>
+<p><strong>Процедура (procedure)</strong> — подпрограмма с <strong>параметрами и собственными локальными переменными</strong> каждого вызова. Именно независимость вызовов делает удобными повторное использование кода и рекурсию. В C процедуры реализуются функциями; функции могут возвращать значение или быть типа <code>void</code>.</p>
+<p><strong>Рекурсия</strong> — прямой или косвенный вызов функции самой себя:</p>
+<ul>
+<li>Прямая: <code>A() → A()</code>.</li>
+<li>Косвенная: <code>A() → B() → A()</code>.</li>
+<li>Просто <code>A() → B()</code> <strong>не является</strong> рекурсией.</li>
+</ul>
+<p>При рекурсивных вызовах каждому вызову требуется отдельное состояние параметров и автоматических локальных переменных. Для этого обычные реализации используют <strong>стек вызовов (call stack)</strong>, состоящий из <strong>кадров (stack frames)</strong>. Возвращаясь из вложенного вызова, программа восстанавливает данные предыдущего.</p>
+<p><img src="../../assets/lecture-06/call-stack.svg" alt="Отдельные кадры стека для рекурсивных вызовов"/></p>
+<h2 id="18-история-структурного-программирования-и-теорема-бёма--якопини-слайд-27">18. История структурного программирования и теорема Бёма — Якопини (слайд 27)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#18-история-структурного-программирования-и-теорема-бёма--якопини-слайд-27" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Год</th><th>Вклад</th><th>Суть</th></tr></thead><tbody><tr><td><strong>1958</strong></td><td><strong>Fortran II</strong>, Джон Бэкус (IBM)</td><td>Подпрограммы с параметрами; статическая организация данных в тогдашней модели препятствовала обычной рекурсии.</td></tr><tr><td><strong>1960</strong></td><td><strong>Algol 60</strong></td><td>Собственные локальные переменные каждого вызова, стековая модель и рекурсия; синтаксис описывался формальной грамматикой.</td></tr><tr><td><strong>1966</strong></td><td><strong>Коррадо Бём и Джузеппе Якопини</strong></td><td>Теорема о достаточности структурных управляющих конструкций.</td></tr><tr><td><strong>1968</strong></td><td><strong>Эдсгер Дейкстра</strong></td><td>Письмо <em>Go To Statement Considered Harmful</em> о вреде недисциплинированных переходов.</td></tr><tr><td><strong>1972</strong></td><td><strong>C</strong></td><td>Использует структурные конструкции и процедуры, но сохраняет <code>goto</code>.</td></tr></tbody></table></div>
+<p><strong>БНФ (Backus–Naur Form — форма Бэкуса — Наура)</strong> — способ формально описывать синтаксис языка через правила грамматики; вклад Algol 60 существенно повлиял на теорию компиляторов.</p>
+<p><strong>Структурное программирование</strong> — подход к организации <strong>потока управления</strong> через <strong>последовательность, ветвление и цикл</strong>. Оно <strong>не запрещает функции</strong>, а процедурное программирование дополняет структурный стиль организацией кода в процедуры.</p>
+<p><strong>Теорема Бёма — Якопини (1966):</strong> любой вычислимый алгоритм можно выразить с помощью <strong>последовательного выполнения, ветвления и повторения</strong>, без необходимости использовать произвольный <code>goto</code> (при подходящей организации данных и управления).</p>
+<p><strong>Что теорема НЕ говорит:</strong> она не запрещает оператор <code>goto</code> в языке. Дейкстра выступал против <strong>необозримого, недисциплинированного</strong> управления потоком. C сохраняет <code>goto</code> для практических случаев, например выхода из сложной обработки ошибок к единой точке очистки ресурсов.</p>
+<h2 id="19-стандартная-библиотека-c-libc-и-libm-слайд-28">19. Стандартная библиотека C, <code>libc</code> и <code>libm</code> (слайд 28)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#19-стандартная-библиотека-c-libc-и-libm-слайд-28" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Стандарт <strong>ISO/IEC 9899</strong> регулирует <strong>язык и стандартную библиотеку</strong>. Функции <code>printf</code>, <code>malloc</code>, <code>strlen</code> — <strong>библиотечные функции, а не ключевые слова</strong>. В обычной среде стандарт описывает ожидаемое поведение этих функций.</p>
+<p><strong>Заголовок vs библиотека:</strong></p>
+<ul>
+<li><code>#include &lt;stdio.h></code> предоставляет <strong>объявления</strong>, по которым компилятор проверяет вызов <code>printf</code>.</li>
+<li>Реализация <code>printf</code> обычно находится в <strong><code>libc</code></strong> — библиотеке C; редактор связей сопоставляет внешний вызов с реализацией.</li>
+<li><strong><code>libc</code> обычно подключается драйвером компилятора автоматически</strong>, поэтому отдельный флаг <code>-lc</code> в типичной команде не нужен.</li>
+</ul>
+<p><strong>Реализации <code>libc</code> со слайда:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Реализация</th><th>Типичная среда</th></tr></thead><tbody><tr><td><strong>glibc (GNU C Library)</strong></td><td>Большинство дистрибутивов GNU/Linux.</td></tr><tr><td><strong>musl</strong></td><td>Например, Alpine Linux.</td></tr><tr><td><strong>newlib</strong></td><td>Встраиваемые системы и кросс-инструменты.</td></tr></tbody></table></div>
+<p><strong>Hosted environment</strong> — среда с полноценной стандартной библиотекой (например, обычная ОС). <strong>Freestanding environment</strong> — более ограниченная среда: полноценная библиотека C не обязательна; на «голом» микроконтроллере <code>printf</code> может вообще отсутствовать, пока кто-то не реализует вывод.</p>
+<p><strong>Оригинальная команда со слайда:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">gcc</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> prog.c</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -lm</span></span></code></pre></figure>
+<p>Здесь <code>-l</code> означает поиск библиотеки при связывании, а <code>m</code> — математическую библиотеку <strong><code>libm</code></strong> (от <em>math</em>). В системах вроде GNU/Linux математические функции исторически находятся в отдельной <code>libm</code>, поэтому при использовании, например, <code>sqrt</code> часто нужен <code>-lm</code>. <strong><code>#include &lt;math.h></code> сам по себе не добавляет реализацию из <code>libm</code></strong>: он даёт объявления. На некоторых платформах (например, macOS) отдельный <code>-lm</code> обычно не нужен. <em>Уточнение: встраивание встроенных математических функций компилятором может влиять на необходимость связывания в конкретном примере; правило о различии заголовка и библиотеки остаётся неизменным.</em></p>
+<p><img src="../../assets/lecture-06/translation-units.svg" alt="Раздельная трансляция и связывание объектных файлов"/></p>
+<h2 id="20-встраиваемые-системы-и-misra-c-слайд-29">20. Встраиваемые системы и MISRA C (слайд 29)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#20-встраиваемые-системы-и-misra-c-слайд-29" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Embedded systems (встраиваемые системы)</strong> — вычислительные устройства внутри приборов, датчиков и контроллеров. Они могут иметь очень мало оперативной и программной памяти и жёсткие ограничения энергопотребления.</p>
+<p><strong>Оригинальный пример преподавателя:</strong> у классического <strong>ATtiny13</strong> — <strong>1024 байта флеш-памяти</strong> под программу, <strong>64 байта оперативной памяти (SRAM)</strong>; в ядре нет аппаратной инструкции <code>MUL</code>. Поэтому стоимость даже отдельных машинных команд может быть важна.</p>
+<p>В таких условиях сохраняют практический смысл:</p>
+<ul>
+<li><code>goto</code> для одной точки освобождения ресурсов при ошибке;</li>
+<li><code>do ... while</code> для опроса датчика с гарантированным хотя бы одним действием;</li>
+<li><code>static</code> для хранения состояния вне автоматических локальных объектов;</li>
+<li><code>switch</code>, в том числе редкие приёмы вроде Duff’s device;</li>
+<li>замена некоторых умножений на степени двойки битовыми сдвигами, где это корректно.</li>
+</ul>
+<p><strong>MISRA C</strong> — набор рекомендаций/правил безопасного использования языка C, возникший в автомобильной отрасли. <strong>MISRA</strong> — <em>Motor Industry Software Reliability Association</em>. Его используют в критически важных встраиваемых системах для повышения проверяемости и надёжности программ.</p>
+<p><strong>Принципиальная разница:</strong></p>
+<ul>
+<li><strong>Стандарт C</strong> задаёт, какие конструкции допустимы и что они означают.</li>
+<li><strong>MISRA C</strong> ограничивает способы написания кода ради предсказуемости, тестирования и проверки. Поэтому конструкция может быть <strong>законной по C</strong>, но <strong>нежелательной или запрещённой конкретным правилом MISRA C</strong> (например, некоторые формы <code>goto</code> и проваливания в <code>switch</code>).</li>
+</ul>
+<h2 id="21-поиск-ошибок-статический-и-динамический-анализ-слайд-30">21. Поиск ошибок: статический и динамический анализ (слайд 30)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-поиск-ошибок-статический-и-динамический-анализ-слайд-30" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Статический анализ</strong> исследует программу <strong>без её запуска</strong>; <strong>динамический анализ</strong> проверяет <strong>выполняемый код</strong>. Оба подхода полезны и дополняют друг друга.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Средство</th><th>Назначение</th></tr></thead><tbody><tr><td><strong>UBSan (UndefinedBehaviorSanitizer)</strong></td><td>При выполнении обнаруживает некоторые виды UB: знаковое переполнение, недопустимые сдвиги, часть ошибок обращения к объектам и др.</td></tr><tr><td><strong>ASan (AddressSanitizer)</strong></td><td>Ищет ошибки памяти: выход за границы, <em>use-after-free</em> (использование после освобождения) и др.</td></tr><tr><td><strong>Valgrind</strong></td><td>Инструментирует уже собранную программу, часто без перекомпиляции; за это приходится платить заметным замедлением.</td></tr></tbody></table></div>
+<p><strong>Оригинальный пример со слайда:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="c" data-theme="github-light github-dark"><code data-language="c" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="keyword">int</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> k </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 2147483647</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">k </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">+=</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">;</span></span></code></pre></figure>
+<p>Если <code>int</code> имеет максимум <code>2147483647</code>, операция вызывает <strong>знаковое переполнение</strong>, которое в C относится к UB.</p>
+<p><strong>Оригинальная команда:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">gcc</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -fsanitize=undefined,address</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -g</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> prog.c</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation"> &amp;&amp; </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">./a.out</span></span></code></pre></figure>
+<ul>
+<li><code>-fsanitize=undefined,address</code> — включить проверки UBSan и ASan;</li>
+<li><code>-g</code> — добавить отладочную информацию для сообщений об ошибках;</li>
+<li><code>&amp;&amp; ./a.out</code> — выполнить программу после успешной сборки.</li>
+</ul>
+<p><strong>Фрагмент оригинальной диагностики:</strong></p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>prog.c:3:5: runtime error: signed integer overflow:</span></span>
+<span data-line><span>2147483647 + 1 cannot be represented in type 'int'</span></span></code></pre></figure>
+<p><strong>Ограничение:</strong> динамические инструменты анализируют только <strong>реально пройденные пути выполнения</strong>. Если тесты не зашли в некоторую ветку <code>if</code>, скрытая в ней ошибка может остаться незамеченной. Поэтому их применяют вместе с хорошим тестовым покрытием и статическим анализом.</p>
+<h2 id="22-материалы-для-самостоятельной-проверки-слайд-31">22. Материалы для самостоятельной проверки (слайд 31)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-материалы-для-самостоятельной-проверки-слайд-31" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong><a href="https://godbolt.org" class="external external-link">Compiler Explorer<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></strong> — сопоставление кода C и ассемблера, проверка влияния флагов и целевой архитектуры.</li>
+<li>Рекомендуемые преподавателем флаги: <code>-O2</code> (оптимизации), <code>-Wall</code>, <code>-Wextra</code> (предупреждения), <code>-pedantic</code> (дополнительные диагностики соответствия стандарту).</li>
+<li><strong>Duff’s device</strong> — ознакомиться с принципом развёртывания цикла через <code>switch</code> и <code>do ... while</code>.</li>
+<li><strong>Практические случаи <code>goto</code></strong> — обработка ошибок с одной точкой освобождения ресурсов, а не произвольные переходы ради усложнения кода.</li>
+</ul>
+<h2 id="23-связь-с-экзаменационными-темами">23. Связь с экзаменационными темами<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-связь-с-экзаменационными-темами" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Документ <strong>«Вопросы (темы) по курсу», декабрь 2025 — январь 2026</strong> требует связного устного ответа и компактного письменного конспекта. Особенно ценятся <strong>точные определения, механизмы, примеры и контрпримеры, применение/ограничения, история и персоналии</strong>, а также расшифровка сокращений. Выделение <strong>жирным</strong> означает обязательность темы; <em>курсив</em> — повышенную важность для оценки «хорошо» и «отлично».</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Билет</th><th>Что уже дано этой лекцией</th><th>Что нельзя считать закрытым только этой лекцией</th></tr></thead><tbody><tr><td><strong>№19</strong></td><td><code>if</code>, <code>while</code>, <code>do/while</code>, <code>for</code>, <code>goto</code>, <code>switch</code>, блок-схема и поток управления</td><td>Тренировка построения блок-схем и графа потока управления для произвольного примера</td></tr><tr><td><strong>№28</strong></td><td>Процедуры, локальные/глобальные переменные, <code>auto</code>, <code>static</code>, <code>extern</code>, область видимости, время хранения, кадр вызова</td><td>Подробные соглашения о вызовах и пример <strong>RISC-V ABI (Application Binary Interface — двоичный интерфейс приложений)</strong></td></tr><tr><td><strong>№32</strong></td><td>Определение парадигмы и различие императивного, структурного, процедурного подходов</td><td>Другие парадигмы при необходимости и более широкий набор языков-примеров</td></tr><tr><td><strong>№33</strong></td><td>Структурное программирование; три управляющие конструкции; теорема Бёма — Якопини; исторический контекст</td><td>Дополнительные примеры преобразования программы с произвольными переходами</td></tr><tr><td><strong>№15–18</strong></td><td>Вводные сведения о типах, составных структурах и семантике операций</td><td>Полное представление значений, адресная арифметика, приведения, выравнивание, битовые операции: отдельные лекции</td></tr></tbody></table></div>
+<p><strong>Главная связка лекции:</strong> язык выбирают по задаче → C возник из потребности в переносимости Unix → языки описываются через лексику, синтаксис, семантику и библиотеки → C поддерживает императивное, структурное и процедурное программирование → точная семантика управления, времени жизни и обращения к памяти необходима для надёжной разработки.</p></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Вид графа</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-70" aria-expanded="true"><h3>Оглавление</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#лекция-06--язык-программирования-на-примере-c" data-for="лекция-06--язык-программирования-на-примере-c">Лекция 06 — Язык программирования (на примере C)</a></li><li class="depth-1"><a href="#1-по-какому-критерию-выбирать-язык-программирования-слайды-12" data-for="1-по-какому-критерию-выбирать-язык-программирования-слайды-12">1. По какому критерию выбирать язык программирования? (слайды 1–2)</a></li><li class="depth-1"><a href="#2-ассемблер-и-языки-высокого-уровня-слайды-34" data-for="2-ассемблер-и-языки-высокого-уровня-слайды-34">2. Ассемблер и языки высокого уровня (слайды 3–4)</a></li><li class="depth-1"><a href="#3-происхождение-c-unix-и-разработчики-слайды-57" data-for="3-происхождение-c-unix-и-разработчики-слайды-57">3. Происхождение C, Unix и разработчики (слайды 5–7)</a></li><li class="depth-1"><a href="#4-стандарты-c-и-флаг--std-слайд-8" data-for="4-стандарты-c-и-флаг--std-слайд-8">4. Стандарты C и флаг -std= (слайд 8)</a></li><li class="depth-1"><a href="#5-оригинальные-примеры-bcpl-и-b-слайды-910" data-for="5-оригинальные-примеры-bcpl-и-b-слайды-910">5. Оригинальные примеры BCPL и B (слайды 9–10)</a></li><li class="depth-2"><a href="#51-bcpl-valof-и-resultis" data-for="51-bcpl-valof-и-resultis">5.1. BCPL: VALOF и RESULTIS</a></li><li class="depth-2"><a href="#52-b-машинное-слово-без-объявленного-типа" data-for="52-b-машинное-слово-без-объявленного-типа">5.2. B: машинное слово без объявленного типа</a></li><li class="depth-1"><a href="#6-почему-c-сохранил-популярность-слайды-1112" data-for="6-почему-c-сохранил-популярность-слайды-1112">6. Почему C сохранил популярность (слайды 11–12)</a></li><li class="depth-1"><a href="#7-парадигмы-и-технологические-характеристики-c-слайд-13" data-for="7-парадигмы-и-технологические-характеристики-c-слайд-13">7. Парадигмы и технологические характеристики C (слайд 13)</a></li><li class="depth-1"><a href="#8-структура-языка-программирования-слайд-14" data-for="8-структура-языка-программирования-слайд-14">8. Структура языка программирования (слайд 14)</a></li><li class="depth-1"><a href="#9-лексика-c-токены-и-ключевые-слова-слайды-1516" data-for="9-лексика-c-токены-и-ключевые-слова-слайды-1516">9. Лексика C: токены и ключевые слова (слайды 15–16)</a></li><li class="depth-1"><a href="#10-синтаксис-объявление-и-определение-слайд-17" data-for="10-синтаксис-объявление-и-определение-слайд-17">10. Синтаксис. Объявление и определение (слайд 17)</a></li><li class="depth-1"><a href="#11-семантика-c-и-порядок-вычислений-слайд-18" data-for="11-семантика-c-и-порядок-вычислений-слайд-18">11. Семантика C и порядок вычислений (слайд 18)</a></li><li class="depth-1"><a href="#12-типы-представление-данных-и-строки-слайд-19" data-for="12-типы-представление-данных-и-строки-слайд-19">12. Типы, представление данных и строки (слайд 19)</a></li><li class="depth-1"><a href="#13-выражения-присваивание-и-гарантированный-порядок-слайд-20" data-for="13-выражения-присваивание-и-гарантированный-порядок-слайд-20">13. Выражения, присваивание и гарантированный порядок (слайд 20)</a></li><li class="depth-1"><a href="#14-l-value-и-r-value-слайд-21" data-for="14-l-value-и-r-value-слайд-21">14. L-value и R-value (слайд 21)</a></li><li class="depth-1"><a href="#15-область-видимости-время-хранения-связывание-модификаторы-слайд-22" data-for="15-область-видимости-время-хранения-связывание-модификаторы-слайд-22">15. Область видимости, время хранения, связывание. Модификаторы (слайд 22)</a></li><li class="depth-2"><a href="#auto-и-локальный-static" data-for="auto-и-локальный-static">auto и локальный static</a></li><li class="depth-2"><a href="#static-на-уровне-файла-extern-и-единицы-трансляции" data-for="static-на-уровне-файла-extern-и-единицы-трансляции">static на уровне файла, extern и единицы трансляции</a></li><li class="depth-2"><a href="#const-volatile-inline-restrict" data-for="const-volatile-inline-restrict">const, volatile, inline, restrict</a></li><li class="depth-1"><a href="#16-управляющие-конструкции-c-слайды-2324" data-for="16-управляющие-конструкции-c-слайды-2324">16. Управляющие конструкции C (слайды 23–24)</a></li><li class="depth-1"><a href="#17-подпрограммы-процедуры-рекурсия-слайды-2526" data-for="17-подпрограммы-процедуры-рекурсия-слайды-2526">17. Подпрограммы, процедуры, рекурсия (слайды 25–26)</a></li><li class="depth-1"><a href="#18-история-структурного-программирования-и-теорема-бёма--якопини-слайд-27" data-for="18-история-структурного-программирования-и-теорема-бёма--якопини-слайд-27">18. История структурного программирования и теорема Бёма — Якопини (слайд 27)</a></li><li class="depth-1"><a href="#19-стандартная-библиотека-c-libc-и-libm-слайд-28" data-for="19-стандартная-библиотека-c-libc-и-libm-слайд-28">19. Стандартная библиотека C, libc и libm (слайд 28)</a></li><li class="depth-1"><a href="#20-встраиваемые-системы-и-misra-c-слайд-29" data-for="20-встраиваемые-системы-и-misra-c-слайд-29">20. Встраиваемые системы и MISRA C (слайд 29)</a></li><li class="depth-1"><a href="#21-поиск-ошибок-статический-и-динамический-анализ-слайд-30" data-for="21-поиск-ошибок-статический-и-динамический-анализ-слайд-30">21. Поиск ошибок: статический и динамический анализ (слайд 30)</a></li><li class="depth-1"><a href="#22-материалы-для-самостоятельной-проверки-слайд-31" data-for="22-материалы-для-самостоятельной-проверки-слайд-31">22. Материалы для самостоятельной проверки (слайд 31)</a></li><li class="depth-1"><a href="#23-связь-с-экзаменационными-темами" data-for="23-связь-с-экзаменационными-темами">23. Связь с экзаменационными темами</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Обратные ссылки</h3><ul id="list-0" class="overflow"><li><a href="../../информатика-и-основы-программирования/билеты-(ориентир)/00-—-карта-билетов" class="internal">00 — Карта билетов</a></li><li><a href="../../информатика-и-основы-программирования/билеты-(ориентир)/00-—-список-тем-прошлого-года" class="internal">00 — Список тем прошлого года</a></li><li><a href="../../информатика-и-основы-программирования/билеты-(ориентир)/билет-19-—-управляющие-конструкции-c" class="internal">Билет 19 — Управляющие конструкции C</a></li><li><a href="../../информатика-и-основы-программирования/билеты-(ориентир)/билет-28-—-процедуры-и-кадр-вызова" class="internal">Билет 28 — Процедуры и кадр вызова</a></li><li><a href="../../информатика-и-основы-программирования/билеты-(ориентир)/билет-32-—-парадигмы-программирования" class="internal">Билет 32 — Парадигмы программирования</a></li><li><a href="../../информатика-и-основы-программирования/билеты-(ориентир)/билет-33-—-структурное-программирование" class="internal">Билет 33 — Структурное программирование</a></li><li><a href="../../информатика-и-основы-программирования/лекции/лекции-по-информатике-и-основам-программирования" class="internal">Лекции по информатике и основам программирования</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Создано с помощью <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://github.com/AnUbiSaF/study-notes">GitHub</a></li></ul></footer></div></div></body><script src="../../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript-551b937a.js" type="module" data-persist="true"></script></html>
