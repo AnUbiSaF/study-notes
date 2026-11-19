@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 265" role="img" aria-label="Вероятности и среднее количество вопросов">
+<style>text{font-family:Arial,sans-serif;fill:#d9e5ef;font-size:19px}.light{fill:#b5c4d1;font-size:17px}.blue{fill:#247da6}.amber{fill:#a17b35}</style>
+<text x="20" y="33" font-size="22" font-weight="bold">Почему вероятному исходу выгоднее короткий путь</text>
+<text x="20" y="82">A (80%)</text><rect class="blue" x="165" y="57" width="600" height="35" rx="6"/><text x="777" y="82">1 вопрос</text>
+<text x="20" y="133">B (10%)</text><rect class="amber" x="165" y="108" width="75" height="35" rx="6"/><text x="260" y="133">2 вопроса</text>
+<text x="20" y="184">C (10%)</text><rect class="amber" x="165" y="159" width="75" height="35" rx="6"/><text x="260" y="184">2 вопроса</text>
+<text x="20" y="238">Среднее: 0,8·1 + 0,1·2 + 0,1·2 = 1,2 вопроса на поиск.</text>
+</svg>

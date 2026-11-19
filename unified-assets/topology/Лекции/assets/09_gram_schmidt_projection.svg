@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 270" width="1200" height="506" role="img" aria-label="Ортогонализация Грама Шмидта: вектор u2 раскладывается на проекцию вдоль e1 и ортогональную составляющую e2">
+<style>text{font-family:Arial,Helvetica,sans-serif;font-size:19px;fill:#d1d5db}.small{font-size:16px}.light{fill:#94a3b8}</style>
+<g stroke-linecap="round" stroke-linejoin="round" fill="none">
+<path d="M80 213 L575 213" stroke="#60a5fa" stroke-width="4"/><path d="M575 213 L559 205 M575 213 L559 221" stroke="#60a5fa" stroke-width="4"/>
+<path d="M80 213 L391 45" stroke="#fbbf24" stroke-width="4"/><path d="M391 45 L372 48 M391 45 L382 61" stroke="#fbbf24" stroke-width="4"/>
+<path d="M391 45 L391 213" stroke="#86efac" stroke-width="4"/><path d="M391 45 L385 59 M391 45 L397 59" stroke="#86efac" stroke-width="3"/>
+<path d="M376 213 L376 198 L391 198" stroke="#cbd5e1" stroke-width="2"/>
+<path d="M80 213 L391 213" stroke="#60a5fa" stroke-opacity=".3" stroke-width="12"/>
+</g><circle cx="80" cy="213" r="5" fill="#d1d5db"/>
+<text x="55" y="239">O</text><text x="578" y="205" fill="#60a5fa">e₁ = u₁</text><text x="398" y="37" fill="#fbbf24">u₂</text><text x="407" y="133" fill="#86efac">e₂</text><text x="180" y="244" class="small">проекция u₂ на e₁</text>
+<text x="80" y="27" class="light">e₂ = u₂ − projₑ₁(u₂), поэтому e₂ ⟂ e₁</text>
+</svg>

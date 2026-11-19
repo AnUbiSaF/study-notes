@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 295" width="1200" height="545" role="img" aria-label="Точка M, прямая l, нормаль n и расстояние d">
+<line x1="40" y1="230" x2="590" y2="230" stroke="#cbd5e1" stroke-width="3"/><text x="600" y="237" font-family="sans-serif" font-size="24" fill="#cbd5e1">ℓ</text>
+<circle cx="125" cy="230" r="5" fill="#e5e7eb"/><text x="105" y="258" font-family="sans-serif" font-size="22" fill="#e5e7eb">N</text>
+<circle cx="390" cy="65" r="6" fill="#93c5fd"/><text x="405" y="60" font-family="sans-serif" font-size="22" fill="#93c5fd">M</text>
+<line x1="125" y1="230" x2="390" y2="65" stroke="#93c5fd" stroke-width="3"/><polygon points="390,65 372,69 380,82" fill="#93c5fd"/>
+<line x1="390" y1="65" x2="390" y2="230" stroke="#fbbf24" stroke-width="4" stroke-dasharray="8 6"/>
+<path d="M370 230 L370 210 L390 210" fill="none" stroke="#e5e7eb" stroke-width="2"/>
+<line x1="520" y1="230" x2="520" y2="110" stroke="#6ee7b7" stroke-width="4"/><polygon points="520,110 512,126 528,126" fill="#6ee7b7"/>
+<text x="535" y="167" font-family="sans-serif" font-size="23" fill="#6ee7b7">n</text><text x="406" y="158" font-family="sans-serif" font-size="23" fill="#fbbf24">d</text>
+<text x="193" y="137" font-family="sans-serif" font-size="19" fill="#93c5fd">NM</text>
+</svg>

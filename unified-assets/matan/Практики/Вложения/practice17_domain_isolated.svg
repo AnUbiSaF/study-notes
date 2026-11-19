@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="206" viewBox="0 0 840 206" role="img" aria-label="Область определения: отрезок от нуля до единицы и изолированная точка два">
+  <title>D = [0,1] ∪ {2}</title>
+  <style>
+    .axis {stroke:#94a3b8;stroke-width:2.5;stroke-linecap:round}
+    .segment {stroke:#7db2f4;stroke-width:10;stroke-linecap:round}
+    .endpoint {fill:#7db2f4}
+    .isolated {fill:#e4b975}
+    .lbl {font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;fill:#cad5e4;font-size:25px;text-anchor:middle}
+    .hint {font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;fill:#aabbd2;font-size:22px;text-anchor:middle}
+    @media (prefers-color-scheme:light) {.lbl {fill:#334155} .hint {fill:#475569}}
+  </style>
+  <line x1="60" y1="115" x2="788" y2="115" class="axis"/>
+  <path d="M777,107 L790,115 L777,123" fill="none" class="axis"/>
+  <line x1="130" y1="115" x2="385" y2="115" class="segment"/>
+  <circle cx="130" cy="115" r="8" class="endpoint"/><circle cx="385" cy="115" r="8" class="endpoint"/>
+  <circle cx="640" cy="115" r="10" class="isolated"/>
+  <text x="130" y="154" class="lbl">0</text><text x="385" y="154" class="lbl">1</text><text x="640" y="154" class="lbl">2</text>
+  <text x="257" y="71" class="hint">отрезок [0, 1]</text>
+  <text x="640" y="71" class="hint">изолированная точка</text>
+</svg>

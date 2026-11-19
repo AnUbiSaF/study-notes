@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 290" role="img" aria-label="Мостовая схема: верхняя ветвь 1 и 3, нижняя 4 и 5, между серединами расположен элемент 2">
+  <title>Мостовая схема практики 04, задача 6</title>
+  <g fill="none" stroke="#91a9b9" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M16 145 H92 V66 H157"/><path d="M92 145 V224 H157"/>
+    <path d="M222 66 H388 H502"/><path d="M568 66 H654 V145 H744"/>
+    <path d="M222 224 H388 H502"/><path d="M568 224 H654 V145"/>
+    <path d="M388 66 V113"/><path d="M388 177 V224"/>
+  </g>
+  <g fill="#213447" stroke="#70a4ce" stroke-width="2.5">
+    <rect x="157" y="46" width="65" height="40" rx="7"/>
+    <rect x="502" y="46" width="66" height="40" rx="7"/>
+    <rect x="157" y="204" width="65" height="40" rx="7"/>
+    <rect x="502" y="204" width="66" height="40" rx="7"/>
+    <rect x="355" y="113" width="66" height="64" rx="7"/>
+  </g>
+  <g font-family="Arial,Helvetica,sans-serif" fill="#e7f0ff" font-size="25" font-weight="600" text-anchor="middle">
+    <text x="189" y="74">1</text><text x="535" y="74">3</text>
+    <text x="189" y="232">4</text><text x="535" y="232">5</text><text x="388" y="154">2</text>
+  </g>
+  <g font-family="Arial,Helvetica,sans-serif" fill="#b8cbd8" font-size="18">
+    <text x="17" y="171">вход</text><text x="685" y="171">выход</text>
+    <text x="426" y="144">мост</text>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="505" viewBox="0 0 1240 505" role="img" aria-label="Рекурсия: почему каждому вызову нужны свои локальные данные">
+ <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#9bb2c9"/></marker></defs><style>
+.title { font-size:27px; font-weight:700; font-family:Arial,DejaVu Sans,sans-serif; fill:#e9f1fb }
+.heading { font-size:19px; font-weight:700; font-family:Arial,DejaVu Sans,sans-serif; fill:#dbe9fa }
+.txt { font-size:17px; font-weight:500; font-family:Arial,DejaVu Sans,sans-serif; fill:#d1dbe8 }
+.small { font-size:15px; font-weight:400; font-family:Arial,DejaVu Sans,sans-serif; fill:#adbdce }
+.mono { font-size:16px; font-weight:500; font-family:DejaVu Sans Mono,Consolas,monospace; fill:#d8e6f8 }
+.block { fill:#1c2d43; stroke:#6d8ba9; stroke-width:1.6 }
+.block2 { fill:#172e37; stroke:#508f98; stroke-width:1.6 }
+.block3 { fill:#302a3e; stroke:#8d77ad; stroke-width:1.6 }
+.arrow { stroke:#9bb2c9; stroke-width:2.3; fill:none; marker-end:url(#arrowhead) }
+.dash { stroke:#a4b5c7; stroke-width:1.8; fill:none; stroke-dasharray:6 6 }
+@media (prefers-color-scheme:light) {
+  .title,.heading { fill:#203247 }
+  .txt,.mono { fill:#24374b }
+  .small { fill:#4e6075 }
+  .block { fill:#eef4fb; stroke:#7b98af }
+  .block2 { fill:#eaf7f4; stroke:#5d9a91 }
+  .block3 { fill:#f1edf8; stroke:#9381aa }
+  .arrow { stroke:#657e97 }
+  .dash { stroke:#74869a }
+}
+</style><text x="28" y="39" class="title">Рекурсия: почему каждому вызову нужны свои локальные данные</text><text x="292" y="88" text-anchor="middle" class="heading">Одна статическая область</text><text x="891" y="88" text-anchor="middle" class="heading">Независимые кадры стека</text><rect x="123" y="140" width="343" height="130" rx="13" class="block3"/><text x="294.5" y="187.0" text-anchor="middle" class="txt">Только одно место для n</text><text x="294.5" y="210.0" text-anchor="middle" class="txt">сначала n = 3, затем n = 2,</text><text x="294.5" y="233.0" text-anchor="middle" class="txt">затем n = 1</text><rect x="675" y="135" width="410" height="77" rx="13" class="block2"/><text x="880.0" y="178.5" text-anchor="middle" class="mono">Кадр f(1)     n = 1</text><rect x="675" y="224" width="410" height="77" rx="13" class="block"/><text x="880.0" y="267.5" text-anchor="middle" class="mono">Кадр f(2)     n = 2</text><rect x="675" y="313" width="410" height="77" rx="13" class="block"/><text x="880.0" y="356.5" text-anchor="middle" class="mono">Кадр f(3)     n = 3</text><text x="294" y="332" text-anchor="middle" class="small">Старые значения перезаписаны</text><text x="294" y="359" text-anchor="middle" class="small">— обычная рекурсия затруднена</text><text x="898" y="427" text-anchor="middle" class="small">Возврат f(1) → f(2) → f(3)</text><text x="898" y="451" text-anchor="middle" class="small">Значения предыдущих вызовов сохранены</text><text x="27" y="484" text-anchor="start" class="small">Схема упрощена: кадр также содержит служебные данные; физическое размещение оптимизируется компилятором.</text></svg>
+
