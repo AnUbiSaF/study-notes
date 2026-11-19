@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 415" role="img" aria-label="Сжатое суффиксное дерево строки аба доллар с позициями суффиксов">
+<style>
+text { font-family: system-ui,-apple-system,BlinkMacSystemFont,Arial,sans-serif; fill: #d2dbe8; }
+line,path { stroke: #8491a4; }
+.label { fill: #71ddc4; font-weight: 650; }
+.sub { font-size: 15px; fill: #aab8cb; }
+.node { fill: #6486a4; }
+.leaf { fill: #217c70; }
+.white, .white text { fill: white; font-weight: 600; }
+@media (prefers-color-scheme: light) {
+  text { fill: #455167; }
+  line,path { stroke: #7b899c; }
+  .label { fill: #16816f; }
+  .sub { fill: #5f6d7f; }
+}
+</style>
+<text x="24" y="34" font-size="20" font-weight="700">Суффиксное дерево для «аба$»</text>
+<text x="24" y="62" class="sub">На ребре может быть сразу несколько символов</text>
+<path d="M350 90 L130 170 M350 90 L352 240 M350 90 L574 200" stroke-width="2.4" fill="none"/>
+<path d="M130 170 L60 308 M130 170 L206 308" stroke-width="2.4" fill="none"/>
+<circle cx="350" cy="90" r="9" class="node"/>
+<circle cx="130" cy="170" r="9" class="node"/>
+<text x="232" y="124" text-anchor="middle" font-size="20" class="label">а</text>
+<text x="339" y="187" text-anchor="end" font-size="20" class="label">ба$</text>
+<text x="478" y="133" text-anchor="middle" font-size="20" class="label">$</text>
+<text x="71" y="241" text-anchor="middle" font-size="20" class="label">ба$</text>
+<text x="201" y="247" text-anchor="middle" font-size="20" class="label">$</text>
+<g class="leaf">
+<rect x="29" y="294" width="62" height="40" rx="10"/>
+<rect x="175" y="294" width="62" height="40" rx="10"/>
+<rect x="321" y="226" width="62" height="40" rx="10"/>
+<rect x="544" y="186" width="62" height="40" rx="10"/>
+</g>
+<g font-size="19" text-anchor="middle" class="white">
+<text x="60" y="320">1</text><text x="206" y="320">3</text><text x="352" y="252">2</text><text x="575" y="212">4</text>
+</g>
+<text x="61" y="355" text-anchor="middle" font-size="17">аба$</text>
+<text x="206" y="355" text-anchor="middle" font-size="17">а$</text>
+<text x="352" y="290" text-anchor="middle" font-size="17">ба$</text>
+<text x="575" y="249" text-anchor="middle" font-size="17">$</text>
+<text x="350" y="404" text-anchor="middle" class="sub">Числа в листьях — позиции начала суффикса (с 1)</text>
+</svg>

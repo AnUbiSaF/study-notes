@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<style>.bg{fill:#151515}.edge{stroke:#ddd;stroke-width:3;fill:none}.x{stroke:#6f86c8;stroke-width:4}.y{stroke:#70b07b;stroke-width:4}.d1{stroke:#d36a55;stroke-width:4}.d2{stroke:#b579d6;stroke-width:4}.o{fill:#f4b942}.lab{fill:#eee;font:600 24px Arial}.sm{fill:#ccc;font:500 18px Arial}.fm{fill:#e7e7e7;font:500 21px serif}</style>
+<rect class="bg" width="1200" height="720"/><text class="lab" x="40" y="45">ДЗ №137. Ромб: стороны → диагонали</text>
+<text class="lab" x="150" y="95">1-я система</text>
+<path class="edge" d="M150 540 L390 540 L270 332 L30 332 Z"/><line class="x" x1="150" y1="540" x2="390" y2="540"/><line class="y" x1="150" y1="540" x2="30" y2="332"/>
+<text class="lab" x="125" y="575">A</text><text class="lab" x="402" y="575">B</text><text class="lab" x="282" y="325">C</text><text class="lab" x="2" y="325">D</text>
+<text class="sm" x="225" y="570">AB=2</text><text class="sm" x="45" y="450">AD=2</text><text class="sm" x="118" y="505">120°</text>
+<text class="lab" x="760" y="95">2-я система</text>
+<path class="edge" d="M760 540 L1000 540 L880 332 L640 332 Z"/><line class="d1" x1="760" y1="540" x2="880" y2="332"/><line class="d2" x1="1000" y1="540" x2="640" y2="332"/>
+<circle class="o" cx="820" cy="436" r="8"/><text class="lab" x="836" y="431">O</text>
+<text class="lab" x="735" y="575">A</text><text class="lab" x="1012" y="575">B</text><text class="lab" x="892" y="325">C</text><text class="lab" x="612" y="325">D</text>
+<text class="sm" x="840" y="385">ось AC</text><text class="sm" x="680" y="385">ось BD</text>
+<text class="fm" x="590" y="610">AC=2 ⇒ OA=OC=1</text><text class="fm" x="590" y="648">BD=2√3 ⇒ OB=OD=√3</text></svg>

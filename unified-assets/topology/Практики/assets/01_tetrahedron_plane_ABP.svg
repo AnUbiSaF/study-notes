@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1100" height="760" viewBox="0 0 1100 760" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<style>
+.t{font:600 23px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fill:#e8e8e8}
+.s{font:500 18px -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;fill:#bdbdbd}
+.e{stroke:#d8d8d8;stroke-width:3;fill:none}
+.p{fill:#6f86c9;fill-opacity:.20;stroke:#7894df;stroke-width:3}
+.m{stroke:#d76a4a;stroke-width:4;fill:none}
+.a{stroke:#7894df;stroke-width:3.5;fill:none}
+.dot{fill:#eeeeee}.mid{fill:#72b879}.cent{fill:#e47a5b}
+</style>
+</defs>
+<text class="t" x="55" y="52">Тетраэдр ABCD и плоскость ABP</text>
+<polygon class="p" points="180,560 470,600 665,362.5"/>
+<line class="e" x1="180" y1="560" x2="470" y2="600"/>
+<line class="e" x1="180" y1="560" x2="770" y2="525"/>
+<line class="e" x1="470" y1="600" x2="770" y2="525"/>
+<line class="e" x1="180" y1="560" x2="560" y2="200"/>
+<line class="e" x1="470" y1="600" x2="560" y2="200"/>
+<line class="e" x1="770" y1="525" x2="560" y2="200"/>
+<line class="a" x1="770" y1="525" x2="560" y2="200"/>
+<line class="a" x1="180" y1="560" x2="665" y2="362.5"/>
+<line class="a" x1="470" y1="600" x2="665" y2="362.5"/>
+<!-- A1 = B + 2/3(P-B), B1 = A + 2/3(P-A) -->
+<circle class="dot" cx="180" cy="560" r="6"/><text class="t" x="145" y="595">A</text>
+<circle class="dot" cx="470" cy="600" r="6"/><text class="t" x="480" y="630">B</text>
+<circle class="dot" cx="770" cy="525" r="6"/><text class="t" x="785" y="532">C</text>
+<circle class="dot" cx="560" cy="200" r="6"/><text class="t" x="575" y="193">D</text>
+<circle class="mid" cx="665" cy="362.5" r="7"/><text class="t" x="680" y="356">P</text>
+<circle class="cent" cx="600" cy="441.67" r="7"/><text class="t" x="615" y="438">A₁</text>
+<circle class="cent" cx="503.33" cy="428.33" r="7"/><text class="t" x="515" y="422">B₁</text>
+<line class="m" x1="180" y1="560" x2="600" y2="441.67"/>
+<line class="m" x1="470" y1="600" x2="503.33" y2="428.33"/>
+<text class="s" x="700" y="390">P — середина CD</text>
+<text class="s" x="620" y="470">A₁ ∈ BP</text>
+<text class="s" x="410" y="415">B₁ ∈ AP</text>
+<text class="s" x="55" y="705">BP и AP — медианы граней BCD и ACD, поэтому центры тяжести A₁ и B₁ лежат в плоскости ABP.</text>
+</svg>

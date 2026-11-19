@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1370" viewBox="0 0 1440 1370" role="img" aria-labelledby="svgTitle svgDesc">
+<title id="svgTitle">Сборка C-программы: этапы, внутренние фазы компилятора, LLVM и архитектуры</title>
+<desc id="svgDesc">Сверху вниз представлены препроцессор, собственно компилятор с тремя частями Front-end, Middle-end, Back-end, затем ассемблер и линкер. Внутри показаны пять фаз компилятора, LLVM IR, оптимизации, кодогенерация под ARM и x86-64.</desc>
+<style>
+  text { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+  .title { font-size:34px;font-weight:750;fill:#f1f6ff; }
+  .subtitle { font-size:17px;fill:#aabbd0; }
+  .section { font-size:24px;font-weight:720;fill:#ebf3ff; }
+  .head { font-size:23px;font-weight:720;fill:#edf5ff; }
+  .item { font-size:19px;font-weight:560;fill:#e4effa; }
+  .minor { font-size:17px;fill:#afc1d6; }
+  .small { font-size:15px;fill:#bed0e3; }
+  .tag { font-size:17px;font-weight:650;fill:#baddff; }
+</style>
+<defs>
+ <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10Z" fill="#87a1bb"/></marker>
+ <marker id="arrowblue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10Z" fill="#7caeea"/></marker>
+</defs>
+<text x="62" y="52" class="title">Лекция №5 · Компиляция C: вся вложенность</text>
+<text x="62" y="84" class="subtitle">Сверху вниз — этапы сборки; внутри второго этапа — устройство компилятора.</text>
+<rect x="60" y="110" width="1320" height="120" rx="17" fill="#182637" stroke="#55728f" stroke-width="1.5"/>
+<rect x="78" y="130" width="60" height="46" rx="10" fill="#284563" stroke="#426c95" stroke-width="1.5"/>
+<text x="108" y="162" class="head" text-anchor="middle">01</text>
+<text x="162" y="153" class="section">ПРЕПРОЦЕССОР</text>
+<text x="162" y="187" class="item">main.c + #include / #define / #if  →  main.i</text>
+<text x="1060" y="153" class="minor">Добавляет содержимое заголовков</text>
+<text x="1060" y="184" class="minor">и обрабатывает директивы</text>
+<path d="M 720,232 L 720,263" stroke="#87a1bb" stroke-width="2.7" fill="none" marker-end="url(#arrow)"/>
+<rect x="60" y="268" width="1320" height="664" rx="21" fill="#121e2b" stroke="#75a5d7" stroke-width="3"/>
+<rect x="82" y="286" width="60" height="46" rx="10" fill="#25456a" stroke="#5989b8" stroke-width="1.5"/>
+<text x="112" y="318" class="head" text-anchor="middle">02</text>
+<text x="166" y="305" class="section">СОБСТВЕННО КОМПИЛЯТОР (в узком смысле)</text>
+<text x="166" y="335" class="minor">Вход: main.i → выход: main.s. Три внутренние части, пять основных фаз.</text>
+<rect x="90" y="370" width="382" height="427" rx="17" fill="#203043" stroke="#506e91" stroke-width="1.5"/>
+<text x="113" y="406" class="head">FRONT-END</text>
+<text x="113" y="433" class="minor">Зависит от входного языка</text>
+<rect x="113" y="454" width="335" height="79" rx="11" fill="#152437" stroke="#395674" stroke-width="1.5"/>
+<text x="127" y="486" class="item">1. Лексический анализ</text>
+<text x="127" y="512" class="small">Символы → токены</text>
+<rect x="113" y="543" width="335" height="79" rx="11" fill="#152437" stroke="#395674" stroke-width="1.5"/>
+<text x="127" y="575" class="item">2. Синтаксический анализ</text>
+<text x="127" y="601" class="small">Токены → дерево / AST</text>
+<rect x="113" y="632" width="335" height="79" rx="11" fill="#152437" stroke="#395674" stroke-width="1.5"/>
+<text x="127" y="664" class="item">3. Семантический анализ</text>
+<text x="127" y="690" class="small">Проверка типов и имён</text>
+<text x="114" y="781" class="tag">Пример: Clang для C и C++</text>
+<rect x="529" y="370" width="382" height="427" rx="17" fill="#1a2d3d" stroke="#507a91" stroke-width="1.5"/>
+<text x="552" y="406" class="head">MIDDLE-END</text>
+<text x="552" y="433" class="minor">Обработка общего IR</text>
+<rect x="550" y="457" width="338" height="88" rx="11" fill="#132b3d" stroke="#416d8b" stroke-width="1.5"/>
+<text x="568" y="489" class="item">IR — промежуточный код</text>
+<text x="568" y="518" class="small">Например, LLVM IR</text>
+<rect x="550" y="566" width="338" height="119" rx="11" fill="#132b3d" stroke="#416d8b" stroke-width="1.5"/>
+<text x="568" y="604" class="item">4. Оптимизация</text>
+<text x="568" y="636" class="minor">DCE · CSE · циклы</text>
+<text x="568" y="662" class="small">Сохраняет поведение</text>
+<text x="552" y="754" class="tag">LLVM: общие оптимизации</text>
+<text x="552" y="780" class="small">IR = Intermediate Representation</text>
+<rect x="969" y="370" width="382" height="427" rx="17" fill="#2a263b" stroke="#776da6" stroke-width="1.5"/>
+<text x="993" y="406" class="head">BACK-END</text>
+<text x="993" y="433" class="minor">Зависит от целевой архитектуры</text>
+<rect x="990" y="457" width="338" height="126" rx="11" fill="#211e34" stroke="#665b91" stroke-width="1.5"/>
+<text x="1008" y="489" class="item">5. Кодогенерация</text>
+<text x="1008" y="523" class="minor">Выбор инструкций</text>
+<text x="1008" y="552" class="small">Распределение регистров</text>
+<rect x="990" y="602" width="338" height="117" rx="11" fill="#211e34" stroke="#665b91" stroke-width="1.5"/>
+<text x="1008" y="637" class="item">Целевые платформы</text>
+<text x="1008" y="671" class="minor">ARM  ·  x86-64  ·  RISC-V</text>
+<text x="993" y="754" class="tag">LLVM: back-end для архитектур</text>
+<text x="993" y="780" class="small">SIMD-инструкции — по возможностям CPU</text>
+<path d="M 475,599 L 523,599" stroke="#7caeea" stroke-width="3" fill="none" marker-end="url(#arrowblue)"/>
+<path d="M 914,599 L 964,599" stroke="#7caeea" stroke-width="3" fill="none" marker-end="url(#arrowblue)"/>
+<rect x="91" y="818" width="1258" height="90" rx="13" fill="#1b2838" stroke="#435b77" stroke-width="1.5"/>
+<text x="113" y="853" class="item">Смысл разделения: разные языки → общее IR → разные процессоры</text>
+<text x="113" y="886" class="minor">LLVM — инфраструктура; LLVM IR — формат кода; Clang — один из front-end.</text>
+<path d="M 720,934 L 720,962" stroke="#87a1bb" stroke-width="2.7" fill="none" marker-end="url(#arrow)"/>
+<rect x="60" y="967" width="1320" height="111" rx="17" fill="#182637" stroke="#55728f" stroke-width="1.5"/>
+<rect x="78" y="988" width="60" height="46" rx="10" fill="#284563" stroke="#426c95" stroke-width="1.5"/>
+<text x="108" y="1020" class="head" text-anchor="middle">03</text>
+<text x="162" y="1003" class="section">АССЕМБЛЕР</text>
+<text x="162" y="1040" class="item">main.s (мнемоники)  →  main.o (машинный код + символы/метаданные)</text>
+<text x="1070" y="1015" class="minor">Ещё не готовый</text>
+<text x="1070" y="1045" class="minor">исполняемый файл</text>
+<path d="M 720,1080 L 720,1109" stroke="#87a1bb" stroke-width="2.7" fill="none" marker-end="url(#arrow)"/>
+<rect x="60" y="1113" width="1320" height="115" rx="17" fill="#182637" stroke="#55728f" stroke-width="1.5"/>
+<rect x="78" y="1134" width="60" height="46" rx="10" fill="#284563" stroke="#426c95" stroke-width="1.5"/>
+<text x="108" y="1166" class="head" text-anchor="middle">04</text>
+<text x="162" y="1148" class="section">ЛИНКЕР (редактор связей)</text>
+<text x="162" y="1184" class="item">main.o + другие .o + библиотеки → разрешение символов и связывание</text>
+<text x="1035" y="1152" class="minor">Реализации функций</text>
+<text x="1035" y="1183" class="small">приходят из модулей / библиотек</text>
+<path d="M 720,1230 L 720,1258" stroke="#87a1bb" stroke-width="2.7" fill="none" marker-end="url(#arrow)"/>
+<rect x="384" y="1263" width="672" height="68" rx="15" fill="#1d413d" stroke="#4b998d" stroke-width="2"/>
+<text x="720" y="1305" class="item" text-anchor="middle">Исполняемый модуль  ·  запускается средой исполнения</text>
+<text x="720" y="1357" class="small" text-anchor="middle">SVG: логическая схема; физическая реализация и форматы файлов зависят от инструмента и ОС.</text>
+</svg>
+
