@@ -1,24 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="660" height="580" viewBox="0 0 660 580">
-<line x1="48.00" y1="296.00" x2="600.00" y2="296.00" stroke="#8899ac" stroke-width="1.5" opacity="0.65" stroke-linecap="round"/>
-<line x1="305.00" y1="530.00" x2="305.00" y2="46.00" stroke="#8899ac" stroke-width="1.5" opacity="0.65" stroke-linecap="round"/>
-<path d="M 593 292 L 600 296 L 593 300" fill="none" stroke="#8899ac" stroke-width="1.5" opacity="0.65"/>
-<path d="M 301 53 L 305 46 L 309 53" fill="none" stroke="#8899ac" stroke-width="1.5" opacity="0.65"/>
-<text x="599.0" y="318.0" fill="#cfd8e3" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="normal" text-anchor="end">Re</text>
-<text x="316.0" y="57.0" fill="#cfd8e3" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="normal" text-anchor="start">Im</text>
-<text x="293.0" y="317.0" fill="#8899ac" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="normal" text-anchor="end">0</text>
-<circle cx="305" cy="296" r="190" fill="none" stroke="#8899ac" stroke-width="1.5" opacity="0.48"/>
-<polygon points="483.54,231.02 159.45,173.87 272.01,483.11" fill="none" stroke="#70b9f7" stroke-width="2.3" stroke-linejoin="round"/>
-<line x1="305.00" y1="296.00" x2="400.00" y2="131.46" stroke="#f3b366" stroke-width="2.3" opacity="1" stroke-linecap="round"/>
-<path d="M 393.0 137.45517328095667 L 400.0 131.45517328095667 L 401.0 140.45517328095667" fill="none" stroke="#f3b366" stroke-width="2"/>
-<text x="416.0" y="128.5" fill="#f3b366" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="normal" text-anchor="start">w</text>
-<path d="M 259.04,257.43 L 258.37,258.24 L 257.72,259.06 L 257.08,259.89 L 256.46,260.73 L 255.85,261.59 L 255.26,262.45 L 254.68,263.32 L 254.12,264.20 L 253.57,265.10 L 253.04,266.00 L 252.52,266.91 L 252.02,267.83 L 251.54,268.76 L 251.07,269.70 L 250.62,270.64 L 250.19,271.60 L 249.77,272.56 L 249.37,273.52 L 248.99,274.50 L 248.62,275.48 L 248.27,276.47 L 247.94,277.46 L 247.62,278.46 L 247.32,279.46 L 247.04,280.47 L 246.78,281.48 L 246.54,282.50 L 246.31,283.53 L 246.10,284.55 L 245.91,285.58 L 245.74,286.61 L 245.58,287.65 L 245.45,288.69 L 245.33,289.73 L 245.23,290.77 L 245.15,291.81 L 245.08,292.86 L 245.04,293.91 L 245.01,294.95 L 245.00,296.00 L 245.01,297.05 L 245.04,298.09 L 245.08,299.14 L 245.15,300.19 L 245.23,301.23 L 245.33,302.27 L 245.45,303.31 L 245.58,304.35 L 245.74,305.39 L 245.91,306.42 L 246.10,307.45 L 246.31,308.47 L 246.54,309.50 L 246.78,310.52 L 247.04,311.53 L 247.32,312.54 L 247.62,313.54 L 247.94,314.54 L 248.27,315.53 L 248.62,316.52 L 248.99,317.50 L 249.37,318.48 L 249.77,319.44 L 250.19,320.40 L 250.62,321.36 L 251.07,322.30 L 251.54,323.24 L 252.02,324.17 L 252.52,325.09 L 253.04,326.00 L 253.57,326.90 L 254.12,327.80 L 254.68,328.68 L 255.26,329.55 L 255.85,330.41 L 256.46,331.27 L 257.08,332.11 L 257.72,332.94 L 258.37,333.76 L 259.04,334.57 L 259.72,335.36 L 260.41,336.15 L 261.12,336.92 L 261.84,337.68 L 262.57,338.43 L 263.32,339.16 L 264.08,339.88 L 264.85,340.59 L 265.64,341.28 L 266.43,341.96 L 267.24,342.63 L 268.06,343.28 L 268.89,343.92 L 269.73,344.54 L 270.59,345.15 L 271.45,345.74 L 272.32,346.32 L 273.20,346.88 L 274.10,347.43 L 275.00,347.96 L 275.91,348.48 L 276.83,348.98 L 277.76,349.46 L 278.70,349.93 L 279.64,350.38 L 280.60,350.81 L 281.56,351.23 L 282.52,351.63 L 283.50,352.01 L 284.48,352.38 L 285.47,352.73 L 286.46,353.06 L 287.46,353.38 L 288.46,353.68 L 289.47,353.96 L 290.48,354.22 L 291.50,354.46 L 292.53,354.69 L 293.55,354.90 L 294.58,355.09" fill="none" stroke="#f3b366" stroke-width="2.6" stroke-linecap="round"/>
-<line x1="262.10" y1="260.00" x2="255.21" y2="254.22" stroke="#f3b366" stroke-width="2" opacity="1" stroke-linecap="round"/>
-<line x1="295.28" y1="351.15" x2="293.71" y2="360.01" stroke="#f3b366" stroke-width="2" opacity="1" stroke-linecap="round"/>
-<text x="189.0" y="348.0" fill="#f3b366" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="normal" text-anchor="middle">2π/3</text>
-<circle cx="483.54" cy="231.02" r="4.5" fill="#70b9f7"/>
-<circle cx="159.45" cy="173.87" r="4.5" fill="#70b9f7"/>
-<circle cx="272.01" cy="483.11" r="4.5" fill="#70b9f7"/>
-<text x="498.5" y="239.0" fill="#70b9f7" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="normal" text-anchor="start">z₀</text>
-<text x="145.5" y="163.9" fill="#70b9f7" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="normal" text-anchor="end">z₁</text>
-<text x="265.0" y="507.1" fill="#70b9f7" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="normal" text-anchor="end">z₂</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="620" viewBox="0 0 760 620">
+<line x1="70.00" y1="300.00" x2="690.00" y2="300.00" stroke="#8fa1b8" stroke-width="2.2" opacity="1"/>
+<line x1="370.00" y1="560.00" x2="370.00" y2="80.00" stroke="#8fa1b8" stroke-width="2.2" opacity="1"/>
+<text x="700.0" y="310.0" fill="#dfe7f2" font-size="28" font-weight="500" text-anchor="start" font-family="Georgia, Cambria, 'Times New Roman', serif">Re</text>
+<text x="384.0" y="96.0" fill="#dfe7f2" font-size="28" font-weight="500" text-anchor="start" font-family="Georgia, Cambria, 'Times New Roman', serif">Im</text>
+<text x="362.0" y="328.0" fill="#8fa1b8" font-size="18" font-weight="500" text-anchor="end" font-family="Georgia, Cambria, 'Times New Roman', serif">0</text>
+<circle cx="370.00" cy="300.00" r="195.00" stroke="#66758d" fill="none" stroke-width="3" opacity="1"/>
+<polyline points="370.00,105.00 201.13,397.50 538.87,397.50 370.00,105.00" fill="none" stroke="#62a8ff" stroke-width="4.6" stroke-linejoin="round"/>
+<circle cx="370.00" cy="105.00" r="9" fill="#62a8ff"/>
+<text x="370.0" y="87.0" fill="#62a8ff" font-size="24" font-weight="500" text-anchor="middle" font-family="Georgia, Cambria, 'Times New Roman', serif">z0</text>
+<circle cx="201.13" cy="397.50" r="9" fill="#62a8ff"/>
+<text x="179.1" y="433.5" fill="#62a8ff" font-size="24" font-weight="500" text-anchor="end" font-family="Georgia, Cambria, 'Times New Roman', serif">z1</text>
+<circle cx="538.87" cy="397.50" r="9" fill="#62a8ff"/>
+<text x="560.9" y="433.5" fill="#62a8ff" font-size="24" font-weight="500" text-anchor="start" font-family="Georgia, Cambria, 'Times New Roman', serif">z2</text>
+<text x="85.0" y="70.0" fill="#dfe7f2" font-size="24" font-weight="500" text-anchor="start" font-family="Georgia, Cambria, 'Times New Roman', serif">z³ = w,   w = -i,   |w| = 1</text>
 </svg>
