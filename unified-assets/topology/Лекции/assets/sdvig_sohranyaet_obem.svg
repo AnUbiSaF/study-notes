@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="470" viewBox="0 0 960 470" role="img" aria-label="Сдвиг третьего вектора на половину первого и половину второго вдоль основания не меняет высоту параллелепипеда">
+<defs>
+  <marker id="cyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#7dd3fc" stroke-width="1.6"/></marker>
+  <marker id="pink" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#fda4af" stroke-width="1.6"/></marker>
+  <marker id="amber" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#fbbf24" stroke-width="1.6"/></marker>
+</defs>
+<g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" fill="#dce7f5" font-size="17">
+<polygon points="292.0,365.0 496.0,285.0 395.5,220.5 191.5,300.5" fill="#7dd3fc" fill-opacity="0.10" stroke="#94a3b8" stroke-width="1.8"/>
+<text x="385" y="390" font-size="15" fill="#cbd5e1">Основание span(v₁, v₂)</text>
+
+<line x1="292" y1="365" x2="496.0" y2="285.0" stroke="#7dd3fc" stroke-width="3" marker-end="url(#cyan)"/>
+<text x="505.0" y="289.0" fill="#7dd3fc">v₁</text>
+<line x1="292" y1="365" x2="191.5" y2="300.5" stroke="#7dd3fc" stroke-width="3" marker-end="url(#cyan)"/>
+<text x="159.5" y="293.5" fill="#7dd3fc">v₂</text>
+<line x1="299.0" y1="348.4" x2="299.0" y2="172.39999999999998" stroke="#e2e8f0" stroke-opacity="0.6" stroke-width="1.6" stroke-dasharray="6 6"/>
+<circle cx="299.0" cy="348.4" r="3" fill="#e2e8f0"/>
+<line x1="350.75" y1="276.15" x2="350.75" y2="100.14999999999998" stroke="#e2e8f0" stroke-opacity="0.6" stroke-width="1.6" stroke-dasharray="6 6"/>
+<circle cx="350.75" cy="276.15" r="3" fill="#e2e8f0"/>
+<line x1="292" y1="365" x2="299.0" y2="172.39999999999998" stroke="#fda4af" stroke-width="3.4" marker-end="url(#pink)"/>
+<text x="269.0" y="164.39999999999998" fill="#fda4af">v₃</text>
+<line x1="292" y1="365" x2="350.75" y2="100.14999999999998" stroke="#fbbf24" stroke-width="3.4" marker-end="url(#amber)"/>
+<text x="363.75" y="94.14999999999998" fill="#fbbf24">v′₃</text>
+<line x1="299.0" y1="172.4" x2="350.8" y2="100.1" stroke="#fbbf24" stroke-width="2.1" stroke-dasharray="5 4" marker-end="url(#amber)"/>
+<text x="635" y="139" font-size="20" font-weight="600">v′₃ = v₃ + ½v₁ + ½v₂</text>
+<text x="635" y="177" font-size="17" fill="#cbd5e1">Сдвиг параллелен основанию</text>
+<text x="635" y="214" font-size="17" fill="#cbd5e1">Высота не изменяется</text>
+<text x="635" y="251" font-size="17" fill="#cbd5e1">Ориентированный объём тот же</text>
+</g></svg>

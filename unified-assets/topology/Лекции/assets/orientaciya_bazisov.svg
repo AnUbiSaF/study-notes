@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="930" height="455" viewBox="0 0 930 455" role="img" aria-label="Стандартный и новый положительно ориентированный базисы в двумерном пространстве">
+<defs>
+  <marker id="aCyan" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#7dd3fc" stroke-width="1.5"/></marker>
+  <marker id="aPink" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L6 3 L0 6" fill="none" stroke="#fda4af" stroke-width="1.5"/></marker>
+</defs>
+<g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="16" fill="#dce7f5">
+<text x="248" y="34" text-anchor="middle" font-weight="600">Исходный базис</text>
+<text x="686" y="34" text-anchor="middle" font-weight="600">Новый базис</text>
+
+<line x1="75" y1="328" x2="416" y2="328" stroke="#6b7280" stroke-width="1.25"/>
+<line x1="248" y1="384" x2="248" y2="78" stroke="#6b7280" stroke-width="1.25"/>
+<text x="420" y="346" font-size="14">x</text>
+<text x="260" y="84" font-size="14">y</text>
+<text x="232" y="346" font-size="13">0</text>
+<line x1="513" y1="328" x2="854" y2="328" stroke="#6b7280" stroke-width="1.25"/>
+<line x1="686" y1="384" x2="686" y2="78" stroke="#6b7280" stroke-width="1.25"/>
+<text x="858" y="346" font-size="14">x</text>
+<text x="698" y="84" font-size="14">y</text>
+<text x="670" y="346" font-size="13">0</text>
+<polygon points="248.0,328.0 348.0,328.0 348.0,228.0 248.0,228.0" fill="#38bdf8" fill-opacity="0.12" stroke="#94a3b8" stroke-width="1.5"/>
+<polygon points="686.0,328.0 786.0,228.0 686.0,128.0 586.0,228.0" fill="#38bdf8" fill-opacity="0.16" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="248" y1="328" x2="348" y2="328" stroke="#7dd3fc" stroke-width="3.3" marker-end="url(#aCyan)"/>
+<text x="356" y="319" font-size="18" font-style="italic" fill="#7dd3fc">e₁</text>
+<line x1="248" y1="328" x2="248" y2="228" stroke="#fda4af" stroke-width="3.3" marker-end="url(#aPink)"/>
+<text x="258" y="220" font-size="18" font-style="italic" fill="#fda4af">e₂</text>
+<line x1="686" y1="328" x2="786" y2="228" stroke="#7dd3fc" stroke-width="3.3" marker-end="url(#aCyan)"/>
+<text x="800" y="219" font-size="18" font-style="italic" fill="#7dd3fc">e′₁</text>
+<line x1="686" y1="328" x2="586" y2="228" stroke="#fda4af" stroke-width="3.3" marker-end="url(#aPink)"/>
+<text x="555" y="221" font-size="18" font-style="italic" fill="#fda4af">e′₂</text>
+<text x="248" y="417" text-anchor="middle" fill="#cbd5e1">det = 1 &gt; 0</text>
+<text x="686" y="417" text-anchor="middle" fill="#cbd5e1">det A = 2 &gt; 0</text>
+</g></svg>
