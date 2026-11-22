@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620">
+<style>.bg{fill:#151515}.axis{stroke:#777;stroke-width:2}.new{stroke:#70b07b;stroke-width:3}.vec{stroke:#d36a55;stroke-width:3;stroke-dasharray:8 7}.pt{fill:#eee}.lab{fill:#eee;font:600 24px Arial}.sm{fill:#ccc;font:500 18px Arial}.fm{fill:#e5e5e5;font:500 22px serif}</style>
+<rect class="bg" width="1100" height="620"/><text class="lab" x="40" y="45">ДЗ №126. Перенос начала координат</text>
+<line class="axis" x1="80" y1="500" x2="610" y2="500"/><line class="axis" x1="160" y1="560" x2="160" y2="80"/>
+<circle class="pt" cx="160" cy="500" r="6"/><text class="lab" x="125" y="535">O</text>
+<circle class="pt" cx="70" cy="365" r="7"/><text class="lab" x="25" y="355">O′</text>
+<line class="new" x1="70" y1="365" x2="600" y2="365"/><line class="new" x1="70" y1="555" x2="70" y2="85"/>
+<circle class="pt" cx="475" cy="590" r="7"/><text class="lab" x="488" y="588">A</text>
+<line class="vec" x1="160" y1="500" x2="475" y2="590"/><line class="vec" x1="70" y1="365" x2="475" y2="590"/>
+<text class="fm" x="675" y="160">OA = OO′ + O′A</text><text class="fm" x="675" y="210">O′A = OA − OO′</text>
+<text class="fm" x="675" y="275">x′ = x − a</text><text class="fm" x="675" y="315">y′ = y − b</text>
+<text class="sm" x="675" y="385">Меняется начало отсчёта, а не сама точка.</text></svg>

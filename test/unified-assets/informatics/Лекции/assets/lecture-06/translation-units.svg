@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1450" height="535" viewBox="0 0 1450 535" role="img" aria-label="C: из исходных файлов в исполняемую программу">
+ <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#9bb2c9"/></marker></defs><style>
+.title { font-size:27px; font-weight:700; font-family:Arial,DejaVu Sans,sans-serif; fill:#e9f1fb }
+.heading { font-size:19px; font-weight:700; font-family:Arial,DejaVu Sans,sans-serif; fill:#dbe9fa }
+.txt { font-size:17px; font-weight:500; font-family:Arial,DejaVu Sans,sans-serif; fill:#d1dbe8 }
+.small { font-size:15px; font-weight:400; font-family:Arial,DejaVu Sans,sans-serif; fill:#adbdce }
+.mono { font-size:16px; font-weight:500; font-family:DejaVu Sans Mono,Consolas,monospace; fill:#d8e6f8 }
+.block { fill:#1c2d43; stroke:#6d8ba9; stroke-width:1.6 }
+.block2 { fill:#172e37; stroke:#508f98; stroke-width:1.6 }
+.block3 { fill:#302a3e; stroke:#8d77ad; stroke-width:1.6 }
+.arrow { stroke:#9bb2c9; stroke-width:2.3; fill:none; marker-end:url(#arrowhead) }
+.dash { stroke:#a4b5c7; stroke-width:1.8; fill:none; stroke-dasharray:6 6 }
+@media (prefers-color-scheme:light) {
+  .title,.heading { fill:#203247 }
+  .txt,.mono { fill:#24374b }
+  .small { fill:#4e6075 }
+  .block { fill:#eef4fb; stroke:#7b98af }
+  .block2 { fill:#eaf7f4; stroke:#5d9a91 }
+  .block3 { fill:#f1edf8; stroke:#9381aa }
+  .arrow { stroke:#657e97 }
+  .dash { stroke:#74869a }
+}
+</style><text x="28" y="39" class="title">C: из исходных файлов в исполняемую программу</text><text x="112" y="77" text-anchor="middle" class="small">Исходный файл</text><text x="412" y="77" text-anchor="middle" class="small">Единица трансляции</text><text x="745" y="77" text-anchor="middle" class="small">Объектный файл</text><text x="1053" y="77" text-anchor="middle" class="small">Редактор связей</text><rect x="30" y="120" width="185" height="72" rx="13" class="block"/><text x="122.5" y="161.0" text-anchor="middle" class="mono">main.c</text><rect x="30" y="250" width="185" height="72" rx="13" class="block"/><text x="122.5" y="291.0" text-anchor="middle" class="mono">utils.c</text><rect x="278" y="120" width="270" height="72" rx="13" class="block"/><text x="413.0" y="149.5" text-anchor="middle" class="txt">main.c + #include</text><text x="413.0" y="172.5" text-anchor="middle" class="txt">.h после препроцессора</text><rect x="278" y="250" width="270" height="72" rx="13" class="block"/><text x="413.0" y="279.5" text-anchor="middle" class="txt">utils.c + #include</text><text x="413.0" y="302.5" text-anchor="middle" class="txt">.h после препроцессора</text><rect x="645" y="120" width="200" height="72" rx="13" class="block"/><text x="745.0" y="161.0" text-anchor="middle" class="mono">main.o</text><rect x="645" y="250" width="200" height="72" rx="13" class="block"/><text x="745.0" y="291.0" text-anchor="middle" class="mono">utils.o</text><rect x="956" y="185" width="192" height="85" rx="13" class="block2"/><text x="1052.0" y="221.0" text-anchor="middle" class="txt">linker</text><text x="1052.0" y="244.0" text-anchor="middle" class="txt">(связывание)</text><rect x="1212" y="185" width="208" height="85" rx="13" class="block2"/><text x="1316.0" y="221.0" text-anchor="middle" class="txt">Исполняемый</text><text x="1316.0" y="244.0" text-anchor="middle" class="txt">модуль</text><path d="M 215 156 H 277" class="arrow"/><path d="M 215 286 H 277" class="arrow"/><path d="M 548 156 H 644" class="arrow"/><path d="M 548 286 H 644" class="arrow"/><path d="M 845 156 H 896 V 208 H 955" class="arrow"/><path d="M 845 286 H 896 V 248 H 955" class="arrow"/><path d="M 1149 227 H 1211" class="arrow"/><text x="592" y="208" text-anchor="middle" class="small">компиляция</text><text x="592" y="229" text-anchor="middle" class="small">и ассемблирование</text><rect x="895" y="390" width="290" height="81" rx="13" class="block3"/><text x="1040.0" y="435.5" text-anchor="middle" class="txt">Библиотеки: libc, libm</text><path d="M 1040 389 V 273" class="arrow"/><text x="1194" y="402" text-anchor="start" class="small">libc обычно автоматически</text><text x="1194" y="423" text-anchor="start" class="small">libm на Linux: -lm</text><text x="24" y="505" text-anchor="start" class="small">* Физические файлы .i обычно промежуточные; заголовок даёт объявления, библиотека — реализации.</text></svg>
+

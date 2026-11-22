@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Аффинная оболочка через опорную точку">
+  <style>
+    .bg{fill:#151515}.panel{fill:#202020;stroke:#505050;stroke-width:2}.edge{stroke:#a9a9a9;stroke-width:2;stroke-dasharray:7 7;fill:none}.vec{stroke:#82cdf5;stroke-width:4;fill:none}.anchor{fill:#ff937a}.pt{fill:#f2f2f2}.label{fill:#f2f2f2;font:600 23px Arial}.small{fill:#c9c9c9;font:500 17px Arial}.formula{fill:#a9d6ff;font:500 20px Arial}
+  </style>
+  <defs><marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#82cdf5"/></marker></defs>
+  <rect class="bg" width="1200" height="520" rx="18"/>
+  <text class="label" x="45" y="55">Аффинная оболочка: одна опорная точка и независимые направления от неё</text>
+  <rect class="panel" x="35" y="85" width="650" height="395" rx="16"/>
+  <path class="edge" d="M175 365 L350 155 L575 300 Z M175 365 L575 300"/>
+  <circle class="anchor" cx="175" cy="365" r="11"/><text class="label" x="142" y="405">x₁</text><text class="small" x="85" y="435">опорная точка</text>
+  <circle class="pt" cx="350" cy="155" r="9"/><text class="label" x="361" y="150">x₂</text>
+  <circle class="pt" cx="575" cy="300" r="9"/><text class="label" x="586" y="295">x₃</text>
+  <circle class="pt" cx="470" cy="400" r="9"/><text class="label" x="481" y="425">x₄</text>
+  <path class="vec" d="M175 365 L342 165" marker-end="url(#arr)"/><text class="small" x="192" y="223">x₂−x₁</text>
+  <path class="vec" d="M175 365 L563 303" marker-end="url(#arr)"/><text class="small" x="365" y="325">x₃−x₁</text>
+  <path class="vec" d="M175 365 L459 397" marker-end="url(#arr)"/><text class="small" x="295" y="395">x₄−x₁</text>
+  <rect class="panel" x="720" y="85" width="445" height="395" rx="16"/>
+  <text class="formula" x="755" y="155">dim Aff(x₁,…,xᵣ)</text>
+  <text class="formula" x="755" y="188">= dim Lin(x₂−x₁,…,xᵣ−x₁)</text>
+  <text class="small" x="755" y="265">Все r−1 направлений независимы</text>
+  <text class="label" x="755" y="297">→ dim = r−1</text>
+  <text class="small" x="755" y="362">Есть линейная зависимость</text>
+  <text class="label" x="755" y="394">→ dim &lt; r−1</text>
+</svg>

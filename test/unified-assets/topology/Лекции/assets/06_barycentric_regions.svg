@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Знаки барицентрических координат относительно треугольника">
+  <style>
+    .bg{fill:#151515}.edge{stroke:#e4e4e4;stroke-width:3;fill:none}.guide{stroke:#777;stroke-width:2;stroke-dasharray:8 8}.pt{fill:#f2f2f2}.x{fill:#ff8a70}.y{fill:#6fc8ff}.z{fill:#9ee493}.inside{fill:#2d6a4f;fill-opacity:.6}.region{fill:#8f3d4c;fill-opacity:.28}.label{fill:#f3f3f3;font:600 24px Arial}.small{fill:#d0d0d0;font:500 18px Arial}.muted{fill:#ababab;font:500 16px Arial}
+  </style>
+  <rect class="bg" width="1200" height="720" rx="18"/>
+  <text class="label" x="52" y="55">Барицентрические координаты: знак — это сторона от противоположной прямой</text>
+  <path class="guide" d="M80 540 L1120 540 M120 762 L675 77 M525 77 L1080 762"/>
+  <path class="edge" d="M300 540 L900 540 L600 170 Z"/>
+  <path class="inside" d="M300 540 L900 540 L600 170 Z"/>
+  <circle class="pt x" cx="300" cy="540" r="10"/><text class="label" x="274" y="575">x</text><text class="small" x="252" y="604">коэфф. λ</text>
+  <circle class="pt y" cx="900" cy="540" r="10"/><text class="label" x="908" y="575">y</text><text class="small" x="875" y="604">коэфф. μ</text>
+  <circle class="pt z" cx="600" cy="170" r="10"/><text class="label" x="610" y="163">z</text><text class="small" x="620" y="188">коэфф. ν</text>
+  <text class="label" x="486" y="400">λ, μ, ν &gt; 0</text>
+  <text class="small" x="505" y="427">внутри треугольника</text>
+  <text class="small" x="565" y="570">ν = 0</text>
+  <text class="small" x="733" y="337">λ = 0</text>
+  <text class="small" x="440" y="337">μ = 0</text>
+  <text class="label" x="875" y="300">λ &lt; 0</text>
+  <text class="muted" x="846" y="326">за стороной yz</text>
+  <text class="label" x="190" y="300">μ &lt; 0</text>
+  <text class="muted" x="165" y="326">за стороной xz</text>
+  <text class="label" x="505" y="650">ν &lt; 0</text>
+  <text class="muted" x="424" y="680">за стороной xy</text>
+  <text class="muted" x="470" y="105">λ, μ &lt; 0</text>
+  <text class="muted" x="915" y="650">λ, ν &lt; 0</text>
+  <text class="muted" x="100" y="650">μ, ν &lt; 0</text>
+</svg>

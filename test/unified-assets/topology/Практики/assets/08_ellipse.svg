@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320" width="780" height="480" role="img" aria-label="Эллипс: полуоси a и b, фокусы ±c, директрисы x=±a²/c">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10" fill="none" stroke="#94a3b8" stroke-width="1.5"/></marker></defs>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M35 160 H490 M260 25 V296" stroke="#64748b" stroke-width="1.4"/>
+<ellipse cx="260" cy="160" rx="150" ry="120" stroke="#38bdf8" stroke-width="3" fill="#38bdf8" fill-opacity=".06"/>
+<path d="M260 160 H410" stroke="#38bdf8" stroke-width="3.5"/>
+<path d="M260 160 V40" stroke="#34d399" stroke-width="3.5"/>
+<path d="M260 166 H350" stroke="#fbbf24" stroke-width="2.5"/>
+<path d="M10 35 V285 M510 35 V285" stroke="#a78bfa" stroke-width="1.7" stroke-dasharray="6 5" opacity=".85"/>
+</g>
+<g fill="#cbd5e1" font-size="14" font-family="Arial, sans-serif">
+<text x="497" y="153">x</text><text x="271" y="22">y</text><text x="250" y="182">O</text>
+<text x="102" y="183">−a</text><text x="400" y="183">a</text>
+<text x="271" y="49">b</text><text x="270" y="285">−b</text>
+</g>
+<g fill="#fbbf24" font-family="Arial, sans-serif" font-size="14"><circle cx="170" cy="160" r="4"/><circle cx="350" cy="160" r="4"/><text x="152" y="144">F₁</text><text x="344" y="144">F₂</text><text x="304" y="155">c</text></g>
+<g fill="#a78bfa" font-family="Arial, sans-serif" font-size="12"><text x="12" y="305">d₁</text><text x="485" y="305">d₂</text></g>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="620" viewBox="0 0 760 620">
+<line x1="70.00" y1="300.00" x2="690.00" y2="300.00" stroke="#8fa1b8" stroke-width="2.2" opacity="1"/>
+<line x1="370.00" y1="560.00" x2="370.00" y2="80.00" stroke="#8fa1b8" stroke-width="2.2" opacity="1"/>
+<text x="700.0" y="310.0" fill="#dfe7f2" font-size="28" font-weight="500" text-anchor="start" font-family="Georgia, Cambria, 'Times New Roman', serif">Re</text>
+<text x="384.0" y="96.0" fill="#dfe7f2" font-size="28" font-weight="500" text-anchor="start" font-family="Georgia, Cambria, 'Times New Roman', serif">Im</text>
+<text x="362.0" y="328.0" fill="#8fa1b8" font-size="18" font-weight="500" text-anchor="end" font-family="Georgia, Cambria, 'Times New Roman', serif">0</text>
+<circle cx="370.00" cy="300.00" r="195.00" stroke="#66758d" fill="none" stroke-width="3" opacity="1"/>
+<polyline points="370.00,105.00 201.13,397.50 538.87,397.50 370.00,105.00" fill="none" stroke="#62a8ff" stroke-width="4.6" stroke-linejoin="round"/>
+<circle cx="370.00" cy="105.00" r="9" fill="#62a8ff"/>
+<text x="370.0" y="87.0" fill="#62a8ff" font-size="24" font-weight="500" text-anchor="middle" font-family="Georgia, Cambria, 'Times New Roman', serif">z0</text>
+<circle cx="201.13" cy="397.50" r="9" fill="#62a8ff"/>
+<text x="179.1" y="433.5" fill="#62a8ff" font-size="24" font-weight="500" text-anchor="end" font-family="Georgia, Cambria, 'Times New Roman', serif">z1</text>
+<circle cx="538.87" cy="397.50" r="9" fill="#62a8ff"/>
+<text x="560.9" y="433.5" fill="#62a8ff" font-size="24" font-weight="500" text-anchor="start" font-family="Georgia, Cambria, 'Times New Roman', serif">z2</text>
+<text x="85.0" y="70.0" fill="#dfe7f2" font-size="24" font-weight="500" text-anchor="start" font-family="Georgia, Cambria, 'Times New Roman', serif">z³ = w,   w = -i,   |w| = 1</text>
+</svg>

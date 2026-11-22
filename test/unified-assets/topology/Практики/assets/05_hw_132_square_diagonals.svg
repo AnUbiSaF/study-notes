@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<style>.bg{fill:#151515}.edge{stroke:#ddd;stroke-width:3;fill:none}.x{stroke:#6f86c8;stroke-width:4}.y{stroke:#70b07b;stroke-width:4}.d1{stroke:#d36a55;stroke-width:4}.d2{stroke:#b579d6;stroke-width:4}.o{fill:#f4b942}.lab{fill:#eee;font:600 24px Arial}.sm{fill:#ccc;font:500 18px Arial}.fm{fill:#e7e7e7;font:500 21px serif}</style>
+<rect class="bg" width="1200" height="700"/><text class="lab" x="40" y="45">ДЗ №132. Квадрат: стороны → диагонали</text>
+<text class="lab" x="155" y="95">1-я система</text><path class="edge" d="M110 520 L410 520 L410 220 L110 220 Z"/>
+<line class="x" x1="110" y1="520" x2="410" y2="520"/><line class="y" x1="110" y1="520" x2="110" y2="220"/>
+<text class="lab" x="85" y="555">A</text><text class="lab" x="422" y="555">B</text><text class="lab" x="422" y="215">C</text><text class="lab" x="82" y="215">D</text>
+<text class="lab" x="760" y="95">2-я система</text><path class="edge" d="M700 520 L1000 520 L1000 220 L700 220 Z"/>
+<line class="d1" x1="700" y1="520" x2="1000" y2="220"/><line class="d2" x1="1000" y1="520" x2="700" y2="220"/>
+<circle class="o" cx="850" cy="370" r="8"/><text class="lab" x="865" y="365">O</text>
+<text class="sm" x="900" y="295">ось AC</text><text class="sm" x="720" y="295">ось BD</text>
+<text class="lab" x="675" y="555">A</text><text class="lab" x="1012" y="555">B</text><text class="lab" x="1012" y="215">C</text><text class="lab" x="672" y="215">D</text>
+<text class="fm" x="690" y="605">OA=OC=OB=OD=√2/2</text></svg>

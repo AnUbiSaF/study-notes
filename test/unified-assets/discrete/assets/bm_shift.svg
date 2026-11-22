@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="320" viewBox="0 0 920 320">
+<style>text{font-family:Inter,DejaVu Sans,Arial,sans-serif;dominant-baseline:middle} .mono{font-family:DejaVu Sans Mono,monospace}</style>
+<text x="26" y="30" font-size="23" fill="#DCE7F3" text-anchor="start" font-weight="700" class="">Бойер — Мур: «плохой символ»</text>
+<text x="26" y="59" font-size="16" fill="#96A9BE" text-anchor="start" font-weight="400" class="">Ищем ABCD внутри ZZZZABCD</text>
+<rect x="42" y="84" width="74" height="52" rx="8" fill="#243647" stroke="#40556B" stroke-width="1.5"/>
+<text x="79" y="109" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">Z</text>
+<rect x="134" y="84" width="74" height="52" rx="8" fill="#243647" stroke="#40556B" stroke-width="1.5"/>
+<text x="171" y="109" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">Z</text>
+<rect x="226" y="84" width="74" height="52" rx="8" fill="#243647" stroke="#40556B" stroke-width="1.5"/>
+<text x="263" y="109" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">Z</text>
+<rect x="318" y="84" width="74" height="52" rx="8" fill="#243647" stroke="#B96C65" stroke-width="1.5"/>
+<text x="355" y="109" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">Z</text>
+<rect x="410" y="84" width="74" height="52" rx="8" fill="#243647" stroke="#40556B" stroke-width="1.5"/>
+<text x="447" y="109" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">A</text>
+<rect x="502" y="84" width="74" height="52" rx="8" fill="#243647" stroke="#40556B" stroke-width="1.5"/>
+<text x="539" y="109" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">B</text>
+<rect x="594" y="84" width="74" height="52" rx="8" fill="#243647" stroke="#40556B" stroke-width="1.5"/>
+<text x="631" y="109" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">C</text>
+<rect x="686" y="84" width="74" height="52" rx="8" fill="#243647" stroke="#40556B" stroke-width="1.5"/>
+<text x="723" y="109" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">D</text>
+<rect x="42" y="149" width="74" height="48" rx="8" fill="#192A39" stroke="#40556B" stroke-width="1.5"/>
+<text x="79" y="172" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="400" class="">A</text>
+<rect x="134" y="149" width="74" height="48" rx="8" fill="#192A39" stroke="#40556B" stroke-width="1.5"/>
+<text x="171" y="172" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="400" class="">B</text>
+<rect x="226" y="149" width="74" height="48" rx="8" fill="#192A39" stroke="#40556B" stroke-width="1.5"/>
+<text x="263" y="172" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="400" class="">C</text>
+<rect x="318" y="149" width="74" height="48" rx="8" fill="#192A39" stroke="#B96C65" stroke-width="1.5"/>
+<text x="355" y="172" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="400" class="">D</text>
+<text x="78" y="213" font-size="15" fill="#96A9BE" text-anchor="start" font-weight="400" class="">D ≠ Z; буквы Z нет в образце</text>
+<path d="M339 236 C385 265 435 265 484 236" stroke="#D8A966" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M468 237 L484 236 L478 250" stroke="#D8A966" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="410" y="285" font-size="16" fill="#D8A966" text-anchor="middle" font-weight="700" class="">сдвиг 4 позиции</text>
+<rect x="410" y="149" width="74" height="48" rx="8" fill="#186E62" stroke="#62C3AE" stroke-width="1.5"/>
+<text x="447" y="172" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">A</text>
+<rect x="502" y="149" width="74" height="48" rx="8" fill="#186E62" stroke="#62C3AE" stroke-width="1.5"/>
+<text x="539" y="172" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">B</text>
+<rect x="594" y="149" width="74" height="48" rx="8" fill="#186E62" stroke="#62C3AE" stroke-width="1.5"/>
+<text x="631" y="172" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">C</text>
+<rect x="686" y="149" width="74" height="48" rx="8" fill="#186E62" stroke="#62C3AE" stroke-width="1.5"/>
+<text x="723" y="172" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">D</text>
+<text x="776" y="215" font-size="13" fill="#62C3AE" text-anchor="middle" font-weight="700" class="">совпадение</text>
+</svg>

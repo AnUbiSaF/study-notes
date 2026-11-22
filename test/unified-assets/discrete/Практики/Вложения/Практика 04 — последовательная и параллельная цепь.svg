@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 224" role="img" aria-label="Элемент 1 последовательно с параллельным соединением элементов 2 и 3">
+  <title>Схема практики 04, задача 7</title>
+  <g fill="none" stroke="#91a9b9" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M16 112 H115"/><path d="M196 112 H281 V53 H369"/><path d="M281 112 V172 H369"/>
+    <path d="M449 53 H559 V112 H744"/><path d="M449 172 H559 V112"/>
+  </g>
+  <g fill="#213447" stroke="#70a4ce" stroke-width="2.5">
+    <rect x="115" y="86" width="81" height="52" rx="7"/>
+    <rect x="369" y="29" width="80" height="49" rx="7"/>
+    <rect x="369" y="148" width="80" height="49" rx="7"/>
+  </g>
+  <g font-family="Arial,Helvetica,sans-serif" fill="#e7f0ff" font-size="27" font-weight="600" text-anchor="middle">
+    <text x="155" y="120">1</text><text x="409" y="62">2</text><text x="409" y="181">3</text>
+  </g>
+  <g font-family="Arial,Helvetica,sans-serif" fill="#b8cbd8" font-size="19">
+    <text x="16" y="143">вход</text><text x="668" y="143">выход</text>
+    <text x="114" y="171">q₁ = 0,2</text><text x="456" y="43">q₂ = 0,3</text><text x="456" y="191">q₃ = 0,6</text>
+  </g>
+</svg>

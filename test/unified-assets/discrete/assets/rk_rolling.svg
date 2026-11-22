@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="950" height="325" viewBox="0 0 950 325">
+<style>text{font-family:Inter,DejaVu Sans,Arial,sans-serif;dominant-baseline:middle} .mono{font-family:DejaVu Sans Mono,monospace}</style>
+<text x="26" y="27" font-size="23" fill="#DCE7F3" text-anchor="start" font-weight="700" class="">Рабин — Карп: скользящий полиномиальный хеш</text>
+<text x="26" y="59" font-size="16" fill="#96A9BE" text-anchor="start" font-weight="400" class="">ABCDE → BCDEF    •    основание x = 10</text>
+<rect x="34" y="99" width="90" height="56" rx="9" fill="#B96C65" stroke="#B96C65" stroke-width="1.3"/>
+<text x="79" y="124" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">A</text>
+<text x="79" y="147" font-size="11" fill="#96A9BE" text-anchor="middle" font-weight="400" class="">1</text>
+<rect x="34" y="199" width="90" height="56" rx="9" fill="#243647" stroke="#40556B" stroke-width="1.3"/>
+<text x="79" y="225" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">B</text>
+<text x="79" y="246" font-size="11" fill="#96A9BE" text-anchor="middle" font-weight="400" class="">1</text>
+<rect x="138" y="99" width="90" height="56" rx="9" fill="#243647" stroke="#40556B" stroke-width="1.3"/>
+<text x="183" y="124" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">B</text>
+<text x="183" y="147" font-size="11" fill="#96A9BE" text-anchor="middle" font-weight="400" class="">2</text>
+<rect x="138" y="199" width="90" height="56" rx="9" fill="#243647" stroke="#40556B" stroke-width="1.3"/>
+<text x="183" y="225" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">C</text>
+<text x="183" y="246" font-size="11" fill="#96A9BE" text-anchor="middle" font-weight="400" class="">2</text>
+<rect x="242" y="99" width="90" height="56" rx="9" fill="#243647" stroke="#40556B" stroke-width="1.3"/>
+<text x="287" y="124" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">C</text>
+<text x="287" y="147" font-size="11" fill="#96A9BE" text-anchor="middle" font-weight="400" class="">3</text>
+<rect x="242" y="199" width="90" height="56" rx="9" fill="#243647" stroke="#40556B" stroke-width="1.3"/>
+<text x="287" y="225" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">D</text>
+<text x="287" y="246" font-size="11" fill="#96A9BE" text-anchor="middle" font-weight="400" class="">3</text>
+<rect x="346" y="99" width="90" height="56" rx="9" fill="#243647" stroke="#40556B" stroke-width="1.3"/>
+<text x="391" y="124" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">D</text>
+<text x="391" y="147" font-size="11" fill="#96A9BE" text-anchor="middle" font-weight="400" class="">4</text>
+<rect x="346" y="199" width="90" height="56" rx="9" fill="#243647" stroke="#40556B" stroke-width="1.3"/>
+<text x="391" y="225" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">E</text>
+<text x="391" y="246" font-size="11" fill="#96A9BE" text-anchor="middle" font-weight="400" class="">4</text>
+<rect x="450" y="99" width="90" height="56" rx="9" fill="#243647" stroke="#40556B" stroke-width="1.3"/>
+<text x="495" y="124" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">E</text>
+<text x="495" y="147" font-size="11" fill="#96A9BE" text-anchor="middle" font-weight="400" class="">5</text>
+<rect x="450" y="199" width="90" height="56" rx="9" fill="#186E62" stroke="#62C3AE" stroke-width="1.3"/>
+<text x="495" y="225" font-size="20" fill="#FFFFFF" text-anchor="middle" font-weight="700" class="">F</text>
+<text x="495" y="246" font-size="11" fill="#96A9BE" text-anchor="middle" font-weight="400" class="">5</text>
+<path d="M560 134 L624 134" stroke="#D8A966" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M612 127 L624 134 L612 141" stroke="#D8A966" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="34" y="177" font-size="16" fill="#96A9BE" text-anchor="start" font-weight="400" class="">старый хеш: 12345</text>
+<text x="34" y="287" font-size="16" fill="#62C3AE" text-anchor="start" font-weight="700" class="">новый хеш: 23456</text>
+<rect x="648" y="90" width="275" height="197" rx="12" fill="#192A39" stroke="#40556B" stroke-width="1.3"/>
+<text x="666" y="115" font-size="15" fill="#DCE7F3" text-anchor="start" font-weight="400" class="">1. 12345 − 10000 = 2345</text>
+<text x="666" y="163" font-size="15" fill="#DCE7F3" text-anchor="start" font-weight="400" class="">2. 2345 × 10 = 23450</text>
+<text x="666" y="211" font-size="15" fill="#DCE7F3" text-anchor="start" font-weight="400" class="">3. 23450 + 6 = 23456</text>
+<text x="666" y="262" font-size="12" fill="#62C3AE" text-anchor="start" font-weight="700" class="">Удалить → сдвинуть → добавить</text>
+</svg>

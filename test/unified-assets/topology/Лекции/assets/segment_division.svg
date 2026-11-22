@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="360" viewBox="0 0 1100 360" role="img" aria-label="Деление отрезка в отношении m к n">
+  <style>
+    .bg{fill:#151515}.line{stroke:#e6e6e6;stroke-width:4}.part1{stroke:#6f86c8;stroke-width:8}.part2{stroke:#d36a55;stroke-width:8}.tick{stroke:#e6e6e6;stroke-width:3}.pt{fill:#f0f0f0}.mid{fill:#f6c85f}.label{fill:#ececec;font:600 26px Arial}.small{fill:#c8c8c8;font:500 21px Arial}.formula{fill:#ececec;font:500 26px serif}
+  </style>
+  <rect class="bg" width="1100" height="360"/>
+  <text class="label" x="55" y="55">Деление отрезка в отношении XZ : ZY = m : n</text>
+  <line class="line" x1="120" y1="180" x2="980" y2="180"/>
+  <line class="part1" x1="120" y1="180" x2="520" y2="180"/>
+  <line class="part2" x1="520" y1="180" x2="980" y2="180"/>
+  <line class="tick" x1="120" y1="145" x2="120" y2="215"/><line class="tick" x1="520" y1="135" x2="520" y2="225"/><line class="tick" x1="980" y1="145" x2="980" y2="215"/>
+  <circle class="pt" cx="120" cy="180" r="9"/><circle class="mid" cx="520" cy="180" r="10"/><circle class="pt" cx="980" cy="180" r="9"/>
+  <text class="label" x="105" y="255">X</text><text class="label" x="508" y="255">Z</text><text class="label" x="968" y="255">Y</text>
+  <text class="small" x="300" y="145">m частей</text><text class="small" x="700" y="145">n частей</text>
+  <text class="formula" x="250" y="325">Z = (nX + mY) / (m + n)</text>
+</svg>

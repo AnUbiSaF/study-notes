@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" role="img" aria-label="При обратном BWT к результатам предыдущего шага приписывается фиксированный столбец аб доллар а слева, затем строки сортируются">
+<style>
+text { font-family: system-ui,-apple-system,BlinkMacSystemFont,Arial,sans-serif; fill: #d2dbe8; }
+line,path { stroke: #8491a4; }
+.label { fill: #71ddc4; font-weight: 650; }
+.sub { font-size: 15px; fill: #aab8cb; }
+.node { fill: #6486a4; }
+.leaf { fill: #217c70; }
+.white, .white text { fill: white; font-weight: 600; }
+@media (prefers-color-scheme: light) {
+  text { fill: #455167; }
+  line,path { stroke: #7b899c; }
+  .label { fill: #16816f; }
+  .sub { fill: #5f6d7f; }
+}
+</style>
+<text x="20" y="30" font-size="21" font-weight="700">Обратное BWT: от шага 1 к шагу 2</text>
+<text x="30" y="61" font-size="16" class="sub">Постоянный столбец BWT</text>
+<text x="275" y="61" font-size="16" class="sub">Отсортировано ранее</text>
+<text x="525" y="61" font-size="16" class="sub">Приписать слева</text>
+<g font-size="25" text-anchor="middle">
+<text x="114" y="106" class="label">а</text><text x="114" y="158" class="label">б</text><text x="114" y="210" class="label">$</text><text x="114" y="262" class="label">а</text>
+<text x="356" y="106">$</text><text x="356" y="158">а</text><text x="356" y="210">а</text><text x="356" y="262">б</text>
+<text x="606" y="106">а$</text><text x="606" y="158">ба</text><text x="606" y="210">$а</text><text x="606" y="262">аб</text>
+</g>
+<g stroke-width="2.0" fill="none">
+<path d="M155 98 L220 98"/><path d="M155 150 L220 150"/><path d="M155 202 L220 202"/><path d="M155 254 L220 254"/>
+<path d="M403 98 L483 98"/><path d="M403 150 L483 150"/><path d="M403 202 L483 202"/><path d="M403 254 L483 254"/>
+</g>
+<path d="M470 89 L484 98 L470 107 M470 141 L484 150 L470 159 M470 193 L484 202 L470 211 M470 245 L484 254 L470 263" fill="none" stroke-width="2"/>
+<rect x="210" y="289" width="340" height="47" rx="10" fill="#23867b" fill-opacity=".14" stroke="#388e85" stroke-width="1.2"/>
+<text x="380" y="317" text-anchor="middle" font-size="20">После сортировки: $а, а$, аб, ба</text>
+</svg>
