@@ -120,3 +120,7 @@ html,body{max-width:100%;overflow-x:hidden}
 @media(max-width:660px){.section-title{align-items:center;gap:10px}.section-title-actions{gap:7px}.section-favorite{padding:6px 8px;font-size:9px}.section-title-actions small{font-size:9px}}
 
 .personal-panel .saved-list{max-height:16rem;overflow-y:auto;overscroll-behavior:contain;padding-right:4px;align-content:start}
+
+/* Illustration sizing for lecture 19. */
+.prose figure:has(img[alt^="l19_"]) { margin: 1.5rem 0; }
+.prose figure img[alt^="l19_"] { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
